@@ -1,0 +1,84 @@
+.enter {
+    color: violet;
+    margin-top: 40px;
+}
+.inputForm {
+    text-align: center;
+}
+.searchBar {
+    padding: 10px;
+    width: 250px;
+}
+.body {
+    padding: 30px;
+}
+.display {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.listCards {
+    list-style-type: none;
+    margin: 10px;
+}
+.card {
+    max-width: 210px;
+    min-width: 200px;
+    border: 1px solid green;
+    height: 380px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+.cardImage {
+    max-width: 210px;
+    min-width: 200px;
+    height: auto;
+}
+.cardContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-weight: bold;
+    margin: 5px;
+}
+.cardTitle {
+    text-align: center;
+}
+.cardYear {
+    text-align: right;
+}
+.Detailed {
+    height: 300px;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 50px;
+    position: relative;
+}
+.movieDetails {
+    font-weight: 500px;
+    margin: 0 0 0 50px;
+}
+.detailsMovie {
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0;
+}
+.detailContent {
+    color: darkgray;
+    margin-left: 20px;
+}
+.detailClose {
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.detailClose {
+    width: 30px;
+    height: auto;
+}
