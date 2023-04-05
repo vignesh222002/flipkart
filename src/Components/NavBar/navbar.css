@@ -145,7 +145,7 @@ input {
     letter-spacing: .1px;
     font-weight: 500;
     color: #fff;
-    user-select: none;bottom: ;
+    user-select: none;
 }
 .NavbarMainLoginBtn2 {
     cursor: pointer;
