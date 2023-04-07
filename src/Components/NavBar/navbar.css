@@ -1,5 +1,10 @@
 @font-face {
-    font-family: roboto;
+    font-family: roboto-medium;
+    src: url("../../Fonts/roboto-medium-webfont.woff2");
+    font-variant: normal;
+}
+@font-face {
+    font-family: roboto-regular;
     src: url("../../Fonts/roboto-regular-webfont.woff2");
     font-variant: normal;
 }
@@ -14,7 +19,7 @@
     z-index: 10;
     display: flex;
     flex-direction: row;
-    font-family: roboto;
+    font-family: roboto-medium;
 }
 .navbarMainLeftSpace, .navbarMainRightSpace {
     height: 100%;
@@ -25,6 +30,9 @@
     color: inherit;
     border: none;
     outline: none;
+}
+.link:hover {
+    text-decoration: none;
 }
 .navbarMainContent {
     max-width: 1248px;
@@ -80,6 +88,7 @@
     width: calc(100% - 540px);
     margin: 0 auto 0 12px;
     align-items: center;
+    font-family: roboto-regular;
 }
 .NavbarMainSearchForm {
     display: inline-block;
@@ -99,6 +108,7 @@
     position: relative;
     display: inline-block;
     width: 100%;
+    font-weight: 300;
 }
 .NavbarMainSearchInput {
     padding: 0 16px;
@@ -156,14 +166,10 @@ input {
     padding: 5px 40px;
     border: 1px solid #dbdbdb;
     color: #2874f0;
-    font-weight: 900;
+    font-weight: 500;
     background-color: #fff;
     cursor: pointer;
     border-radius: 2px;
-}
-.height {
-    height: 1000px;
-    background-color: #ffe500;
 }
 
 /* Navbar Became Seller */
@@ -223,6 +229,9 @@ input {
     margin: 1px 0 0 8px;
     transform: rotate(270deg);
 }
+.NavbarMainMore:hover .NavbarMainMoreArrow {
+    transform: rotate(90deg);
+}
 
 /* Navbar Cart */
 
@@ -258,3 +267,42 @@ input {
     height: 16px;
     margin: 0 8px;
 }
+
+/* Navbar User */
+
+.NavbarMainUser {
+    display: flex;
+    flex: 0 0 auto;
+    margin: 0 20px;
+    max-width: 150px;
+    justify-content: flex-end;
+}
+.NavbarMainUser1 {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    height: 100%;
+    line-height: 20px;
+    font-size: 16px;
+    letter-spacing: .1px;
+    font-weight: 500;
+    color: #fff;
+    user-select: none;
+}
+.NavbarMainUser2 {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+}
+.NavbarMainUser3 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 108px;
+    display: block;
+}
+.NavbarMainUserArrow {
+    transform: rotate(270deg);
+    margin: 1px 0 0 8px;
+}
+

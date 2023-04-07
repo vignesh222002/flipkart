@@ -1,8 +1,10 @@
 import "./navbar.css"
+import { Link } from "react-router-dom";
 import Flipkart from "../../Media/flipkartLogo.png";
 import Plus from "../../Media/plus.png"
-import { Link } from "react-router-dom";
-
+import NavbarLoginBtn from "./NavbarLoginBtn";
+import NavbarUser from "./NavbarUser";
+import NavbarMore from "./NavbarMore";
 
 let NavbarLogo = () => {
     return (
@@ -14,6 +16,7 @@ let NavbarLogo = () => {
         </div>
     )
 }
+
 let NavbarSearchBar = () => {
     return (
         <div className="NavbarMainSearchBar">
@@ -29,39 +32,10 @@ let NavbarSearchBar = () => {
     )
 }
 
-let NavbarLoginBtn = () => {
-    return (
-        <div className="NavbarMainLoginBtn">
-            <div className="NavbarMainLoginBtn1">
-                <div className="NavbarMainLoginBtn2">
-                    <div>
-                        <Link to='login' className="NavbarMainLoginBtnLink link">Login</Link>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
-}
-
 let NavbarBecameSeller = () => {
     return (
         <div className="NavbarMainBecameSeller">
             <Link to="becomeseller" className="NavbarMainBecameSellerLink link"><span>Become a Seller</span></Link>
-        </div>
-    )
-}
-
-let NavbarMore = () => {
-    return (
-        <div className="NavbarMainMore">
-            <div className="NavbarMainMore1">
-                <div className="NavbarMainMore2">
-                    <div>
-                        <div className="NavbarMainMore3">More</div>
-                    </div>
-                </div>
-                <svg width="4.7" height="8" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg" class="NavbarMainMoreArrow"><path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#fff" class="_2gTTdy"></path></svg>
-            </div>
         </div>
     )
 }
@@ -81,7 +55,7 @@ let NavbarCart = () => {
     )
 }
 
-let NavbarMain = () => {
+let NavbarMain = ({navbarLoginBtn, navbarBecameSeller, navbarMore, navbarCart, navbarUser, setLoginActive, setMoreActive}) => {
     return (
         <>
             <div className="navbarMain">
@@ -89,14 +63,14 @@ let NavbarMain = () => {
                 <div className="navbarMainContent">
                     <NavbarLogo />
                     <NavbarSearchBar />
-                    <NavbarLoginBtn />
-                    <NavbarBecameSeller />
-                    <NavbarMore />
-                    <NavbarCart />
+                    {navbarLoginBtn && <NavbarLoginBtn setLoginActive={setLoginActive} />}
+                    {navbarUser && <NavbarUser />}
+                    {navbarBecameSeller && <NavbarBecameSeller />}
+                    {navbarMore && <NavbarMore setMoreActive={setMoreActive} />}
+                    {navbarCart && <NavbarCart />}
                 </div>
                 <div className="navbarMainRightSpace" />
             </div>
-            <div className="height" />
         </>
     )
 }

@@ -1,0 +1,129 @@
+@font-face {
+    font-family: roboto-medium;
+    src: url("../../Fonts/roboto-medium-webfont.woff2");
+    font-variant: normal;
+}
+@font-face {
+    font-family: roboto-regular;
+    src: url("../../Fonts/roboto-regular-webfont.woff2");
+    font-variant: normal;
+}
+
+/* Login PopUp */
+
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+.loginPopup {
+    box-shadow: 0 4px 16px 0 rgb(0 0 0 / 20%);
+    border-radius: 3px;
+    max-width: 240px;
+    margin-top: 6px;
+    background: #fff;
+    position: absolute;
+    min-width: 240px;
+    color: #212121;
+    font-size: 14px;
+    font-weight: 400;
+    border-color: #f0f0f0;
+    text-align: left;
+    z-index: 19;
+    top: 50px;
+    right: 30%;
+    font-family: roboto-regular;
+}
+.loginPopupArrow {
+    width: 0;
+    height: 0;
+    border: solid transparent;
+    position: absolute;
+    bottom: 100%;
+    border-bottom-color: #f0f0f0;
+    border-width: 10px;
+    left: 50%;
+}
+.loginPopupArrow::after {
+    content: "";
+    left: 0;
+    border-bottom-color: #fff;
+    border-width: 8px;
+    bottom: -10px;
+    position: absolute;
+}
+.loginPopupContent, .morePopupContent {
+    padding: 16px;
+    overflow: auto;
+    margin: -16px;
+}
+.loginPopupHead {
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    font-weight: 500;
+    justify-content: space-between;
+}
+
+.loginPopupList {
+    border-top: 1px solid #f0f0f0;
+    text-align: left;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 400;
+    color: #212121;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.loginPopupListItem, .morePopupListItem {
+    border-bottom: 1px solid #f0f0f0;
+    list-style: none;
+}
+.loginPopupListLink, .morePopupListLink {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 20px !important;
+}
+.loginPopupListLink:hover, .morePopupListLink:hover {
+    background-color: #fafafa;
+    text-decoration: none;
+}
+.loginPopupListItemContent, .morePopupListItemContent {
+    margin-left: 12px;
+    color: #212121;
+}
+
+/* More Popup */
+
+.morePopup {
+    box-shadow: 0 4px 16px 0 rgb(0 0 0 / 20%);
+    border-radius: 3px;
+    max-width: 240px;
+    margin-top: 6px;
+    background: #fff;
+    position: absolute;
+    min-width: 240px;
+    color: #212121;
+    font-size: 14px;
+    font-weight: 400;
+    border-color: #f0f0f0;
+    text-align: left;
+    z-index: 19;
+    top: 50px;
+    font-family: roboto-regular;
+    right: 10%;
+    opacity: 1;
+    transition: opacity .3s ease-in-out;
+}
+.morePopupList {
+    text-align: left;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 400;
+    color: #212121;
+    padding-left: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+}
