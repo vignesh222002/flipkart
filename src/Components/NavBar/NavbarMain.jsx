@@ -55,7 +55,7 @@ let NavbarCart = () => {
     )
 }
 
-let NavbarMain = ({navbarLoginBtn, navbarBecameSeller, navbarMore, navbarCart, navbarUser, setLoginActive, setMoreActive}) => {
+let NavbarMain = ({navbarLoginBtn, navbarBecameSeller, navbarMore, navbarCart, navbarUser, setLoginActive, setMoreActive, setCallLogin}) => {
     return (
         <>
             <div className="navbarMain">
@@ -63,7 +63,7 @@ let NavbarMain = ({navbarLoginBtn, navbarBecameSeller, navbarMore, navbarCart, n
                 <div className="navbarMainContent">
                     <NavbarLogo />
                     <NavbarSearchBar />
-                    {navbarLoginBtn && <NavbarLoginBtn setLoginActive={setLoginActive} />}
+                    {navbarLoginBtn && <NavbarLoginBtn setLoginActive={setLoginActive} setCallLogin={setCallLogin}/>}
                     {navbarUser && <NavbarUser />}
                     {navbarBecameSeller && <NavbarBecameSeller />}
                     {navbarMore && <NavbarMore setMoreActive={setMoreActive} />}
