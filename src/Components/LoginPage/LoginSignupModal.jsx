@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './login.css'
-import { LoginPageLeft, LoginPageRight } from './LoginPage'
+import LoginContent from './LoginContent'
 
 let LoginSignupModal = ({setCallLogin}) => {
     let [loginProcess, setLoginProcess] = useState(true)
@@ -9,18 +9,9 @@ let LoginSignupModal = ({setCallLogin}) => {
     return (
         <div className="loginSignupModal">
             <div className="loginSignupModalBox">
-                <button className="loginSignupCloseBtn" onClick={() => setCallLogin(false)}>X</button>
+                <button className="loginSignupCloseBtn" onClick={() => setCallLogin(false)}>✕</button>
                 <div className="loginSignupModalContent1">
-                    <div className="loginSignupModalContent2">
-                        <div className="loginSignupModalLeft">
-                            {/* Left Content */}
-                            {loginProcess && <LoginPageLeft />}
-                        </div>
-                        <div className="loginSignupModalRight">
-                            {/* Right Content */}
-                            {loginProcess && <LoginPageRight />}
-                        </div>
-                    </div>
+                    <LoginContent loginProcess={loginProcess} signupProcess={signupProcess} setLoginProcess={setLoginProcess} setSignupProcess={setSignupProcess}/>
                 </div>
             </div>
         </div>
