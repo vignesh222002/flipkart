@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
-import { useRef } from 'react';
+import { useContext, useRef, useState } from 'react';
 import './login.css'
-import { useUserInfo } from '../../Pages/LoginPage/UserInfo';
+import { UserContext } from '../../App';
 
 export let LoginPageLeft = () => {
 
@@ -13,8 +13,10 @@ export let LoginPageLeft = () => {
     )
 }
 
-export let LoginPageRight = ({setLoginProcess, setSignupProcess}) => {
-    let user = useUserInfo // User Context
+export let LoginPageRight = ({setLoginProcess, setSignupProcess, setLoginOtpProcess}) => {
+    let userInfo = useContext(UserContext)
+
+    let [mobileNo, setMobileNo] = useState()
 
     const inputRef = useRef();
     const labelRef = useRef();
@@ -33,30 +35,68 @@ export let LoginPageRight = ({setLoginProcess, setSignupProcess}) => {
         setLoginProcess(false)
         setSignupProcess(true)
     }
+    let updateMobileNo = (e) => {
+        setMobileNo(e.target.value)
+        console.log(mobileNo);
+    }
+    function otpRequest() {
+        userInfo.login(mobileNo)
+        setLoginProcess(false)
+        setLoginOtpProcess(true)
+    }
 
     return (
         <div className="loginPageRight">
-            <form>
-                <div className="loginPageRightInput">
-                    <input ref={inputRef} className='loginPageRightInput1' type="number" autoComplete='off' onFocus={handleFocus} onBlur={handleBlur} onChange={(e) => user.login(e.target.value)}/>
-                    <label ref={labelRef} className="loginPageRightInputLabel">Enter Email/Mobile number</label>
-                </div>
-                <div className="loginPageRightDescription">By continuing, you agree to Flipkart's 
-                    <Link className='blueLink'> Terms of Use </Link> and 
-                    <Link className='blueLink'> Privacy Policy.</Link>
-                </div>
-                <button className="loginPageRightOTPBtn">Request OTP</button>
-                <div className="loginPageRightSignupLink" onClick={handleGotoSignup}><Link className='blueLink'>New to Flipkart? Create an account</Link></div>
-            </form>
+            <div className="loginPageRightInput">
+                <input ref={inputRef} className='loginPageRightInput1' type="text" required autoComplete='off' onFocus={handleFocus} onBlur={handleBlur} onChange={(e) => updateMobileNo(e)}/>
+                <label ref={labelRef} className="loginPageRightInputLabel">Enter Email/Mobile number</label>
+            </div>
+            <div className="loginPageRightDescription">By continuing, you agree to Flipkart's 
+                <Link className='blueLink'> Terms of Use </Link> and 
+                <Link className='blueLink'> Privacy Policy.</Link>
+            </div>
+            <button className="loginPageRightOTPBtn" onClick={otpRequest}>Request OTP</button>
+            <div className="loginPageRightSignupLink" onClick={handleGotoSignup}><Link className='blueLink'>New to Flipkart? Create an account</Link></div>
         </div>
     )
 }
 
 export let LoginOtpPageRight = () => {
+    let userInfo = useContext(UserContext)
 
     return (
         <div className="loginOtpPageRight">
             <div>Please enter the OTP sent to</div>
+            <div>
+                <span className='loginOtpPageRightuser'>{userInfo.user}.</span>
+                <Link className='blueLink changeLoginNumber'>Change</Link>
+            </div>
+            <form>
+                <div className="loginOtpPageRightInput">
+                    <div className="loginOtpPageRightInput1">
+                        <input className="loginOtpPageRightInput1Value" type="number" autoComplete='off' required/>
+                    </div>
+                    <div className="loginOtpPageRightInput1">
+                        <input className="loginOtpPageRightInput1Value" type="number" autoComplete='off' required/>
+                    </div>
+                    <div className="loginOtpPageRightInput1">
+                        <input className="loginOtpPageRightInput1Value" type="number" autoComplete='off' required/>
+                    </div>
+                    <div className="loginOtpPageRightInput1">
+                        <input className="loginOtpPageRightInput1Value" type="number" autoComplete='off' required/>
+                    </div>
+                    <div className="loginOtpPageRightInput1">
+                        <input className="loginOtpPageRightInput1Value" type="number" autoComplete='off' required/>
+                    </div>
+                    <div className="loginOtpPageRightInput1">
+                        <input className="loginOtpPageRightInput1Value" type="number" autoComplete='off' required/>
+                    </div>
+                </div>
+                <button className='loginOtpVerifyBtn'>Verify</button>
+            </form>
+            <div className="loginOtpPageRightDescription">Not received your code? 
+                <span className='blueLink resendLoginOTP'> Resend code</span>
+            </div>
         </div>
     )
 }

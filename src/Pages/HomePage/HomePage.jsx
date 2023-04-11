@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Footer from "../../Components/HomePage/Footer"
 import LoginSignupModal from "../../Components/LoginPage/LoginSignupModal"
 import LoginPopup from "../../Components/NavBar/LoginPopUP"
 import MorePopup from "../../Components/NavBar/MorePopup"
@@ -18,6 +19,7 @@ let HomePage = () => {
             {loginActive && <LoginPopup setLoginActive={setLoginActive} />}
             {moreActive && <MorePopup setMoreActive={setMoreActive}/>}
             {callLogin && <LoginSignupModal setCallLogin={setCallLogin}/>}
+            <Footer />
         </>
     )
 }

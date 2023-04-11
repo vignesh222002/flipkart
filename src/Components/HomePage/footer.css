@@ -1,0 +1,117 @@
+/* Footer 1 */
+
+@font-face {
+    font-family: roboto-medium;
+    src: url("../../Fonts/roboto-medium-webfont.woff2");
+    font-variant: normal;
+}
+@font-face {
+    font-family: roboto-regular;
+    src: url("../../Fonts/roboto-regular-webfont.woff2");
+    font-variant: normal;
+}
+
+a {
+    text-decoration: none;
+    border: none;
+    outline: none;
+}
+.footer1Container {
+    background-color: #172337;
+    line-height: 1.4;
+}
+.footer1 {
+    display: flex;
+    flex-flow: row wrap;
+    margin-left: 65px;
+    width: 90%!important;
+    padding-top: 40px;
+    font-family: roboto-regular;
+}
+.footer1Column {
+    flex: 1;
+}
+.footer1Column:last-child {
+    margin-right: 0;
+}
+.footer1Head {
+    color: #878787;
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 9px;
+}
+.footer1Link {
+    line-height: 2;
+    color: #fff;
+    display: block;
+    font-weight: 400;
+    font-size: 12px;
+}
+.footer1Link:hover {
+    text-decoration: underline;
+}
+.footer1Mail {
+    font-size: 12px;
+    white-space: nowrap;
+    border-left: 1px solid #454d5e;
+    padding: 0 25px;
+}
+.footer1MailContent {
+    font-style: normal;
+    color: #fff;
+    font-size: 12px;
+    line-height: normal;
+}
+.footer1MailContent p {
+    line-height: 1.5;
+}
+.footer1Address {
+    margin-bottom: 10px;
+    padding-left: 14px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+.footer1AddressContent {
+    font-style: normal;
+    color: #fff;
+    font-size: 12px;
+    line-height: normal;
+}
+.footer1AddressContent p {
+    line-height: 1.5;
+}
+.blueLink {
+    color: #2874f0;
+    font-weight: 500;
+    font-family: roboto-medium;
+}
+
+.hei {
+    height: 800px;
+    background-color: gray;
+}
+
+/* Footer 2 */
+
+.footer2 {
+    border-top: 1px solid #454d5e;
+    padding: 25px 0;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-evenly;
+    font-family: roboto-regular;
+    align-items: center;
+    font-size: 14px;
+    line-height: 1.4;
+}
+.footer2Link {
+    color: #fff;
+    margin-left: 8px;
+    text-decoration: none;
+}
+.footer2 a:hover {
+    text-decoration: none;
+}
+.footer2Span {
+    color: #fff;
+}
