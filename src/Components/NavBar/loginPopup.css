@@ -14,7 +14,10 @@
 a {
     text-decoration: none;
 }
-a:hover {
+.blueLink {
+    color: #2874f0;
+}
+.blueLink:hover {
     text-decoration: underline;
 }
 .loginPopup {

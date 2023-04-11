@@ -1,3 +1,13 @@
+@font-face {
+    font-family: roboto-medium;
+    src: url("../../Fonts/roboto-medium-webfont.woff2");
+    font-variant: normal;
+}
+@font-face {
+    font-family: roboto-regular;
+    src: url("../../Fonts/roboto-regular-webfont.woff2");
+    font-variant: normal;
+}
 .navbar2 {
     min-height: 112px;
     position: relative;
@@ -9,6 +19,7 @@
     justify-content: center;
     background-color: #fff;
     box-shadow: 0 1px 1px 0 rgb(0 0 0 / 16%);
+    padding-top: 56px;
 }
 .navbar2Content {
     display: flex;
@@ -22,4 +33,43 @@
     padding: 12px 8px;
     text-align: center;
     cursor: pointer;
+}
+.navbar2Element:first-child {
+    padding-left: 22px;
+}
+.navbar2Element:last-child {
+    padding-right: 24px;
+}
+.navbar2Link, .navbar2Link:hover {
+    text-decoration: none;
+    color: inherit;
+    border: none;
+    outline: none;
+}
+.nav2ProductName {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.4;
+    font-family: roboto-medium;
+    margin-top: 4px;
+}
+.nav2ProductImg {
+    height: 64px;
+    width: 64px;
+    position: relative;
+    margin: 0 auto;
+}
+.nav2ProductImage {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: auto;
+    opacity: 1;
+    max-width: 100%;
+    max-height: 100%;
+}
+.bluecolor {
+    color: #2874f0;
 }
