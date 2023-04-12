@@ -3,7 +3,9 @@ import './sector.css'
 let Sector = () => {
 
     return (
-        <div className="sector"></div>
+        <div className="sectorContainer">
+            <div className="sector"></div>
+        </div>
     )
 }
 

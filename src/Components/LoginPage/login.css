@@ -117,12 +117,14 @@ a {
     margin-top: 19px;
     line-height: 150%;
     color: #dbdbdb;
+    font-family: roboto-regular;
 }
 .signupPageLeftPara {
     font-size: 18px;
     margin-top: 16px;
     line-height: 150%;
     color: #dbdbdb;
+    font-family: roboto-regular;
 }
 
 /* Login Page Right */
@@ -154,6 +156,7 @@ a {
     transform: translateY(10px);
     transform-origin: left;
     transition: transform .2s ease;
+    font-family: roboto-regular;
 }
 .inputUnderBlue {
     border-bottom: 1px solid #2874f0;
@@ -167,13 +170,18 @@ a {
     font-size: 12px;
     font-weight: 400;
     line-height: 1.4;
+    font-family: roboto-regular;
 }
 .blueLink {
     color: #2874f0;
     font-weight: 500;
+    font-family: roboto-regular;
 }
-.blueLink:hover {
-    text-decoration: none;
+.blueLinkHover:hover {
+    text-decoration: none !important;
+}
+.blueLinkSignup {
+    font-family: roboto-medium;
 }
 .loginPageRightOTPBtn, .signupPageRightOTPBtn {
     margin-top: 16px;
@@ -235,6 +243,7 @@ a {
 .loginOtpPageRight {
     text-align: center;
     font-size: 16px;
+    font-family: roboto-regular;
     line-height: 1.4;
 }
 .loginOtpPageRightuser {

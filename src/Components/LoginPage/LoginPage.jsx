@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom'
 import { useContext, useRef, useState } from 'react';
 import './login.css'
-import { UserContext } from '../../App';
+import { UserContext } from '../Context/UserInfoContext';
 
 export let LoginPageLeft = () => {
-
     return (
         <div className='loginPageLeft'>
             <span className="loginPageLeftHead">Login</span>
@@ -52,11 +51,11 @@ export let LoginPageRight = ({setLoginProcess, setSignupProcess, setLoginOtpProc
                 <label ref={labelRef} className="loginPageRightInputLabel">Enter Email/Mobile number</label>
             </div>
             <div className="loginPageRightDescription">By continuing, you agree to Flipkart's 
-                <Link className='blueLink'> Terms of Use </Link> and 
-                <Link className='blueLink'> Privacy Policy.</Link>
+                <Link className='blueLink blueLinkHover'> Terms of Use </Link> and 
+                <Link className='blueLink blueLinkHover'> Privacy Policy.</Link>
             </div>
             <button className="loginPageRightOTPBtn" onClick={otpRequest}>Request OTP</button>
-            <div className="loginPageRightSignupLink" onClick={handleGotoSignup}><Link className='blueLink'>New to Flipkart? Create an account</Link></div>
+            <div className="loginPageRightSignupLink" onClick={handleGotoSignup}><Link className='blueLink blueLinkHover blueLinkSignup'>New to Flipkart? Create an account</Link></div>
         </div>
     )
 }

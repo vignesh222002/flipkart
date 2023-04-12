@@ -5,7 +5,7 @@ import { SignupPageLeft, SignupPageRight } from './SignupPage'
 let LoginContent = ({loginProcess, signupProcess, setLoginProcess, setSignupProcess, loginOtpProcess, setLoginOtpProcess}) => {
 
     return (
-        <div className="loginSignupModalContent2">
+        <>
             <div className="loginSignupModalLeft">
                 {/* Left Content */}
                 {(loginProcess || loginOtpProcess) && <LoginPageLeft />}
@@ -17,7 +17,7 @@ let LoginContent = ({loginProcess, signupProcess, setLoginProcess, setSignupProc
                 {signupProcess && <SignupPageRight setLoginProcess={setLoginProcess} setSignupProcess={setSignupProcess} />}
                 {loginOtpProcess && <LoginOtpPageRight />}
             </div>
-        </div>
+        </>
     )
 }
 

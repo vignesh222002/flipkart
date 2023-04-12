@@ -1,13 +1,16 @@
-.sector {
-    position: relative;
-    min-height: 40px;
-    color: #000;
+.sectorContainer {
     z-index: 6;
     background-color: #fff;
     box-shadow: 0 1px 1px 0 rgb(0 0 0 / 16%);
+    position: relative;
+    padding-top: 56px;
+}
+.sector {
+    color: #000;
     display: flex;
     max-width: 1248px;
     justify-content: space-between;
     height: 40px;
+    /* min-height: 40px; */
     margin: auto;
 }

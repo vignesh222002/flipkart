@@ -12,7 +12,6 @@ let Footer = () => {
 
     return (
         <div>
-            <div className='hei'></div>
             <div className="footer1Container">
                 <div className="footer1">
                     <Footer1Column>

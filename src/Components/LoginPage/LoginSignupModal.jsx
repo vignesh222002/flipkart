@@ -12,7 +12,9 @@ let LoginSignupModal = ({setCallLogin}) => {
             <div className="loginSignupModalBox">
                 <button className="loginSignupCloseBtn" onClick={() => setCallLogin(false)}>✕</button>
                 <div className="loginSignupModalContent1">
-                    <LoginContent loginProcess={loginProcess} signupProcess={signupProcess} setLoginProcess={setLoginProcess} setSignupProcess={setSignupProcess} loginOtpProcess={loginOtpProcess} setLoginOtpProcess={setLoginOtpProcess}/>
+                    <div className="loginSignupModalContent2">
+                        <LoginContent loginProcess={loginProcess} signupProcess={signupProcess} setLoginProcess={setLoginProcess} setSignupProcess={setSignupProcess} loginOtpProcess={loginOtpProcess} setLoginOtpProcess={setLoginOtpProcess}/>
+                    </div>
                 </div>
             </div>
         </div>
