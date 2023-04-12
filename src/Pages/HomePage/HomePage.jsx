@@ -18,7 +18,7 @@ let HomePage = () => {
         <>
             <NavbarMain navbarLoginBtn={true} navbarBecameSeller={true} navbarMore={true} navbarCart={true} navbarUser={login} setLoginActive={setLoginActive} setMoreActive={setMoreActive} setCallLogin={setCallLogin}/>
             <Navbar2 />
-            {loginActive && <LoginPopup setLoginActive={setLoginActive} />}
+            {loginActive && <LoginPopup style={{right: '32%'}} setLoginActive={setLoginActive} />}
             {moreActive && <MorePopup setMoreActive={setMoreActive}/>}
             {callLogin && <LoginSignupModal setCallLogin={setCallLogin}/>}
             <Footer />

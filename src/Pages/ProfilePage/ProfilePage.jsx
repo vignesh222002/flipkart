@@ -17,7 +17,7 @@ let ProfilePage = () => {
     return (
         <div className="profilePageBody">
             <NavbarMain navbarLoginBtn={true} navbarBecameSeller={true} navbarMore={true} navbarCart={true} navbarUser={login} setLoginActive={setLoginActive} setMoreActive={setMoreActive} setCallLogin={setCallLogin}/>
-            {loginActive && <LoginPopup setLoginActive={setLoginActive} />}
+            {loginActive && <LoginPopup style={{right: '32%'}} setLoginActive={setLoginActive} />}
             {moreActive && <MorePopup setMoreActive={setMoreActive}/>}
             <Sector />
             <LoginSignupModule />

@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
 import "./loginPopup.css"
 
-let LoginPopup = ({setLoginActive}) => {
+let LoginPopup = ({setLoginActive, style}) => {
     return (
-        <div className="loginPopup" onMouseOver={() => setLoginActive(true)} onMouseOut={() => setLoginActive(false)}>
+        <div className="loginPopup" style={style} onMouseOver={() => setLoginActive(true)} onMouseOut={() => setLoginActive(false)}>
             <div className="loginPopupArrow"></div>
             <div className="loginPopupContent">
                 <div className="loginPopupHead">

@@ -5,6 +5,7 @@ let MorePopup = ({setMoreActive}) => {
 
     return (
         <div className='morePopup' onMouseOver={() => setMoreActive(true)} onMouseOut={() => setMoreActive(false)}>
+            <div className="loginPopupArrow"></div>
             <div className='morePopupContent'>
                 <ul className='morePopupList'>
                     <li className='morePopupListItem'>

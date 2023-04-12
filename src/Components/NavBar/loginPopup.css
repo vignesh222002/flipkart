@@ -35,8 +35,8 @@ a {
     text-align: left;
     z-index: 19;
     top: 50px;
-    right: 30%;
     font-family: roboto-regular;
+    position: fixed;
 }
 .loginPopupArrow {
     width: 0;
@@ -46,7 +46,7 @@ a {
     bottom: 100%;
     border-bottom-color: #f0f0f0;
     border-width: 10px;
-    left: 50%;
+    left: 48%;
 }
 .loginPopupArrow::after {
     content: "";
@@ -116,9 +116,10 @@ a {
     z-index: 19;
     top: 50px;
     font-family: roboto-regular;
-    right: 10%;
+    right: 12%;
     opacity: 1;
     transition: opacity .3s ease-in-out;
+    position: fixed;
 }
 .morePopupList {
     text-align: left;
