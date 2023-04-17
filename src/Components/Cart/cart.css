@@ -1,19 +1,36 @@
+/* Cart */
+
+@font-face {
+    font-family: roboto-medium;
+    src: url("../../Fonts/roboto-medium-webfont.woff2");
+    font-variant: normal;
+}
+@font-face {
+    font-family: roboto-regular;
+    src: url("../../Fonts/roboto-regular-webfont.woff2");
+    font-variant: normal;
+}
+
 a {
     text-decoration: none;
     color: inherit;
     border: none;
     outline: none;
 }
-.cartContainer {
+.cartMissingContainer {
     margin: 0 auto;
+    display: flex;
     max-width: 1260px;
     min-width: 978px;
+}
+.cartMissingContent {
+    margin: 80px 10px 0;
     position: relative;
+    overflow: visible;
+    box-shadow: rgb(0 0 0 / 20%) 0px 1px 2px 0px;
     display: flex;
     flex-flow: column;
     flex-grow: 1;
-    overflow: visible;
-    box-shadow: rgb(0 0 0 / 20%) 0px 1px 2px 0px;
 }
 .cartNav {
     padding: 0px 0px 10px;
@@ -29,20 +46,61 @@ a {
     height: 58px;
     color: #111112;
     font-size: 16px;
+    cursor: pointer;
 }
 .cartNavLink {
+    display: flex;
     flex: 1;
+    justify-content: center;
+    align-items: center;
+    font-family: roboto-regular;
+}
+.cartNavLink:hover {
+    color: #2a55e5 !important;
+}
+.cartNavLinkContent {
+    border-bottom: 3px solid #2a55e5;
+    padding : 17px;
+    width: 50%;
+    color: #2a55e5;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.cartNavLink:hover {
-    color: #2a55e5;
-}
-.cartItemsContainer {
+
+/* .cartItemsContainer {} */
+
+.cardItemsMissingContainer {
     text-align: center;
     padding: 30px 0 36px;
     background: #fff;
     width: 100%;
+}
+.missingCartItems {
+    height: 162px;
+    width: auto;
+}
+.missingCartHead {
+    display: block;
+    font-size: 18px;
+    margin-top: 24px;
+    font-family: roboto-regular;
+}
+.missingCartDescription {
+    display: block;
+    font-size: 12px;
+    margin-top: 10px;
+    font-family: roboto-regular;
+}
+.missingCartBtn {
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    margin-top: 20px;
+    font-weight: 400;
+    padding: 12px 72px;
+    border-radius: 2px;
     cursor: pointer;
+    outline: none;
 }

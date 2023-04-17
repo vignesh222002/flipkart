@@ -5,6 +5,8 @@ import Plus from "../../Media/plus.png"
 import NavbarLoginBtn from "./NavbarLoginBtn";
 import NavbarUser from "./NavbarUser";
 import NavbarMore from "./NavbarMore";
+import { useDispatch } from "react-redux";
+import { cartLoginRouteFalse } from "../../Redux";
 
 let NavbarLogo = () => {
     return (
@@ -41,8 +43,10 @@ let NavbarBecameSeller = () => {
 }
 
 let NavbarCart = () => {
+    let dispatch = useDispatch()
+    
     return (
-        <div className="NavbarMainCart">
+        <div className="NavbarMainCart" onClick={() => dispatch(cartLoginRouteFalse())}>
             <div className="NavbarMainCart1">
                 <div className="NavbarMainCart2">
                     <Link to="/cart" className="NavbarMainCartLink link">
