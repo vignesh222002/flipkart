@@ -15,7 +15,7 @@ export const userLogout = () => {
 // State
 
 let initialState = {
-    login: false
+    isLogin: true,
 }
 
 // Reducers

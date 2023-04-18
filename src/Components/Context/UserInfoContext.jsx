@@ -4,7 +4,10 @@ import { useState } from "react"
 export let UserContext = React.createContext()
 
 let UserInfoContext = ({children}) => {
-    let [user, setUser] = useState(null)
+    let [user, setUser] = useState({
+        mobileNumber: null,
+        name: 'Flipkart'
+    })
 
     let login = (user) => {
         setUser(user)

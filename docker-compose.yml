@@ -1,0 +1,25 @@
+version: '3.9'
+services:
+  node_app:
+    image: mageshsk16/app
+    ports:
+      - "4000:3000"
+    depends_on:
+      - db
+  react_app: 
+    image: flipkart_react
+    ports:
+      - "3000:3000"
+  db:
+    image: mageshsk16/flipkart-db
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: Flipkart
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: magidexter
+volumes:
+  db_data:
+  

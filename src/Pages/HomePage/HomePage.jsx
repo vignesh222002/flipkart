@@ -5,6 +5,7 @@ import LoginPopup from "../../Components/NavBar/LoginPopUP"
 import MorePopup from "../../Components/NavBar/MorePopup"
 import NavbarMain from "../../Components/NavBar/NavbarMain"
 import Navbar2 from "../../Components/NavBar2/Navbar2"
+import { useSelector } from "react-redux"
 
 
 let HomePage = () => {
@@ -12,11 +13,11 @@ let HomePage = () => {
     let [moreActive, setMoreActive] = useState(false)
     let [callLogin, setCallLogin] = useState(false)
     
-    let login = false
+    let login = useSelector(state => state.login.isLogin)
 
     return (
         <>
-            <NavbarMain navbarLoginBtn={true} navbarBecameSeller={true} navbarMore={true} navbarCart={true} navbarUser={login} setLoginActive={setLoginActive} setMoreActive={setMoreActive} setCallLogin={setCallLogin}/>
+            <NavbarMain navbarLoginBtn={!login} navbarBecameSeller={true} navbarMore={true} navbarCart={true} navbarUser={login} setLoginActive={setLoginActive} setMoreActive={setMoreActive} setCallLogin={setCallLogin}/>
             <Navbar2 />
             {loginActive && <LoginPopup style={{right: '32%'}} setLoginActive={setLoginActive} />}
             {moreActive && <MorePopup setMoreActive={setMoreActive}/>}

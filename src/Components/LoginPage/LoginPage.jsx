@@ -36,10 +36,13 @@ export let LoginPageRight = ({setLoginProcess, setSignupProcess, setLoginOtpProc
     }
     let updateMobileNo = (e) => {
         setMobileNo(e.target.value)
-        console.log(mobileNo);
     }
     function otpRequest() {
-        userInfo.login(mobileNo)
+        userInfo.login({
+            ...userInfo.user,
+            mobileNumber: mobileNo
+        })
+        console.log(userInfo.user)
         setLoginProcess(false)
         setLoginOtpProcess(true)
     }
@@ -67,7 +70,7 @@ export let LoginOtpPageRight = () => {
         <div className="loginOtpPageRight">
             <div>Please enter the OTP sent to</div>
             <div>
-                <span className='loginOtpPageRightuser'>{userInfo.user}.</span>
+                <span className='loginOtpPageRightuser'>{userInfo.user.mobileNumber}.</span>
                 <Link className='blueLink changeLoginNumber'>Change</Link>
             </div>
             <form>
