@@ -6,7 +6,8 @@ export let UserContext = React.createContext()
 let UserInfoContext = ({children}) => {
     let [user, setUser] = useState({
         mobileNumber: null,
-        name: 'Flipkart'
+        name: 'Flipkart',
+        isLogin: false
     })
 
     let login = (user) => {
@@ -15,7 +16,6 @@ let UserInfoContext = ({children}) => {
     let logout = () => {
         setUser(null)
     }
-    console.log(user)
 
     return (
         <UserContext.Provider value={ {user, login, logout} }>

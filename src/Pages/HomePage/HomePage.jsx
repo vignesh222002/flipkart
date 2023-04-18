@@ -1,19 +1,21 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import Footer from "../../Components/Footer/Footer"
 import LoginSignupModal from "../../Components/LoginPage/LoginSignupModal"
 import LoginPopup from "../../Components/NavBar/LoginPopUP"
 import MorePopup from "../../Components/NavBar/MorePopup"
 import NavbarMain from "../../Components/NavBar/NavbarMain"
 import Navbar2 from "../../Components/NavBar2/Navbar2"
-import { useSelector } from "react-redux"
+import { UserContext } from "../../Components/Context/UserInfoContext"
 
 
 let HomePage = () => {
     let [loginActive, setLoginActive] = useState(false)
     let [moreActive, setMoreActive] = useState(false)
     let [callLogin, setCallLogin] = useState(false)
+    let userInfo = useContext(UserContext)
     
-    let login = useSelector(state => state.login.isLogin)
+    let login = userInfo.user.isLogin
+    console.log(login)
 
     return (
         <>
