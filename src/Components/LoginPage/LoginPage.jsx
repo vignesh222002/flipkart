@@ -39,24 +39,29 @@ export let LoginPageRight = ({setLoginProcess, setSignupProcess, setLoginOtpProc
     let updateMobileNo = (e) => {
         setMobileNo(e.target.value)
     }
+
+    useEffect(() => {
+        if (userInfo.user.mobileNumber && mobileNo) {
+
+            axios.post(`http://192.168.1.87:3000/login`, {
+                "mobilenum": userInfo.user.officialNumber.toString()
+            })
+            .then(res => {
+                if (res.data.status) {
+                    setLoginProcess(false)
+                    setLoginOtpProcess(true)
+                }
+            })
+        }
+    },[userInfo.user])
+
     function otpRequest() {
-         userInfo.login({
+        userInfo.login({
             ...userInfo.user,
             mobileNumber: mobileNo,
             officialNumber: '+91' + mobileNo
         })
     }
-    useEffect(() => {
-        console.log(userInfo.user.mobileNumber)
-
-        // axios.post(`http://localhost:4000/login`, {
-        //     "body": {
-        //         "mobilenum": userInfo.user.mobileNumber.toString()
-        //     }
-        // })
-        // .then(setLoginProcess(false))
-        // .then(setLoginOtpProcess(true))
-    },[userInfo.user.mobileNumber])
 
     return (
         <div className="loginPageRight">
@@ -74,8 +79,35 @@ export let LoginPageRight = ({setLoginProcess, setSignupProcess, setLoginOtpProc
     )
 }
 
-export let LoginOtpPageRight = () => {
+export let LoginOtpPageRight = ({setLoginProcess, setLoginOtpProcess, setCallLogin}) => {
     let userInfo = useContext(UserContext)
+    let [otp, setOTP] = useState()
+
+    function updateOTP(e) {
+        setOTP(e.target.value)
+    }
+
+    function submitOTP() {
+        if(otp) {
+            axios.post(`http://192.168.1.87:3000/verifyOTPSMS`, {
+                    "mobilenum": userInfo.user.officialNumber.toString(),
+                    "otp" : otp.toString()
+            })
+            .then(res => {
+                // console.log(res)
+                localStorage.setItem("token", res.data.token)
+                return res
+            })
+            .then(res => {
+                if (res.data.status) {
+                    // console.log(res.data.status)
+                    setLoginProcess(false)
+                    setLoginOtpProcess(false)
+                    setCallLogin(false)
+                }
+            })
+        }
+    }
 
     return (
         <div className="loginOtpPageRight">
@@ -84,29 +116,27 @@ export let LoginOtpPageRight = () => {
                 <span className='loginOtpPageRightuser'>{userInfo.user.mobileNumber}.</span>
                 <Link className='blueLink changeLoginNumber'>Change</Link>
             </div>
-            <form>
-                <div className="loginOtpPageRightInput">
+            <div className="loginOtpPageRightInput">
                     <div className="loginOtpPageRightInput1">
-                        <input className="loginOtpPageRightInput1Value" type="number" autoComplete='off' required/>
+                        <input className="loginOtpPageRightInput1Value" type="text" autoComplete='off' maxLength="6" required onChange={(e) => updateOTP(e)}/>
+                    </div>
+                    {/* <div className="loginOtpPageRightInput1">
+                        <input className="loginOtpPageRightInput1Value" type="text" autoComplete='off' maxLength="1" required/>
                     </div>
                     <div className="loginOtpPageRightInput1">
-                        <input className="loginOtpPageRightInput1Value" type="number" autoComplete='off' required/>
+                        <input className="loginOtpPageRightInput1Value" type="text" autoComplete='off' maxLength="1" required/>
                     </div>
                     <div className="loginOtpPageRightInput1">
-                        <input className="loginOtpPageRightInput1Value" type="number" autoComplete='off' required/>
+                        <input className="loginOtpPageRightInput1Value" type="text" autoComplete='off' maxLength="1" required/>
                     </div>
                     <div className="loginOtpPageRightInput1">
-                        <input className="loginOtpPageRightInput1Value" type="number" autoComplete='off' required/>
+                        <input className="loginOtpPageRightInput1Value" type="text" autoComplete='off' maxLength="1" required/>
                     </div>
                     <div className="loginOtpPageRightInput1">
-                        <input className="loginOtpPageRightInput1Value" type="number" autoComplete='off' required/>
-                    </div>
-                    <div className="loginOtpPageRightInput1">
-                        <input className="loginOtpPageRightInput1Value" type="number" autoComplete='off' required/>
-                    </div>
+                        <input className="loginOtpPageRightInput1Value" type="text" autoComplete='off' maxLength="1" required/>
+                    </div> */}
                 </div>
-                <button className='loginOtpVerifyBtn'>Verify</button>
-            </form>
+                <button className='loginOtpVerifyBtn' onClick={submitOTP}>Verify</button>
             <div className="loginOtpPageRightDescription">Not received your code? 
                 <span className='blueLink resendLoginOTP'> Resend code</span>
             </div>

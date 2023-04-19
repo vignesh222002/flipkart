@@ -2,7 +2,7 @@ import './login.css'
 import { LoginOtpPageRight, LoginPageLeft, LoginPageRight } from './LoginPage'
 import { SignupOtpPageRight, SignupPageLeft, SignupPageRight } from './SignupPage'
 
-let LoginContent = ({loginProcess, signupProcess, setLoginProcess, setSignupProcess, loginOtpProcess, setLoginOtpProcess, signupOtpProcess, setSignupOtpProcess}) => {
+let LoginContent = ({loginProcess, signupProcess, setLoginProcess, setSignupProcess, loginOtpProcess, setLoginOtpProcess, signupOtpProcess, setSignupOtpProcess, setCallLogin}) => {
 
     return (
         <>
@@ -15,7 +15,7 @@ let LoginContent = ({loginProcess, signupProcess, setLoginProcess, setSignupProc
                 {/* Right Content */}
                 {loginProcess && <LoginPageRight setLoginProcess={setLoginProcess} setSignupProcess={setSignupProcess} setLoginOtpProcess={setLoginOtpProcess} />}
                 {signupProcess && <SignupPageRight setLoginProcess={setLoginProcess} setSignupProcess={setSignupProcess} setSignupOtpProcess={setSignupOtpProcess}/>}
-                {loginOtpProcess && <LoginOtpPageRight />}
+                {loginOtpProcess && <LoginOtpPageRight setLoginProcess={setLoginProcess} setLoginOtpProcess={setLoginOtpProcess} setCallLogin={setCallLogin} />}
                 {signupOtpProcess && <SignupOtpPageRight setLoginProcess={setLoginProcess} setSignupProcess={setSignupProcess} setSignupOtpProcess={setSignupOtpProcess}/>}
             </div>
         </>

@@ -5,8 +5,12 @@ import CartPage from '../../Pages/CartPage/CartPage';
 import { CartMissingContent } from "../../Components/Cart/Cart";
 import CartMissingImage from '../../Media/cartMissingImage.webp'
 import BasketEmptyImage from '../../Media/basketEmptyImage.webp'
+import { useContext } from "react";
+import { UserContext } from "../../Components/Context/UserInfoContext";
 
 let LapRoute = () => {
+    let userInfo = useContext(UserContext)
+    let isLogin = userInfo.user.isLogin
 
     return (
         <Routes>

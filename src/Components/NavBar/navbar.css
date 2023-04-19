@@ -234,6 +234,7 @@ input {
 }
 .NavbarMainMore:hover .NavbarMainMoreArrow {
     transform: rotate(90deg);
+    transition: transform 0.2s;
 }
 
 /* Navbar Cart */
@@ -309,3 +310,7 @@ input {
     margin: 1px 0 0 8px;
 }
 
+.NavbarMainUser:hover .NavbarMainUserArrow {
+    transform: rotate(90deg);
+    transition: transform 0.2s;
+}

@@ -48,7 +48,7 @@ export let SignupPageRight = ({setLoginProcess, setSignupProcess, setSignupOtpPr
         })
     }
     useEffect(() => {
-        console.log(userInfo.user.mobileNumber.toString())
+        // console.log(userInfo.user.mobileNumber)
 
         // axios.post(`http://localhost:4000/register`, {
         //     "body": {

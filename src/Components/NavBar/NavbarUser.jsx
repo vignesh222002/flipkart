@@ -1,11 +1,21 @@
 import { useState } from "react";
 
 
-let NavbarUser = () => {
+let NavbarUser = ({setProfileActive}) => {
     let [userName, setUserName] = useState('Flipkart')
 
+    function handleSet() {
+        setProfileActive(true)
+        // console.log('true setted')
+    }
+    function handleLeave() {
+        setProfileActive(false)
+        // console.log('false setted')
+    }
+
+
     return (
-        <div className="NavbarMainUser">
+        <div className="NavbarMainUser" onMouseOver={() => handleSet()} onMouseOut={() => handleLeave()}>
             <div className="NavbarMainUser1">
                 <div className="NavbarMainUser2">
                     <div>

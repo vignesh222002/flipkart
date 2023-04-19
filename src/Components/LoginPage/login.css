@@ -281,10 +281,11 @@ a {
 }
 .loginOtpPageRightInput1 {
     margin-right: 10px;
-    width: 28px;
+    width: 60%;
     position: relative;
     margin-bottom: 34px;
     font-size: 16px;
+    letter-spacing: 2px;
 }
 .loginOtpPageRightInput1Value {
     padding: 0;

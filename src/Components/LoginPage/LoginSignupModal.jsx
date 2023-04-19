@@ -14,7 +14,7 @@ let LoginSignupModal = ({setCallLogin}) => {
                 <button className="loginSignupCloseBtn" onClick={() => setCallLogin(false)}>✕</button>
                 <div className="loginSignupModalContent1">
                     <div className="loginSignupModalContent2">
-                        <LoginContent loginProcess={loginProcess} signupProcess={signupProcess} setLoginProcess={setLoginProcess} setSignupProcess={setSignupProcess} loginOtpProcess={loginOtpProcess} setLoginOtpProcess={setLoginOtpProcess} signupOtpProcess={signupOtpProcess} setSignupOtpProcess={setSignupOtpProcess}/>
+                        <LoginContent loginProcess={loginProcess} signupProcess={signupProcess} setLoginProcess={setLoginProcess} setSignupProcess={setSignupProcess} loginOtpProcess={loginOtpProcess} setLoginOtpProcess={setLoginOtpProcess} signupOtpProcess={signupOtpProcess} setSignupOtpProcess={setSignupOtpProcess} setCallLogin={setCallLogin}/>
                     </div>
                 </div>
             </div>
