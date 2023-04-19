@@ -6,8 +6,9 @@ export let UserContext = React.createContext()
 let UserInfoContext = ({children}) => {
     let [user, setUser] = useState({
         mobileNumber: null,
+        officialNumber: null,
         name: 'Flipkart',
-        isLogin: false
+        isLogin: true
     })
 
     let login = (user) => {

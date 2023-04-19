@@ -6,8 +6,10 @@ services:
       - "4000:3000"
     depends_on:
       - db
-  react_app: 
-    image: flipkart_react
+  react_app:
+    build:
+      context: .
+    image: flipkart_react_app:latest
     ports:
       - "3000:3000"
   db:

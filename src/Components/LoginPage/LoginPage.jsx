@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
-import { useContext, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import './login.css'
 import { UserContext } from '../Context/UserInfoContext';
+import axios from 'axios';
 
 export let LoginPageLeft = () => {
     return (
@@ -26,9 +27,10 @@ export let LoginPageRight = ({setLoginProcess, setSignupProcess, setLoginOtpProc
     }
 
     function handleBlur() {
-        labelRef.current.classList.remove('loginLabelActive');
-        inputRef.current.classList.remove('inputUnderBlue')
-
+        if (!mobileNo) {
+            labelRef.current.classList.remove('loginLabelActive');
+            inputRef.current.classList.remove('inputUnderBlue')
+        }
     }
     let handleGotoSignup = () => {
         setLoginProcess(false)
@@ -38,14 +40,23 @@ export let LoginPageRight = ({setLoginProcess, setSignupProcess, setLoginOtpProc
         setMobileNo(e.target.value)
     }
     function otpRequest() {
-        userInfo.login({
+         userInfo.login({
             ...userInfo.user,
-            mobileNumber: mobileNo
+            mobileNumber: mobileNo,
+            officialNumber: '+91' + mobileNo
         })
-        console.log(userInfo.user)
-        setLoginProcess(false)
-        setLoginOtpProcess(true)
     }
+    useEffect(() => {
+        console.log(userInfo.user.mobileNumber)
+
+        // axios.post(`http://localhost:4000/login`, {
+        //     "body": {
+        //         "mobilenum": userInfo.user.mobileNumber.toString()
+        //     }
+        // })
+        // .then(setLoginProcess(false))
+        // .then(setLoginOtpProcess(true))
+    },[userInfo.user.mobileNumber])
 
     return (
         <div className="loginPageRight">

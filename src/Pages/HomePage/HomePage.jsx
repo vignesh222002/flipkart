@@ -12,14 +12,15 @@ let HomePage = () => {
     let [loginActive, setLoginActive] = useState(false)
     let [moreActive, setMoreActive] = useState(false)
     let [callLogin, setCallLogin] = useState(false)
+    let [profileActive, setProfileActive] = useState(false)
     let userInfo = useContext(UserContext)
     
     let login = userInfo.user.isLogin
-    console.log(login)
+    // console.log(login)1
 
     return (
         <>
-            <NavbarMain navbarLoginBtn={!login} navbarBecameSeller={true} navbarMore={true} navbarCart={true} navbarUser={login} setLoginActive={setLoginActive} setMoreActive={setMoreActive} setCallLogin={setCallLogin}/>
+            <NavbarMain navbarLoginBtn={!login} navbarBecameSeller={true} navbarMore={true} navbarCart={true} navbarUser={login} setLoginActive={setLoginActive} setMoreActive={setMoreActive} setCallLogin={setCallLogin} setProfileActive={setProfileActive}/>
             <Navbar2 />
             {loginActive && <LoginPopup style={{right: '32%'}} setLoginActive={setLoginActive} />}
             {moreActive && <MorePopup setMoreActive={setMoreActive}/>}

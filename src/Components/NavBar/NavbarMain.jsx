@@ -65,7 +65,7 @@ export let NavbarMainClear = () => {
     )
 }
 
-let NavbarMain = ({style, navbarLoginBtn, navbarBecameSeller, navbarMore, navbarCart, navbarUser, setLoginActive, setMoreActive, setCallLogin}) => {
+let NavbarMain = ({style, navbarLoginBtn, navbarBecameSeller, navbarMore, navbarCart, navbarUser, setLoginActive, setMoreActive, setCallLogin, setProfileActive}) => {
     return (
         <>
             <div style={style} className="navbarMain">
@@ -74,7 +74,7 @@ let NavbarMain = ({style, navbarLoginBtn, navbarBecameSeller, navbarMore, navbar
                     <NavbarLogo />
                     <NavbarSearchBar />
                     {navbarLoginBtn && <NavbarLoginBtn setLoginActive={setLoginActive} setCallLogin={setCallLogin}/>}
-                    {navbarUser && <NavbarUser />}
+                    {navbarUser && <NavbarUser setProfileActive={setProfileActive} />}
                     {navbarBecameSeller && <NavbarBecameSeller />}
                     {navbarMore && <NavbarMore setMoreActive={setMoreActive} />}
                     {navbarCart && <NavbarCart />}
