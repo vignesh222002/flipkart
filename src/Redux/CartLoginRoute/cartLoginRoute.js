@@ -15,7 +15,7 @@ export const cartLoginRouteFalse = () => {
 // State
 
 let initialState = {
-    cartLoginRoute: false
+    cartLoginRoute: true
 }
 
 // Reducers

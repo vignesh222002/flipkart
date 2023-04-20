@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useNavigation } from 'react-router-dom'
 import { useContext, useEffect, useRef, useState } from 'react';
 import './login.css'
 import { UserContext } from '../Context/UserInfoContext';
@@ -79,9 +79,10 @@ export let LoginPageRight = ({setLoginProcess, setSignupProcess, setLoginOtpProc
     )
 }
 
-export let LoginOtpPageRight = ({setLoginProcess, setLoginOtpProcess, setCallLogin}) => {
+export let LoginOtpPageRight = ({callLogin, setLoginProcess, setLoginOtpProcess, setCallLogin, redirectPath}) => {
     let userInfo = useContext(UserContext)
     let [otp, setOTP] = useState()
+    let navigate = useNavigate()
 
     function updateOTP(e) {
         setOTP(e.target.value)
@@ -94,8 +95,13 @@ export let LoginOtpPageRight = ({setLoginProcess, setLoginOtpProcess, setCallLog
                     "otp" : otp.toString()
             })
             .then(res => {
-                // console.log(res)
-                localStorage.setItem("token", res.data.token)
+                if (res.data.status) {
+                    localStorage.setItem("token", res.data.token)
+                    userInfo.login({
+                        ...userInfo.user,
+                        isLogin: !(!localStorage.getItem("token"))
+                    })
+                }
                 return res
             })
             .then(res => {
@@ -103,7 +109,10 @@ export let LoginOtpPageRight = ({setLoginProcess, setLoginOtpProcess, setCallLog
                     // console.log(res.data.status)
                     setLoginProcess(false)
                     setLoginOtpProcess(false)
-                    setCallLogin(false)
+                    navigate(redirectPath)
+                    if (callLogin) {
+                        setCallLogin(false)
+                    }
                 }
             })
         }

@@ -15,6 +15,7 @@ let HomePage = () => {
     let [callLogin, setCallLogin] = useState(false)
     let [profileActive, setProfileActive] = useState(false)
     let userInfo = useContext(UserContext)
+    let redirectPath="/"
     
     let isLogin = userInfo.user.isLogin
     // console.log(login)
@@ -25,13 +26,11 @@ let HomePage = () => {
             <Navbar2 />
             {loginActive && <LoginPopup style={{right: '32%'}} setLoginActive={setLoginActive} />}
             {moreActive && <MorePopup setMoreActive={setMoreActive}/>}
-            {profileActive && <UserPopup style={{right: '32%'}} setProfileActive={setProfileActive} />}
-            {callLogin && <LoginSignupModal setCallLogin={setCallLogin}/>}
+            {profileActive && <UserPopup redirectPath={redirectPath} style={{right: '32%'}} setProfileActive={setProfileActive} />}
+            {callLogin && <LoginSignupModal redirectPath={redirectPath} callLogin={callLogin} setCallLogin={setCallLogin}/>}
             <Footer />
         </>
     )
 }
 
 export default HomePage
-
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE2ODE4OTY4MzZ9.xzdI2cpRZBeYoR6zCEL4BVQkjC6aKWBTG0LO3IxuyqY

@@ -1,8 +1,9 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import './cart.css'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { cartLoginRouteTrue } from '../../Redux/CartLoginRoute/cartLoginRoute'
+import { UserContext } from '../Context/UserInfoContext'
 
 export let CartNav = ({children}) => {
 
@@ -61,7 +62,7 @@ export let MissingCartDescription = ({children}) => {
     )
 }
 
-export let MissingCartBtn = ({style, children}) => {
+export let MissingCartLoginBtn = ({style, children}) => {
     let dispatch = useDispatch()
 
     return (
@@ -69,14 +70,27 @@ export let MissingCartBtn = ({style, children}) => {
     )
 }
 
+export let MissingCartShopBtn = ({style, children}) => {
+    let navigate = useNavigate()
+    return (
+        <button style={style} onClick={() => navigate('/')} className='missingCartBtn'>{children}</button>
+    )
+}
+
 export let CartMissingContent = ({source, head, description, button, btnStyle}) => {
+    let userInfo = useContext(UserContext)
+    let isLogin = userInfo.user.isLogin
 
     return (
         <CardItemsMissing>
             <MissingCartImage source={source} />
             <MissingCartHead>{head}</MissingCartHead>
             <MissingCartDescription>{description}</MissingCartDescription>
-            <MissingCartBtn style={btnStyle}>{button}</MissingCartBtn>
+            {isLogin ? (
+                <MissingCartShopBtn style={btnStyle}>{button}</MissingCartShopBtn>
+            ): (
+                <MissingCartLoginBtn style={btnStyle}>{button}</MissingCartLoginBtn>
+            )}
         </CardItemsMissing>
     )
 }

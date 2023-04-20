@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './login.css'
 import LoginContent from './LoginContent'
 
-let LoginSignupModal = ({setCallLogin}) => {
+let LoginSignupModal = ({callLogin, setCallLogin, redirectPath}) => {
     let [loginProcess, setLoginProcess] = useState(true)
     let [signupProcess, setSignupProcess] = useState(false)
     let [loginOtpProcess, setLoginOtpProcess] = useState(false)
@@ -14,7 +14,7 @@ let LoginSignupModal = ({setCallLogin}) => {
                 <button className="loginSignupCloseBtn" onClick={() => setCallLogin(false)}>✕</button>
                 <div className="loginSignupModalContent1">
                     <div className="loginSignupModalContent2">
-                        <LoginContent loginProcess={loginProcess} signupProcess={signupProcess} setLoginProcess={setLoginProcess} setSignupProcess={setSignupProcess} loginOtpProcess={loginOtpProcess} setLoginOtpProcess={setLoginOtpProcess} signupOtpProcess={signupOtpProcess} setSignupOtpProcess={setSignupOtpProcess} setCallLogin={setCallLogin}/>
+                        <LoginContent loginProcess={loginProcess} signupProcess={signupProcess} callLogin={callLogin} setLoginProcess={setLoginProcess} setSignupProcess={setSignupProcess} loginOtpProcess={loginOtpProcess} setLoginOtpProcess={setLoginOtpProcess} signupOtpProcess={signupOtpProcess} setSignupOtpProcess={setSignupOtpProcess} setCallLogin={setCallLogin} redirectPath={redirectPath}/>
                     </div>
                 </div>
             </div>

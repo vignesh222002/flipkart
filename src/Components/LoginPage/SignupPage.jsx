@@ -48,15 +48,18 @@ export let SignupPageRight = ({setLoginProcess, setSignupProcess, setSignupOtpPr
         })
     }
     useEffect(() => {
-        // console.log(userInfo.user.mobileNumber)
+        // if (userInfo.user.mobileNumber && mobileNo) {
 
-        // axios.post(`http://localhost:4000/register`, {
-        //     "body": {
+        //     axios.post(`http://192.168.1.87:3000//register`, {
         //         "mobilenum": userInfo.user.mobileNumber.toString()
-        //     }
-        // })
-        // .then(setSignupProcess(false))
-        // .then(setSignupOtpProcess(true))
+        //     })
+        //     .then(res => {
+        //         if (res.data.status) {
+        //             setSignupProcess(false)
+        //             setSignupOtpProcess(true)
+        //         }
+        //     })
+        // }
     },[userInfo.user.mobileNumber])
 
     return (
@@ -75,7 +78,7 @@ export let SignupPageRight = ({setLoginProcess, setSignupProcess, setSignupOtpPr
     )
 }
 
-export let SignupOtpPageRight = ({setLoginProcess, setSignupProcess, setSignupOtpProcess}) => {
+export let SignupOtpPageRight = ({callLogin, setLoginProcess, setSignupProcess, setSignupOtpProcess, setCallLogin, redirectPath}) => {
     let userInfo = useContext(UserContext)
     // console.log(userInfo.user)
 
