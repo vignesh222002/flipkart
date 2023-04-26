@@ -17,12 +17,12 @@ export let CartNav = ({children}) => {
 export let CartNavLink = ({children, to, cartInitialActive}) => {
     return (
         <NavLink to={to} className='cartNavLink'>
-            {({isActive}) =>
+            {({isActive}) => {
                 isActive || cartInitialActive ? 
-                    <div className="cartNavLinkContent">{children}</div> 
+                    <div className="cartNavLinkContent">{children}{console.log(children)}{console.log(isActive)}</div> 
                         :
                     <div>{children}</div>
-            }
+            }}
         </NavLink>
     )
 }
