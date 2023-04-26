@@ -40,7 +40,6 @@ a {
     background-color: #fff;
     border-radius: 2px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.08);
-    padding: 24px 32px 0;
 }
 
 /* Profile Left Components */
@@ -116,9 +115,11 @@ a {
     cursor: auto;
 }
 .profileNavLink {
-    padding: 12px 5px 12px 66px;
     font-size: 14px;
     font-family: roboto-regular;
+}
+.profileNavLinkContent {
+    padding: 12px 5px 12px 66px;
 }
 .profileNavLink:hover {
     color: #2874f0;
@@ -127,6 +128,7 @@ a {
     font-weight: 500;
     color: #2874f0;
     background-color: #f5faff;
+    font-family: roboto-medium;
 }
 .profileNavLinkFlex {
     display: flex;
@@ -154,4 +156,164 @@ a {
     padding: 5px 9px 0 0;
     font-family: roboto-regular;
     color: #878787;
+}
+
+/* ProfileRightInfo */
+
+.profileRightInfo {
+    padding: 24px 32px 0;
+}
+.profilePersonalInfo {
+    padding-bottom: 56px;
+}
+.profilePersonalInfoHeadContainer {
+    padding-bottom: 24px;
+}
+.profilePersonalInfoHead {
+    font-size: 18px;
+    font-weight: 500;
+    padding-right: 24px;
+}
+.profilePersonalInfoEditBtn {
+    font-size: 14px;
+    font-weight: 500;
+    color: #2874f0;
+    cursor: pointer;
+}
+.profilePersonalInfoInputContainer {
+    padding-bottom: 2px;
+    display: flex;
+    flex-flow: row wrap;
+}
+.profilePersonalInfoInput {
+    width: 270px;
+    padding-right: 12px;
+    position: relative;
+    margin-bottom: 10px;
+}
+.profileInfoPersonalInformation {
+    padding-bottom: 56px;
+}
+.profileInfoPersonalNameInput {
+    letter-spacing: 0;
+    height: 50px;
+    width: 100%;
+    font-size: 14px;
+    border: 1px solid #e0e0e0;
+    outline: none;
+    border-radius: 2px;
+    padding: 20px 16px 0 13px;
+    box-shadow: none;
+}
+.profileInfoPersonalNameLabel {
+    transform: translateY(-15%) scale(.815);
+    padding: 18px 0 0 15px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform-origin: top left;
+    font-size: 14px;
+    color: #878787;
+    transition: transform .2s ease;
+}
+.profilePersonalInfoGender {
+    padding: 12px 0;
+}
+.profilePersonalInfoSelectGenderContainer {
+    font-size: 16px;
+    border-bottom: none;
+    display: inline-block;
+    margin-right: 32px;
+    cursor: auto;
+}
+.profilePersonalInfoGenderInput {
+    visibility: hidden;
+    position: absolute;
+}
+.profilePersonalInfoGenderCheck {
+    cursor: pointer;
+    display: inline-block;
+    border: 2px solid #979797;
+    border-radius: 100%;
+    height: 16px;
+    width: 16px;
+    position: relative;
+    vertical-align: top;
+    margin-top: 2px;
+    margin-left: 0;
+}
+.profilePersonalInfoGenderCheck::before {
+    content: "";
+    border-radius: 100%;
+    height: 8px;
+    width: 8px;
+    margin: auto;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+}
+.profilePersonalInfoGenderLabel {
+    margin-left: 12px;
+    width: auto;
+    display: inline-block;
+}
+.profileInfoEmailAddress, .profileInfoMobileNumber {
+    padding-bottom: 46px;
+}
+.profileInfoFaq {
+    padding-bottom: 24px;
+    font-size: 14px;
+}
+.profileInfoFaqHead {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 24px;
+}
+.profileInfoFaqQuestion {
+    font-size: 14px;
+    margin-bottom: 5px;
+    margin-top: 20px;
+    padding: 0;
+    line-height: 1.5;
+    font-weight: 500;
+}
+.profileInfoFaqAnswer {
+    line-height: 1.5;
+    margin-top: 15px;
+    font-weight: 300;
+}
+.profileDeactivate {
+    padding-top: 22px;
+    font-weight: 500;
+    color: #2874f0;
+    cursor: pointer;
+}
+.myProfileFooterImage {
+    vertical-align: middle;
+}
+
+/* Profile Address */
+
+.profileAddressHead {
+    font-size: 18px;
+    font-weight: 500;
+    display: block;
+    padding-bottom: 20px;
+}
+.profileAddAddressBtnContainer {
+    border: 1px solid #e0e0e0;
+    background: #fff;
+    border-radius: 2px;
+    margin-bottom: 30px;
+}
+.profileAddAddressBtn {
+    font-size: 14px;
+    color: #2874f0;
+    font-weight: 500;
+    padding: 16px 0;
+    cursor: pointer;
+}
+.profileAddAddressIcon {
+    margin: 0 16px;
+    vertical-align: middle;
 }

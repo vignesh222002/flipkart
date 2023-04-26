@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom"
 import './profile.css'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ProfilePicMale from '../../Media/ProfilePicMale.svg'
 
 let ProfileLeftCard = ({style, children}) => {
@@ -63,13 +63,12 @@ let ProfileNavLink = ({to, children, profileNavInitialActive }) => {
 
     return (
         <NavLink to={to} className='profileNavLink'>
-            {/* {({isActive}) => isActive && setProfileNavInitialActive(false)} */}
-            {({isActive}) => {
+            {({isActive}) => 
                 isActive || profileNavInitialActive ? 
-                    <div className="profileNavLinkActive">{children}{console.log(children)}{console.log(isActive)}</div>       
+                    <div className="profileNavLinkActive profileNavLinkContent">{children}</div>       
                      : 
-                    <div>{children}</div>
-            }}
+                    <div className="profileNavLinkContent">{children}</div>
+            }
         </NavLink>
     )
 }
@@ -81,7 +80,11 @@ let ProfileNavLeftFooter = ({children}) => {
 
 let ProfileLeftContent = () => {
     let [profileNavInitialActive, setProfileNavInitialActive] = useState(true)
-    
+
+    function handleNavDeactive() {
+        setProfileNavInitialActive(false)
+    }
+
     return (
         <div>
             <ProfileLeftCard>
@@ -107,9 +110,9 @@ let ProfileLeftContent = () => {
                             <ProfileNavBoxContent>ACCOUNT SETTINGS</ProfileNavBoxContent>
                         </ProfileBoxContent>
                         <div className="profileNavLinkFlex">
-                        <ProfileNavLink profileNavInitialActive={profileNavInitialActive} to="">Profile Information</ProfileNavLink>
-                        <ProfileNavLink setProfileNavInitialActive={setProfileNavInitialActive} to="address">Manage Addresses</ProfileNavLink>
-                        <ProfileNavLink setProfileNavInitialActive={setProfileNavInitialActive} to="pancard">PAN Card Information</ProfileNavLink>
+                        <ProfileNavLink  to="account" profileNavInitialActive={profileNavInitialActive}>Profile Information</ProfileNavLink>
+                        <ProfileNavLink to="address" ><span onClick={handleNavDeactive}>Manage Addresses</span></ProfileNavLink>
+                        <ProfileNavLink to="pancard">PAN Card Information</ProfileNavLink>
                     </div>
                     </ProfileNavBox>
                     <ProfileNavBoxLine style={{borderBottom: "1px solid #f0f0f0"}} />
@@ -121,9 +124,9 @@ let ProfileLeftContent = () => {
                             <ProfileNavBoxContent>PAYMENTS</ProfileNavBoxContent>
                         </ProfileBoxContent>
                         <div className="profileNavLinkFlex">
-                            <ProfileNavLink to="">Gift Cards</ProfileNavLink>
-                            <ProfileNavLink to="">Saved UPI</ProfileNavLink>
-                            <ProfileNavLink to="">Saved Cards</ProfileNavLink>
+                            <ProfileNavLink to="no">Gift Cards</ProfileNavLink>
+                            <ProfileNavLink to="no">Saved UPI</ProfileNavLink>
+                            <ProfileNavLink to="no">Saved Cards</ProfileNavLink>
                         </div>
                     </ProfileNavBox>
                     <ProfileNavBoxLine style={{borderBottom: "1px solid #f0f0f0"}} />
@@ -135,10 +138,10 @@ let ProfileLeftContent = () => {
                             <ProfileNavBoxContent>MY STUFF</ProfileNavBoxContent>
                         </ProfileBoxContent>
                         <div className="profileNavLinkFlex">
-                        <ProfileNavLink to="">My Coupons</ProfileNavLink>
-                        <ProfileNavLink to="">My Reviews & Ratings</ProfileNavLink>
-                        <ProfileNavLink to="">All Notifications</ProfileNavLink>
-                        <ProfileNavLink to="">My Wishlist</ProfileNavLink>
+                        <ProfileNavLink to="no">My Coupons</ProfileNavLink>
+                        <ProfileNavLink to="no">My Reviews & Ratings</ProfileNavLink>
+                        <ProfileNavLink to="no">All Notifications</ProfileNavLink>
+                        <ProfileNavLink to="no">My Wishlist</ProfileNavLink>
                     </div>
                     </ProfileNavBox>
                     <ProfileNavBoxLine style={{borderBottom: "1px solid #f0f0f0"}} />
