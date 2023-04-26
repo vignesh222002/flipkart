@@ -23,7 +23,11 @@ let LapRoute = () => {
     return (
         <Routes>
             <Route path='/' element={<HomePage />} />
-            <Route path='/profile' element={<ProfilePage />} />
+            <Route path='/profile' element={<ProfilePage />}>
+                <Route index element={<></>} />
+                <Route path="address" element={<></>} />
+                <Route path="pancard" element={<></>} />
+            </Route>
             <Route path='/cart' element={<CartPage />}>
                 <Route index element={<CartMissingContent source={CartMissingImage} head="Missing Cart items?" description="Login to see the items you added previously" button={cartShopBtn.button} btnStyle={cartShopBtn.btnStyle} /> }></Route>
                 <Route path="flipkart" element={<CartMissingContent source={CartMissingImage} head="Missing Cart items?" description="Login to see the items you added previously" button={cartShopBtn.button} btnStyle={cartShopBtn.btnStyle} /> }></Route>

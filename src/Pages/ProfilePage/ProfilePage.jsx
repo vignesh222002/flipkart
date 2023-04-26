@@ -8,6 +8,7 @@ import Footer from "../../Components/Footer/Footer"
 import LoginSignupModule from "../../Components/LoginSignupModule/LoginSignupModule"
 import { UserContext } from "../../Components/Context/UserInfoContext"
 import UserPopup from "../../Components/NavBar/UserPopup"
+import ProfileContent from "../../Components/Profile/profileContent"
 
 let ProfilePage = () => {
     let [loginActive, setLoginActive] = useState(false)
@@ -26,7 +27,7 @@ let ProfilePage = () => {
             {profileActive && <UserPopup style={{right: '30%'}} redirectPath={redirectPath} setProfileActive={setProfileActive} />}
             <Sector />
             {login ? (
-                <></>
+                <ProfileContent />
             ) : (
                 <LoginSignupModule callLogin={callLogin} redirectPath={redirectPath}/>
             )}

@@ -88,6 +88,16 @@ export let LoginOtpPageRight = ({callLogin, setLoginProcess, setLoginOtpProcess,
         setOTP(e.target.value)
     }
 
+    function backToLogin() {
+        setLoginOtpProcess(false)
+        setLoginProcess(true)
+        userInfo.login({
+            ...userInfo.user,
+            mobileNumber: null,
+            officialNumber: null
+        })
+    }
+
     function submitOTP() {
         if(otp) {
             axios.post(`http://192.168.1.87:3000/verifyOTPSMS`, {
@@ -123,7 +133,7 @@ export let LoginOtpPageRight = ({callLogin, setLoginProcess, setLoginOtpProcess,
             <div>Please enter the OTP sent to</div>
             <div>
                 <span className='loginOtpPageRightuser'>{userInfo.user.mobileNumber}.</span>
-                <Link className='blueLink changeLoginNumber'>Change</Link>
+                <Link className='blueLink changeLoginNumber' onClick={backToLogin} >Change</Link>
             </div>
             <div className="loginOtpPageRightInput">
                     <div className="loginOtpPageRightInput1">

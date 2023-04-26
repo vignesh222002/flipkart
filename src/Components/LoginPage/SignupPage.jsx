@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useRef, useState } from 'react';
 import './login.css'
 import { UserContext } from '../Context/UserInfoContext';
@@ -36,6 +36,7 @@ export let SignupPageRight = ({setLoginProcess, setSignupProcess, setSignupOtpPr
     let updateMobileNo = (e) => {
         setMobileNo(e.target.value)
     }
+    
     let handleBacktoLogin = () => {
         setLoginProcess(true)
         setSignupProcess(false)
@@ -48,18 +49,18 @@ export let SignupPageRight = ({setLoginProcess, setSignupProcess, setSignupOtpPr
         })
     }
     useEffect(() => {
-        // if (userInfo.user.mobileNumber && mobileNo) {
+        if (userInfo.user.mobileNumber && mobileNo) {
 
-        //     axios.post(`http://192.168.1.87:3000//register`, {
-        //         "mobilenum": userInfo.user.mobileNumber.toString()
-        //     })
-        //     .then(res => {
-        //         if (res.data.status) {
-        //             setSignupProcess(false)
-        //             setSignupOtpProcess(true)
-        //         }
-        //     })
-        // }
+            axios.post(`http://192.168.1.87:3000/register`, {
+                "mobilenum": userInfo.user.officialNumber.toString()
+            })
+            .then(res => {
+                if (res.data.status) {
+                    setSignupProcess(false)
+                    setSignupOtpProcess(true)
+                }
+            })
+        }
     },[userInfo.user.mobileNumber])
 
     return (
@@ -81,7 +82,7 @@ export let SignupPageRight = ({setLoginProcess, setSignupProcess, setSignupOtpPr
 export let SignupOtpPageRight = ({callLogin, setLoginProcess, setSignupProcess, setSignupOtpProcess, setCallLogin, redirectPath}) => {
     let userInfo = useContext(UserContext)
     // console.log(userInfo.user)
-
+    let navigate = useNavigate()
     let [otp, setOtp] = useState(null)
 
     const inputRef = useRef();
@@ -113,6 +114,36 @@ export let SignupOtpPageRight = ({callLogin, setLoginProcess, setSignupProcess, 
         }
     }
 
+    function submitOTP() {
+        if(otp) {
+            axios.post(`http://192.168.1.87:3000/verifyOTPSMS`, {
+                    "mobilenum": userInfo.user.officialNumber.toString(),
+                    "otp" : otp.toString()
+            })
+            .then(res => {
+                if (res.data.status) {
+                    localStorage.setItem("token", res.data.token)
+                    userInfo.login({
+                        ...userInfo.user,
+                        isLogin: !(!localStorage.getItem("token"))
+                    })
+                }
+                return res
+            })
+            .then(res => {
+                if (res.data.status) {
+                    // console.log(res.data.status)
+                    setSignupProcess(false)
+                    setSignupOtpProcess(false)
+                    navigate(redirectPath)
+                    if (callLogin) {
+                        setCallLogin(false)
+                    }
+                }
+            })
+        }
+    }
+
     return (
         <div className='signupOtpPageRight'>
             <div className="signupOtpMObileNo">
@@ -130,7 +161,7 @@ export let SignupOtpPageRight = ({callLogin, setLoginProcess, setSignupProcess, 
                 <label ref={labelRef} className="signupPageEnterOtpLabel">Enter OTP</label>
             </div>
             <div className="signupOtpPageBtn">
-                <button className='signupPageRightOTPBtn'>Signup</button>
+                <button className='signupPageRightOTPBtn'onClick={submitOTP}>Signup</button>
                 <Link className='backToLoginPopup' onClick={handleBacktoLogin}>Existing User? Log in</Link>
             </div>
         </div>
