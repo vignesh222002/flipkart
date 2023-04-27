@@ -37,14 +37,14 @@ function ProfilePanCard() {
             ...panInfo,
             panNumber: e.target.value
         })
-        console.log(panInfo)
+        // console.log(panInfo)
     }
     function updatePanName(e) {
         setPanInfo({
             ...panInfo,
             panName: e.target.value
         })
-        console.log(panInfo)
+        // console.log(panInfo)
     }
     
   return (
