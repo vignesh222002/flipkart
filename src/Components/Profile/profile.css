@@ -226,7 +226,7 @@ a {
     margin-right: 32px;
     cursor: auto;
 }
-.profilePersonalInfoGenderInput {
+.profilePersonalInfoMaleInput, .profilePersonalInfoFemaleInput  {
     visibility: hidden;
     position: absolute;
 }

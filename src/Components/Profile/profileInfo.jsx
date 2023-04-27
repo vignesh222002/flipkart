@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './profile.css'
 import MyProfileFooter from '../../Media/myProfileFooter.png'
 
@@ -22,41 +22,60 @@ let ProfilePersonalInfoInput = ({children}) => {
     return <div className="profilePersonalInfoInput">{children}</div>
 }
 
+let ProfilePersonalInfo = () => {
+    let [edit, setEdit] = useState(false)
+
+    return (
+        <>
+            <ProfilePersonalInfoHeadContainer>
+                <ProfilePersonalInfoHead>Personal Information</ProfilePersonalInfoHead>
+                {edit ? (
+                    <ProfilePersonalInfoEditBtn><span onClick={() => setEdit(false)}>Cancel</span></ProfilePersonalInfoEditBtn>
+                ) : (
+                    <ProfilePersonalInfoEditBtn><span onClick={() => setEdit(true)}>Edit</span></ProfilePersonalInfoEditBtn>
+                )}
+            </ProfilePersonalInfoHeadContainer>
+
+            <ProfilePersonalInfoInputContainer>
+                <ProfilePersonalInfoInput>
+                    <input type="text" name='firstName' className='profileInfoPersonalNameInput' required value="Flipkart" />
+                    <label htmlFor="firstName" className='profileInfoPersonalNameLabel'>First Name</label>
+                </ProfilePersonalInfoInput>
+                <ProfilePersonalInfoInput>
+                    <input type="text" name='lastName' className='profileInfoPersonalNameInput' required value="Customer" />
+                    <label htmlFor="lastName" className='profileInfoPersonalNameLabel'>Last Name</label>
+                </ProfilePersonalInfoInput>
+            </ProfilePersonalInfoInputContainer>
+        </>
+    )
+}
+
 function ProfileRightInfo() {
   return (
     <>
         <div className='profileRightInfo'>
             <div className="profilePersonalInfo">
                 <div className="profileInfoPersonalInformation">
-                    <ProfilePersonalInfoHeadContainer>
-                        <ProfilePersonalInfoHead>Personal Information</ProfilePersonalInfoHead>
-                        <ProfilePersonalInfoEditBtn>Edit</ProfilePersonalInfoEditBtn>
-                    </ProfilePersonalInfoHeadContainer>
+                    
+                    <ProfilePersonalInfo />
 
-                    <ProfilePersonalInfoInputContainer>
-                        <ProfilePersonalInfoInput>
-                            <input type="text" name='firstName' className='profileInfoPersonalNameInput' required value="Flipkart" />
-                            <label htmlFor="firstName" className='profileInfoPersonalNameLabel'>First Name</label>
-                        </ProfilePersonalInfoInput>
-                        <ProfilePersonalInfoInput>
-                            <input type="text" name='lastName' className='profileInfoPersonalNameInput' required value="Customer" />
-                            <label htmlFor="lastName" className='profileInfoPersonalNameLabel'>Last Name</label>
-                        </ProfilePersonalInfoInput>
-                    </ProfilePersonalInfoInputContainer>
+                
                     <div className="profilePersonalInfoGender">Your Gender</div>
                     <div>
                         <label htmlFor="male" className='profilePersonalInfoSelectGenderContainer'>
-                            <input type="radio" name='gender' className='profilePersonalInfoGenderInput' id='male' checked />
+                            <input type="radio" name='gender' className='profilePersonalInfoMaleInput' id='male' checked />
                             <div className="profilePersonalInfoGenderCheck"></div>
                             <div className="profilePersonalInfoGenderLabel">Male</div>
                         </label>
                         <label htmlFor="male" className='profilePersonalInfoSelectGenderContainer'>
-                            <input type="radio" name='gender' className='profilePersonalInfoGenderInput' id='female' />
+                            <input type="radio" name='gender' className='profilePersonalInfoFemaleInput' id='female' />
                             <div className="profilePersonalInfoGenderCheck"></div>
                             <div className="profilePersonalInfoGenderLabel">Female</div>
                         </label>
                     </div>
                 </div>
+
+                
                 <div className='profileInfoEmailAddress'>
                     <ProfilePersonalInfoHeadContainer>
                         <ProfilePersonalInfoHead>Email Address</ProfilePersonalInfoHead>
