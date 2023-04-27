@@ -8,6 +8,8 @@ import BasketEmptyImage from '../../Media/basketEmptyImage.webp'
 import { useContext } from "react";
 import { UserContext } from "../../Components/Context/UserInfoContext";
 import ProfileRightInfo from "../../Components/Profile/profileInfo";
+import ProfileAddress from "../../Components/Profile/profileAddress";
+import ProfilePanCard from "../../Components/Profile/profilePanCard";
 
 let LapRoute = () => {
     
@@ -27,8 +29,8 @@ let LapRoute = () => {
             <Route path='/profile' element={<ProfilePage />}>
                 <Route index element={<ProfileRightInfo />} />
                 <Route path="account" element={<ProfileRightInfo />} />
-                <Route path="address" element={<></>} />
-                <Route path="pancard" element={<></>} />
+                <Route path="address" element={<ProfileAddress />} />
+                <Route path="pancard" element={<ProfilePanCard />} />
             </Route>
             <Route path='/cart' element={<CartPage />}>
                 <Route index element={<CartMissingContent source={CartMissingImage} head="Missing Cart items?" description="Login to see the items you added previously" button={cartShopBtn.button} btnStyle={cartShopBtn.btnStyle} /> }></Route>

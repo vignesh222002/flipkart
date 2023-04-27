@@ -294,6 +294,11 @@ a {
 
 /* Profile Address */
 
+.profileAddressContainer {
+    min-height: 600px;
+    padding: 24px 32px;
+    position: relative;
+}
 .profileAddressHead {
     font-size: 18px;
     font-weight: 500;
@@ -316,4 +321,200 @@ a {
 .profileAddAddressIcon {
     margin: 0 16px;
     vertical-align: middle;
+}
+
+
+/* Address Card */
+
+.addressCard {
+    border: 1px solid #e0e0e0;
+    border-top: 0;
+    position: relative;
+}
+.addressCard:first-child {
+    border-top: 1px solid #e0e0e0;
+    margin-top: 20px;
+    border-radius: 2px 0;
+}
+.addressCard:last-child {
+    border-radius: 0 2px;
+}
+.addressCardContent {
+    max-width: 848px;
+    overflow: hidden;
+    padding: 20px;
+}
+.addressCardMenu {
+    max-width: 35px;
+    float: right;
+    cursor: pointer;
+    padding: 0 8px;
+}
+.addressCardTypeContainer {
+    margin-bottom: 10px;
+}
+.addressCardType {
+    text-transform: uppercase;
+    font-size: 11px;
+    color: #878787;
+    vertical-align: middle;
+    padding: 4px 7px;
+    border-radius: 2px;
+    background-color: #f0f0f0;
+    font-weight: 500;
+    margin-right: 15px;
+}
+.addressCardTitleContainer {
+    line-height: 1.5;
+}
+.addressCardTitle {
+    font-weight: 500;
+}
+.addressCardTitleMobile {
+    margin: 0 0 0 15px;
+}
+.addressCardContentContainer {
+    margin-top: 10px;
+    display: block;
+    max-width: 523px;
+    line-height: 1.5;
+}
+.addressPincode {
+    font-weight: 500;
+}
+
+/* Address Menu Popup */
+
+.addressMenuPopup {
+    z-index: 1;
+    white-space: nowrap;
+    position: absolute;
+    font-size: 14px;
+    color: #878787;
+    border: 1px solid rgba(0,0,0,.05);
+    box-shadow: 0 6px 6px 0 rgba(0,0,0,.12), 0 1px 3px 0 rgba(0,0,0,.18);
+    right: 23px;
+    padding: 5px;
+    border-radius: 3px;
+    top: 10px;
+    background-color: #fff;
+}
+.addressMenuPopupBtn {
+    padding: 7px 12px;
+    color: #212121;
+}
+.addressMenuPopupBtn:hover {
+    color: #2874f0;
+}
+
+/* Profile PAN Card */
+
+.profilePanCardContainer {
+    min-height: 300px;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.08);
+}
+.profilePanCardHead {
+    font-size: 18px;
+    font-weight: 500;
+    display: block;
+    padding-bottom: 10px;
+}
+.profilePanCardInputContainer {
+    position: relative;
+    margin-bottom: 10px;
+}
+.profileInputPanNum, .profileInputPanName {
+    max-width: 300px;
+    height: 50px;
+    width: 100%;
+    font-size: 14px;
+    border: 1px solid #e0e0e0;
+    outline: none;
+    border-radius: 2px;
+    padding: 20px 16px 0 13px;
+    box-shadow: none;
+    letter-spacing: 0;
+}
+.profileLabelPanNum, .profileLabelPanName {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 18px 20px 0;
+    font-size: 14px;
+    color: #878787;
+    pointer-events: none;
+    width: 100%;
+    transform-origin: top left;
+    transition: transform .2s;
+}
+.panInputActive {
+    border: 1px solid #2874f0;
+}
+.panLabelActive {
+    transform: translateY(-10px) scale(0.8) !important;
+}
+.profileUploadPanCard {
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    max-width: 300px;
+    border-radius: 2px;
+}
+.profileUploadPanCardLabel {
+    font-size: 11px;
+    padding-bottom: 5px;
+    color: #878787;
+    display: block;
+}
+.profileUploadPanCardInput {
+    box-shadow: none;
+    letter-spacing: 0;
+}
+.profilePanCardCheckBoxContainer {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: row;
+}
+.profilePanCheckBoxInput {
+    vertical-align: top;
+    margin-top: -22px;
+}
+.profilePanCheckBoxLabel {
+    white-space: normal;
+    overflow: unset;
+    line-height: 1.5;
+    margin-left: 12px;
+    cursor: default;
+    font-size: 14px;
+    vertical-align: middle;
+    color: #212121;
+    display: inline-block;
+    width: calc(100% - 50px);
+    text-overflow: ellipsis;
+}
+.profilePanCardUploadBtn {
+    margin-top: 10px;
+    background: #2874f0;
+    color: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    border: none;
+    display: inline-block;
+    border-radius: 2px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: box-shadow .2s ease;
+    cursor: pointer;
+}
+.profilePanCardFooter {
+    padding-top: 40px;
+}
+.profilePanCardFooterLink {
+    font-weight: 500;
+    font-size: 16px;
+    color: #2874f0;
+    margin: 0 15px 25px 0;
+    display: inline-block;
 }
