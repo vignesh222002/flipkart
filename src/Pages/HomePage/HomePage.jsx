@@ -7,7 +7,7 @@ import NavbarMain from "../../Components/NavBar/NavbarMain"
 import Navbar2 from "../../Components/NavBar2/Navbar2"
 import { UserContext } from "../../Components/Context/UserInfoContext"
 import UserPopup from "../../Components/NavBar/UserPopup"
-
+import HomeContent from "../../Components/HomePage/homePage"
 
 let HomePage = () => {
     let [loginActive, setLoginActive] = useState(false)
@@ -28,6 +28,7 @@ let HomePage = () => {
             {moreActive && <MorePopup setMoreActive={setMoreActive}/>}
             {profileActive && <UserPopup redirectPath={redirectPath} style={{right: '32%'}} setProfileActive={setProfileActive} />}
             {callLogin && <LoginSignupModal redirectPath={redirectPath} callLogin={callLogin} setCallLogin={setCallLogin}/>}
+            <HomeContent />
             <Footer />
         </>
     )

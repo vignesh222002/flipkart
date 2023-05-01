@@ -191,6 +191,19 @@ a {
     position: relative;
     margin-bottom: 10px;
 }
+.profileInfoPersonalDisabledName {
+    background-color: #fafafa;
+    cursor: not-allowed;
+    padding: 16px;
+    color: #878787;
+    height: 50px;
+    width: 100%;
+    font-size: 14px;
+    border: 1px solid #e0e0e0;
+    outline: none;
+    border-radius: 2px;
+    box-shadow: none;
+}
 .profileInfoPersonalInformation {
     padding-bottom: 56px;
 }
@@ -224,13 +237,36 @@ a {
     border-bottom: none;
     display: inline-block;
     margin-right: 32px;
-    cursor: auto;
+    cursor: not-allowed;
+    color: #878787;
+}
+.profilePersonalInfoSelectGenderContainerEdit {
+    font-size: 16px;
+    border-bottom: none;
+    display: inline-block;
+    margin-right: 32px;
+    cursor: pointer;
 }
 .profilePersonalInfoMaleInput, .profilePersonalInfoFemaleInput  {
-    /* visibility: hidden; */
+    visibility: hidden;
     position: absolute;
 }
- 
+.profilePersonalInfoSaveBtn {
+    display: inline-block;
+    background: #2874f0;
+    width: 130px;
+    height: 48px;
+    padding: 14px;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 16px;
+    box-shadow: none;
+    font-weight: 500;
+    transition: box-shadow .2s ease;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid #e0e0e0;
+}
 .profilePersonalInfoGenderCheck {
     cursor: pointer;
     display: inline-block;
@@ -242,12 +278,33 @@ a {
     vertical-align: top;
     margin-top: 2px;
     margin-left: 0;
-    margin-left: 10px;
+}
+.profilePersonalInfoGenderCheckDisabled {
+    display: inline-block;
+    border: 2px solid #979797;
+    border-radius: 100%;
+    height: 16px;
+    width: 16px;
+    position: relative;
+    vertical-align: top;
+    margin-top: 2px;
+    margin-left: 0;
 }
 .profilePersonalInfoGenderCheck.radioActive{
     border-color: #2874f0;
 }
-.profilePersonalInfoGenderCheck::before {
+.profilePersonalInfoGenderCheck.radioActive::before {
+    background-color: #2874f0;
+    border: 2px hidden;
+}
+.profilePersonalInfoGenderCheckDisabled.radioActiveDisabled{
+    border-color: #979797;
+}
+.profilePersonalInfoGenderCheckDisabled.radioActiveDisabled::before {
+    background-color: #979797;
+    border: 2px hidden;
+}
+.profilePersonalInfoGenderCheck::before, .profilePersonalInfoGenderCheckDisabled::before {
     content: "";
     border-radius: 100%;
     height: 8px;
@@ -261,6 +318,7 @@ a {
     margin-left: 12px;
     width: auto;
     display: inline-block;
+    cursor: inherit;
 }
 .profileInfoEmailAddress, .profileInfoMobileNumber {
     padding-bottom: 46px;
