@@ -231,6 +231,7 @@ a {
 }
 .profilePersonalInfoGender {
     padding: 12px 0;
+    font-family: roboto-regular;
 }
 .profilePersonalInfoSelectGenderContainer {
     font-size: 16px;
@@ -266,6 +267,7 @@ a {
     cursor: pointer;
     outline: none;
     border: 1px solid #e0e0e0;
+    font-family: roboto-medium;
 }
 .profilePersonalInfoGenderCheck {
     cursor: pointer;
@@ -319,6 +321,7 @@ a {
     width: auto;
     display: inline-block;
     cursor: inherit;
+    font-family: roboto-regular;
 }
 .profileInfoEmailAddress, .profileInfoMobileNumber {
     padding-bottom: 46px;
@@ -344,6 +347,7 @@ a {
     line-height: 1.5;
     margin-top: 15px;
     font-weight: 300;
+    font-family: roboto-regular;
 }
 .profileDeactivate {
     padding-top: 22px;
@@ -386,6 +390,150 @@ a {
     vertical-align: middle;
 }
 
+/* Add Address Section */
+
+.addAddressContainer {
+    background-color: #f5faff;
+    padding: 20px;
+    position: relative;
+}
+.addAddressType {
+    color: #2874f0;
+    font-weight: 500;
+}
+.addAddress {
+    margin-top: 16px;
+    width: 570px;
+}
+.useLocationContainer {
+    margin-bottom: 16px;
+}
+.useLocationBtn {
+    padding: 14px 24px;
+    font-size: 14px;
+    background: #2874f0;
+    color: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    border: none;
+}
+.useLocationIcon {
+    margin-right: 6px;
+    vertical-align: text-bottom;
+}
+.addAddressMultiInputContainer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.addSpecificAddressInputContainer {
+    width: 280px;
+    position: relative;
+    margin-bottom: 10px;
+}
+.addSpecificAddressInput {
+    height: 50px;
+    width: 100%;
+    font-size: 14px;
+    border: 1px solid #e0e0e0;
+    outline: none;
+    border-radius: 2px;
+    padding: 20px 16px 0 13px;
+    box-shadow: none;
+}
+.addSpecificAddressLabel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform-origin: top left;
+    padding: 18px 20px 0;
+    font-size: 14px;
+    color: #878787;
+    transition: transform .2s ease;
+    pointer-events: none;
+    width: 100%;
+}
+.addAddressAreaInputContainer {
+    width: 100%;
+    margin-bottom: 0;
+    position: relative;
+}
+.addAddressAreaInput {
+    padding-top: 25px;
+    vertical-align: top;
+    resize: none !important;
+    width: 100%;
+    font-size: 14px;
+    border: 1px solid #e0e0e0;
+    outline: none;
+    border-radius: 2px;
+    padding: 20px 16px 0 13px;
+    box-shadow: none;
+}
+.addAddressStateContainer {
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+}
+.addAddressStateLabel {
+    font-size: 12px;
+    padding-top: 6px;
+    padding-left: 13px;
+    cursor: default;
+    color: #878787;
+}
+.addAddressSelectStateContainer {
+    width: 280px;
+    position: relative;
+    display: block;
+}
+.addAddressSelectStateContainer::after {
+    top: 35%;
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-left-width: 5px;
+    display: block;
+    content: " ";
+    position: absolute;
+    right: 0.7em;
+    pointer-events: none;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 8px solid #212121;
+    margin-top: -3px;
+}
+.addAddressSelectStateInput {
+    padding: 2px 16px 7px 13px;
+    font-size: 14px;
+    color: inherit;
+    border: none;
+    outline: none;
+    appearance: none;
+    border-radius: 0;
+    background: #fff;
+    overflow: visible !important;
+}
+option {
+    font-weight: normal;
+    display: block;
+    white-space: nowrap;
+    min-height: 1.2em;
+}
+.addAddressTypeContainer {
+    padding-left: 13px;
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.addAddressTypeHead {
+    font-size: 12px;
+    color: #878787;
+    margin-bottom: 10px;
+}
+.addressTypeContainer {
+    margin-bottom: 16px;
+    width: 100%;
+}
 
 /* Address Card */
 
@@ -441,9 +589,11 @@ a {
     display: block;
     max-width: 523px;
     line-height: 1.5;
+    font-family: roboto-regular;
 }
 .addressPincode {
     font-weight: 500;
+    font-family: roboto-medium;
 }
 
 /* Address Menu Popup */
@@ -512,6 +662,9 @@ a {
     width: 100%;
     transform-origin: top left;
     transition: transform .2s;
+    font-weight: 300;
+    font-family: roboto-regular;
+    letter-spacing: 0.1px;
 }
 .panInputActive {
     border: 1px solid #2874f0;
@@ -530,6 +683,8 @@ a {
     padding-bottom: 5px;
     color: #878787;
     display: block;
+    font-family: roboto-regular;
+    letter-spacing: 0.1px;
 }
 .profileUploadPanCardInput {
     box-shadow: none;
@@ -542,7 +697,7 @@ a {
 }
 .profilePanCheckBoxInput {
     vertical-align: top;
-    margin-top: -22px;
+    margin-top: -42px;
 }
 .profilePanCheckBoxLabel {
     white-space: normal;
@@ -556,6 +711,8 @@ a {
     display: inline-block;
     width: calc(100% - 50px);
     text-overflow: ellipsis;
+    font-family: roboto-regular;
+    letter-spacing: 0.1px;
 }
 .profilePanCardUploadBtn {
     margin-top: 10px;
@@ -570,6 +727,7 @@ a {
     font-weight: 500;
     transition: box-shadow .2s ease;
     cursor: pointer;
+    font-family: roboto-medium;
 }
 .profilePanCardFooter {
     padding-top: 40px;

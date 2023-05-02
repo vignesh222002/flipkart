@@ -20,14 +20,14 @@ let SliderImageContent = ({image}) => {
 
     return (
         <div className="sliderImageContentContainer">
-            <div className="sliderImageContent">
-                <a href="#" className="sliderImageLink">
-                    <div className="sliderImageLinkContent">
-                        <img src={image} alt="SliderImage" />
-                    </div>
-                </a>
+                <div className="sliderImageContent">
+                    <a href="#" className="sliderImageLink">
+                        <div className="sliderImageLinkContent">
+                            <img src={image} alt="SliderImage" />
+                        </div>
+                    </a>
+                </div>
             </div>
-        </div>
     )
 }
 

@@ -25,6 +25,7 @@
     position: relative;
     /* width: 5772px; */
     width: 400vw;
+    /* transition: all 0.4sec ease; */
 }
 
 /* Slider Image */
