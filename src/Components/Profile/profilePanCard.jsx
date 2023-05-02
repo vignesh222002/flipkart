@@ -11,8 +11,8 @@ function ProfilePanCard() {
         panName: null
     })
 
-    function handlePanNumFocus() {
-        inputPanNumRef.current.classList.add('panInputActive')
+    function handlePanNumFocus(event) {
+        event.target.classList.add('panInputActive')
         labelPanNumRef.current.classList.add('panLabelActive')
     }
     function handlePanNameFocus() {
@@ -53,7 +53,7 @@ function ProfilePanCard() {
         <div className="profilePanCardContent">
             <div>
                 <div className="profilePanCardInputContainer">
-                    <input ref={inputPanNumRef} className='profileInputPanNum' type="text" name="PanCardNumber" required autoComplete='off' onFocus={handlePanNumFocus} onBlur={handlePanNumBlur} onChange={(e) => updatePanNum(e)} />
+                    <input ref={inputPanNumRef} className='profileInputPanNum' type="text" name="PanCardNumber" required autoComplete='off' onFocus={(e) => handlePanNumFocus(e)} onBlur={handlePanNumBlur} onChange={(e) => updatePanNum(e)} />
                     <label ref={labelPanNumRef} className='profileLabelPanNum' htmlFor="PanCardNumber">PAN Card Number</label>
                 </div>
                 <div className="profilePanCardInputContainer">

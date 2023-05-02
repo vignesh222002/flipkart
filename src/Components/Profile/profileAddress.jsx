@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import Add from '../../Media/Add.svg'
+import React, { useEffect, useReducer, useState } from 'react'
 import AddressMenu from '../../Media/AddressMenu.svg'
 
 let AddressCard = () => {
@@ -38,7 +37,84 @@ let AddressMenuPopup = () => {
 }
 
 let AddAddress = () => {
-  let [type, setType] = useState("")
+  let initialAddress ={
+    name: "",
+    mobileNum: "",
+    pincode: "",
+    locality: "",
+    Area: "",
+    city: "",
+    state: "",
+    landmark: "",
+    alternateMobileNum: "",
+    type: ""
+  }
+  const reducer = (state, action) => {
+    switch(action.type) {
+        case 'updateName' :
+            return {
+              ...state,
+              name: action.data
+            }
+        case 'updateMobileNum' :
+            return {
+              ...state,
+              mobileNum: action.data
+            }
+            case 'updateMobileNum' :
+              return {
+                ...state,
+                mobileNum: action.data
+              }
+              case 'updateMobileNum' :
+            return {
+              ...state,
+              mobileNum: action.data
+            }
+            case 'updateMobileNum' :
+            return {
+              ...state,
+              mobileNum: action.data
+            }
+            case 'updateMobileNum' :
+            return {
+              ...state,
+              mobileNum: action.data
+            }
+            case 'updateState' :
+            return {
+              ...state,
+              state: action.data
+            }
+            case 'updateMobileNum' :
+            return {
+              ...state,
+              mobileNum: action.data
+            }
+            case 'updateMobileNum' :
+            return {
+              ...state,
+              mobileNum: action.data
+            }
+        case 'updateTypeHome' :
+            return {
+              ...state,
+              type: "home"
+            }
+        case 'updateTypeWork' :
+            return {
+              ...state,
+              type: "work"
+            }
+        default :
+            return state
+      }
+  }
+  let [address, dispatch] = useReducer(reducer, initialAddress)
+  useEffect(() => {
+    console.log(address);
+  },[address])
+
   return (
     <div className="addAddressContainer">
       <span className="addAddressType">{/* addAddressType */} ADD A NEW ADDRESS</span>
@@ -51,11 +127,11 @@ let AddAddress = () => {
         </div>
         <div className="addAddressMultiInputContainer">
           <div className="addSpecificAddressInputContainer">
-            <input name="addName" className="addSpecificAddressInput" type='text' required />
+            <input name="addName" className="addSpecificAddressInput" type='text' required value={address.name} onChange={(e) => dispatch({type:"updateName", data: e.target.value})} />
             <label htmlFor="addName" className='addSpecificAddressLabel'>Name</label>
           </div>
           <div className="addSpecificAddressInputContainer">
-            <input name="addMobile" className="addSpecificAddressInput" type='text' maxLength='10' required />
+            <input name="addMobile" className="addSpecificAddressInput" type='text' maxLength='10' required value={address.mobileNum} onChange={(e) => dispatch({type:"updateMobileNum", data: e.target.value})} />
             <label htmlFor="addMobile" className='addSpecificAddressLabel'>10-digit mobile number</label>
           </div>
         </div>
@@ -83,7 +159,7 @@ let AddAddress = () => {
           <div className="addAddressStateContainer">
             <div className="addAddressStateLabel">State</div>
             <div className="addAddressSelectStateContainer">
-              <select class="addAddressSelectStateInput" name="state" required><option value="">--Select State--</option><option value="Andaman &amp; Nicobar Islands">Andaman &amp; Nicobar Islands</option><option value="Andhra Pradesh">Andhra Pradesh</option><option value="Arunachal Pradesh">Arunachal Pradesh</option><option value="Assam">Assam</option><option value="Bihar">Bihar</option><option value="Chandigarh">Chandigarh</option><option value="Chhattisgarh">Chhattisgarh</option><option value="Dadra &amp; Nagar Haveli &amp; Daman &amp; Diu">Dadra &amp; Nagar Haveli &amp; Daman &amp; Diu</option><option value="Delhi">Delhi</option><option value="Goa">Goa</option><option value="Gujarat">Gujarat</option><option value="Haryana">Haryana</option><option value="Himachal Pradesh">Himachal Pradesh</option><option value="Jammu &amp; Kashmir">Jammu &amp; Kashmir</option><option value="Jharkhand">Jharkhand</option><option value="Karnataka">Karnataka</option><option value="Kerala">Kerala</option><option value="Ladakh">Ladakh</option><option value="Lakshadweep">Lakshadweep</option><option value="Madhya Pradesh">Madhya Pradesh</option><option value="Maharashtra">Maharashtra</option><option value="Manipur">Manipur</option><option value="Meghalaya">Meghalaya</option><option value="Mizoram">Mizoram</option><option value="Nagaland">Nagaland</option><option value="Odisha">Odisha</option><option value="Puducherry">Puducherry</option><option value="Punjab">Punjab</option><option value="Rajasthan">Rajasthan</option><option value="Sikkim">Sikkim</option><option value="Tamil Nadu">Tamil Nadu</option><option value="Telangana">Telangana</option><option value="Tripura">Tripura</option><option value="Uttarakhand">Uttarakhand</option><option value="Uttar Pradesh">Uttar Pradesh</option><option value="West Bengal">West Bengal</option></select>
+              <select value={address.state} onChange={(e) => dispatch({type:"updateState", data: e.target.value})} className="addAddressSelectStateInput" name="updateState" required><option selected disabled value="">--Select State--</option><option value="Andaman &amp; Nicobar Islands">Andaman &amp; Nicobar Islands</option><option value="Andhra Pradesh">Andhra Pradesh</option><option value="Arunachal Pradesh">Arunachal Pradesh</option><option value="Assam">Assam</option><option value="Bihar">Bihar</option><option value="Chandigarh">Chandigarh</option><option value="Chhattisgarh">Chhattisgarh</option><option value="Dadra &amp; Nagar Haveli &amp; Daman &amp; Diu">Dadra &amp; Nagar Haveli &amp; Daman &amp; Diu</option><option value="Delhi">Delhi</option><option value="Goa">Goa</option><option value="Gujarat">Gujarat</option><option value="Haryana">Haryana</option><option value="Himachal Pradesh">Himachal Pradesh</option><option value="Jammu &amp; Kashmir">Jammu &amp; Kashmir</option><option value="Jharkhand">Jharkhand</option><option value="Karnataka">Karnataka</option><option value="Kerala">Kerala</option><option value="Ladakh">Ladakh</option><option value="Lakshadweep">Lakshadweep</option><option value="Madhya Pradesh">Madhya Pradesh</option><option value="Maharashtra">Maharashtra</option><option value="Manipur">Manipur</option><option value="Meghalaya">Meghalaya</option><option value="Mizoram">Mizoram</option><option value="Nagaland">Nagaland</option><option value="Odisha">Odisha</option><option value="Puducherry">Puducherry</option><option value="Punjab">Punjab</option><option value="Rajasthan">Rajasthan</option><option value="Sikkim">Sikkim</option><option value="Tamil Nadu">Tamil Nadu</option><option value="Telangana">Telangana</option><option value="Tripura">Tripura</option><option value="Uttarakhand">Uttarakhand</option><option value="Uttar Pradesh">Uttar Pradesh</option><option value="West Bengal">West Bengal</option></select>
             </div>
           </div>
         </div>
@@ -101,16 +177,20 @@ let AddAddress = () => {
           <p className="addAddressTypeHead">Address Type</p>
           <div className="addressTypeContainer">
             <label htmlFor="home" className='profilePersonalInfoSelectGenderContainerEdit'>
-              <input type="radio" className='profilePersonalInfoMaleInput' checked={type == "home" ? true : false} onClick={() => type != "home" && setType("home")} id='home' name='addressType'/>
-              <div className={`profilePersonalInfoGenderCheck ${type == "home" && "radioActive"}`}></div>
+              <input type="radio" className='profilePersonalInfoMaleInput' checked={address.type == "home" ? true : false} onClick={() => address.type != "home" && dispatch({type: "updateTypeHome"})} id='home' name='addressType'/>
+              <div className={`profilePersonalInfoGenderCheck ${address.type == "home" && "radioActive"}`}></div>
               <div className="profilePersonalInfoGenderLabel">Home</div>
             </label>
             <label htmlFor="work" className='profilePersonalInfoSelectGenderContainerEdit'>
-              <input type="radio" className='profilePersonalInfoMaleInput' checked={type == "work" ? true : false} onClick={() => type != "work" && setType("work")} id='work' name='addressType'/>
-              <div className={`profilePersonalInfoGenderCheck ${type == "work" && "radioActive"}`}></div>
+              <input type="radio" className='profilePersonalInfoMaleInput' checked={address.type == "work" ? true : false} onClick={() => address.type != "work" && dispatch({type: "updateTypeWork"})} id='work' name='addressType'/>
+              <div className={`profilePersonalInfoGenderCheck ${address.type == "work" && "radioActive"}`}></div>
               <div className="profilePersonalInfoGenderLabel">Work</div>
             </label>
           </div>
+        </div>
+        <div className="addAddressSubmitContainer">
+          <button className="addAddressSubmitBtn">Save</button>
+          <button className="addAddressCancelBtn">Cancel</button>
         </div>
       </div>
     </div>
