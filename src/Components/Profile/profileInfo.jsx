@@ -103,12 +103,12 @@ let ProfilePersonalInfo = ({ userInfo, UpdateUser }) => {
             <div className="profilePersonalInfoGender">Your Gender</div>
             <div>
                 <label htmlFor="male" className={`${edit ? "profilePersonalInfoSelectGenderContainerEdit" : "profilePersonalInfoSelectGenderContainer"}`}>
-                    <input checked={changeUser.gender == "male" ? true : false} type="radio" onClick={() => updateGender("male")} name='gender' className='profilePersonalInfoMaleInput' id='male'/>
+                    <input defaultChecked={changeUser.gender == "male" ? true : false} type="radio" onClick={() => updateGender("male")} name='gender' className='profilePersonalInfoMaleInput' id='male'/>
                     <div className={`${edit ? "profilePersonalInfoGenderCheck" : "profilePersonalInfoGenderCheckDisabled"} ${edit ? (changeUser.gender == "male" && "radioActive") : (changeUser.gender == 'male' && "radioActiveDisabled") }`}></div>
                     <div className="profilePersonalInfoGenderLabel">Male</div>
                 </label>
                 <label htmlFor="female" className={`${edit ? "profilePersonalInfoSelectGenderContainerEdit" : "profilePersonalInfoSelectGenderContainer"}`}>
-                    <input onClick={() => updateGender("female")} type="radio" name='gender' checked={changeUser.gender == "female" ? true : false} className='profilePersonalInfoFemaleInput' id='female' />
+                    <input onClick={() => updateGender("female")} type="radio" name='gender' defaultChecked={changeUser.gender == "female" ? true : false} className='profilePersonalInfoFemaleInput' id='female' />
                     <div className={`${edit ? "profilePersonalInfoGenderCheck" : "profilePersonalInfoGenderCheckDisabled"} ${edit ? (changeUser.gender == "female" && "radioActive") : (changeUser.gender == 'female' && "radioActiveDisabled")}`}></div>
                     <div className="profilePersonalInfoGenderLabel">Female</div>
                 </label>

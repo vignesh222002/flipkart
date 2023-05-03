@@ -1,48 +1,65 @@
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useEffect, useReducer, useRef, useState } from 'react'
 import AddressMenu from '../../Media/AddressMenu.svg'
+import Add from '../../Media/Add.svg'
 
-let AddressCard = () => {
+let AddressCard = ({editAddress, setEditAddress}) => {
   let [addressMenu, setAddressMenu] = useState(false)
+  let prevAddress ={
+    name: "Vignesh",
+    mobileNum: "9361738902",
+    pincode: "638009",
+    locality: "Thadagam Road, R.S.Puram",
+    area: "Codingmart Technologies, No. 471, CPC Towers, 2nd floor",
+    city: "Coimbatore",
+    state: "Tamil Nadu",
+    landmark: "",
+    alternateMobileNum: "",
+    type: "home"
+  }
 
   return (
     <div className="addressCard">
-      <div className="addressCardContent">
-        <div className="addressCardMenu" onMouseOver={() => setAddressMenu(true)} onMouseOut={() => setAddressMenu(false)}>
-          <img src={AddressMenu} alt="Toggle" />
-          {addressMenu && <AddressMenuPopup onMouseOver={() => setAddressMenu(true)} onMouseOut={() => setAddressMenu(false)} /> }
+      {editAddress ? 
+        <AddAddress editAddress={editAddress} setEditAddress={setEditAddress} prevAddress={prevAddress} /> : (
+        
+        <div className="addressCardContent">
+          <div className="addressCardMenu" onMouseOver={() => setAddressMenu(true)} onMouseOut={() => setAddressMenu(false)}>
+            <img src={AddressMenu} alt="Toggle" />
+            {addressMenu && <AddressMenuPopup onMouseOver={() => setAddressMenu(true)} onMouseOut={() => setAddressMenu(false)} setEditAddress={setEditAddress} /> }
+          </div>
+          <div className="addressCardTypeContainer">
+            <span className="addressCardType">{prevAddress.type}</span>
+          </div>
+          <p className="addressCardTitleContainer">
+            <span className='addressCardTitle'>{prevAddress.name}</span>
+            <span className='addressCardTitle addressCardTitleMobile'>{prevAddress.mobileNum}</span>
+          </p>
+          <span className="addressCardContentContainer">
+            {prevAddress.area}, {prevAddress.locality}, {prevAddress.city}, {prevAddress.state} - <span className='addressPincode'>{prevAddress.pincode}</span>
+          </span>
         </div>
-        <div className="addressCardTypeContainer">
-          <span className="addressCardType">   Work   </span>
-        </div>
-        <p className="addressCardTitleContainer">
-          <span className='addressCardTitle'>Vignesh</span>
-          <span className='addressCardTitle addressCardTitleMobile'>9361738902</span>
-        </p>
-        <span className="addressCardContentContainer">
-          Codingmart Technologies, No. 471, CPC Towers, 2nd floor, Thadagam Road, R.S.Puram, Coimbatore, Tamil Nadu - <span className='addressPincode'>638009</span>
-        </span>
-      </div>
+      )}
     </div>
   )
 }
 
-let AddressMenuPopup = () => {
+let AddressMenuPopup = ({setEditAddress}) => {
 
   return (
     <div className="addressMenuPopup">
-      <div className="addressMenuPopupBtn"><span>Edit</span></div>
+      <div className="addressMenuPopupBtn" onClick={() => setEditAddress(true)}><span>Edit</span></div>
       <div className="addressMenuPopupBtn"><span>Delete</span></div>
     </div>
   )
 }
 
-let AddAddress = () => {
-  let initialAddress ={
+let AddAddress = ({addNewAdd, setAddNewAdd, editAddress, setEditAddress, prevAddress}) => {
+  let initialAddress = editAddress ? {...prevAddress} : {
     name: "",
     mobileNum: "",
     pincode: "",
     locality: "",
-    Area: "",
+    area: "",
     city: "",
     state: "",
     landmark: "",
@@ -61,40 +78,40 @@ let AddAddress = () => {
               ...state,
               mobileNum: action.data
             }
-            case 'updateMobileNum' :
-              return {
-                ...state,
-                mobileNum: action.data
-              }
-              case 'updateMobileNum' :
+        case 'updatePincode' :
             return {
               ...state,
-              mobileNum: action.data
+              pincode: action.data
             }
-            case 'updateMobileNum' :
+        case 'updateLocality' :
             return {
               ...state,
-              mobileNum: action.data
+              locality: action.data
             }
-            case 'updateMobileNum' :
+        case 'updateArea' :
             return {
               ...state,
-              mobileNum: action.data
+              area: action.data
             }
-            case 'updateState' :
+        case 'updateCity' :
+            return {
+              ...state,
+              city: action.data
+            }
+        case 'updateState' :
             return {
               ...state,
               state: action.data
             }
-            case 'updateMobileNum' :
+        case 'updateLandmark' :
             return {
               ...state,
-              mobileNum: action.data
+              landmark: action.data
             }
-            case 'updateMobileNum' :
+        case 'updateAlterMobileNum' :
             return {
               ...state,
-              mobileNum: action.data
+              alternateMobileNum: action.data
             }
         case 'updateTypeHome' :
             return {
@@ -111,13 +128,127 @@ let AddAddress = () => {
       }
   }
   let [address, dispatch] = useReducer(reducer, initialAddress)
-  useEffect(() => {
-    console.log(address);
-  },[address])
+
+  // useEffect(() => {
+  //   console.log(address);
+  // },[address])
+
+  const nameRef = useRef()
+  const mobileRef = useRef()
+  const pincodeRef = useRef()
+  const localityRef = useRef()
+  const areaRef = useRef()
+  const cityRef = useRef()
+  const landmarkRef = useRef()
+  const alterMobileRef = useRef()
+
+  function handleNameFocus(e) {
+    e.target.classList.add('panInputActive')
+    nameRef.current.classList.add('panLabelActive')
+  }
+  function handleNameBlur(e) {
+    e.target.classList.remove('panInputActive')
+    if (!address.name) {
+      nameRef.current.classList.remove('panLabelActive')
+    }
+  }
+  function handleMobileFocus(e) {
+    e.target.classList.add('panInputActive')
+    mobileRef.current.classList.add('panLabelActive')
+  }
+  function handleMobileBlur(e) {
+    e.target.classList.remove('panInputActive')
+    if (!address.mobileNum) {
+      mobileRef.current.classList.remove('panLabelActive')
+    }
+  }
+  function handlePincodeFocus(e) {
+    e.target.classList.add('panInputActive')
+    pincodeRef.current.classList.add('panLabelActive')
+  }
+  function handlePincodeBlur(e) {
+    e.target.classList.remove('panInputActive')
+    if (!address.pincode) {
+      pincodeRef.current.classList.remove('panLabelActive')
+    }
+  }
+  function handleLocalityFocus(e) {
+    e.target.classList.add('panInputActive')
+    localityRef.current.classList.add('panLabelActive')
+  }
+  function handleLocalityBlur(e) {
+    e.target.classList.remove('panInputActive')
+    if (!address.locality) {
+      localityRef.current.classList.remove('panLabelActive')
+    }
+  }
+  function handleAreaFocus(e) {
+    e.target.classList.add('panInputActive')
+    areaRef.current.classList.add('panLabelActive')
+  }
+  function handleAreaBlur(e) {
+    e.target.classList.remove('panInputActive')
+    if (!address.area) {
+      areaRef.current.classList.remove('panLabelActive')
+    }
+  }
+  function handleCityFocus(e) {
+    e.target.classList.add('panInputActive')
+    cityRef.current.classList.add('panLabelActive')
+  }
+  function handleCityBlur(e) {
+    e.target.classList.remove('panInputActive')
+    if (!address.city) {
+      cityRef.current.classList.remove('panLabelActive')
+    }
+  }
+  function handleLandmarkFocus(e) {
+    e.target.classList.add('panInputActive')
+    landmarkRef.current.classList.add('panLabelActive')
+  }
+  function handleLandmarkBlur(e) {
+    e.target.classList.remove('panInputActive')
+    if (!address.landmark) {
+      landmarkRef.current.classList.remove('panLabelActive')
+    }
+  }
+  function handleAlterMobileFocus(e) {
+    e.target.classList.add('panInputActive')
+    alterMobileRef.current.classList.add('panLabelActive')
+  }
+  function handleAlterMobileBlur(e) {
+    e.target.classList.remove('panInputActive')
+    if (!address.alternateMobileNum) {
+      alterMobileRef.current.classList.remove('panLabelActive')
+    }
+  }
+  function handleSave() {
+    // Add New Address
+    if(addNewAdd) {
+      setAddNewAdd(false)
+    }
+    // Update Address
+    if(editAddress) {
+      setEditAddress(false)
+    }
+  }
+  function handleCancel() {
+    // Add New Address Cancel
+    if(addNewAdd) {
+      setAddNewAdd(false)
+    }
+    // Update Address Cancel
+    if(editAddress) {
+      setEditAddress(false)
+    }
+  }
 
   return (
     <div className="addAddressContainer">
-      <span className="addAddressType">{/* addAddressType */} ADD A NEW ADDRESS</span>
+      <span className="addAddressType">
+        {addNewAdd && "ADD A NEW ADDRESS"}
+        {editAddress && "EDIT ADDRESS"}
+      </span>
       <div className="addAddress">
         <div className="useLocationContainer">
           <button className="useLocationBtn">
@@ -127,34 +258,34 @@ let AddAddress = () => {
         </div>
         <div className="addAddressMultiInputContainer">
           <div className="addSpecificAddressInputContainer">
-            <input name="addName" className="addSpecificAddressInput" type='text' required value={address.name} onChange={(e) => dispatch({type:"updateName", data: e.target.value})} />
-            <label htmlFor="addName" className='addSpecificAddressLabel'>Name</label>
+            <input name="addName" className="addSpecificAddressInput" type='text' required value={address.name} onChange={(e) => dispatch({type:"updateName", data: e.target.value})} onFocus={(e) => handleNameFocus(e)} onBlur={(e) => handleNameBlur(e)} />
+            <label ref={nameRef} htmlFor="addName" className='addSpecificAddressLabel'>Name</label>
           </div>
           <div className="addSpecificAddressInputContainer">
-            <input name="addMobile" className="addSpecificAddressInput" type='text' maxLength='10' required value={address.mobileNum} onChange={(e) => dispatch({type:"updateMobileNum", data: e.target.value})} />
-            <label htmlFor="addMobile" className='addSpecificAddressLabel'>10-digit mobile number</label>
+            <input name="addMobile" className="addSpecificAddressInput" type='text' maxLength='10' required value={address.mobileNum} onChange={(e) => dispatch({type:"updateMobileNum", data: e.target.value})} onFocus={(e) => handleMobileFocus(e)} onBlur={(e) => handleMobileBlur(e)} />
+            <label ref={mobileRef} htmlFor="addMobile" className='addSpecificAddressLabel'>10-digit mobile number</label>
           </div>
         </div>
         <div className="addAddressMultiInputContainer">
           <div className="addSpecificAddressInputContainer">
-            <input name="addPincode" className="addSpecificAddressInput" type='text' maxLength='6' required />
-            <label htmlFor="addPincode" className='addSpecificAddressLabel'>Pincode</label>
+            <input name="addPincode" className="addSpecificAddressInput" type='text' maxLength='6' required value={address.pincode} onChange={(e) => dispatch({type:"updatePincode", data: e.target.value})} onFocus={(e) => handlePincodeFocus(e)} onBlur={(e) => handlePincodeBlur(e)} />
+            <label ref={pincodeRef} htmlFor="addPincode" className='addSpecificAddressLabel'>Pincode</label>
           </div>
           <div className="addSpecificAddressInputContainer">
-            <input name="addLocality" className="addSpecificAddressInput" type='text' required />
-            <label htmlFor="addLocality" className='addSpecificAddressLabel'>Locality</label>
+            <input name="addLocality" className="addSpecificAddressInput" type='text' required value={address.locality} onChange={(e) => dispatch({type: "updateLocality", data: e.target.value})} onFocus={(e) => handleLocalityFocus(e)} onBlur={(e) => handleLocalityBlur(e)} />
+            <label ref={localityRef} htmlFor="addLocality" className='addSpecificAddressLabel'>Locality</label>
           </div>
         </div>
         <div className="addAddressMultiInputContainer" style={{marginBottom: '10px'}}>
           <div className="addAddressAreaInputContainer">
-            <textarea name="addArea" className='addAddressAreaInput' cols="10" rows="4" required></textarea>
-            <label htmlFor="addArea" className='addSpecificAddressLabel'>Address (Area and Street)</label>
+            <textarea name="addArea" className='addAddressAreaInput' cols="10" rows="4" required value={address.area} onChange={(e) => dispatch({type: "updateArea", data: e.target.value})} onFocus={(e) => handleAreaFocus(e)} onBlur={(e) => handleAreaBlur(e)} ></textarea>
+            <label ref={areaRef} htmlFor="addArea" className='addSpecificAddressLabel'>Address (Area and Street)</label>
           </div>
         </div>
         <div className="addAddressMultiInputContainer">
           <div className="addSpecificAddressInputContainer">
-            <input name="addCity" className="addSpecificAddressInput" type='text' required />
-            <label htmlFor="addCity" className='addSpecificAddressLabel'>City/District/Town</label>
+            <input name="addCity" className="addSpecificAddressInput" type='text' required value={address.city} onChange={(e) => dispatch({type: "updateCity", data: e.target.value})} onFocus={(e) => handleCityFocus(e)} onBlur={(e) => handleCityBlur(e)} />
+            <label ref={cityRef} htmlFor="addCity" className='addSpecificAddressLabel'>City/District/Town</label>
           </div>
           <div className="addAddressStateContainer">
             <div className="addAddressStateLabel">State</div>
@@ -165,12 +296,12 @@ let AddAddress = () => {
         </div>
         <div className="addAddressMultiInputContainer">
           <div className="addSpecificAddressInputContainer">
-            <input name="addLandmark" className="addSpecificAddressInput" type='text' />
-            <label htmlFor="addLandmark" className='addSpecificAddressLabel'>Landmark (Optional)</label>
+            <input name="addLandmark" className="addSpecificAddressInput" type='text' value={address.landmark} onChange={(e) => dispatch({type: "updateLandmark", data: e.target.value})} onFocus={(e) => handleLandmarkFocus(e)} onBlur={(e) => handleLandmarkBlur(e)} />
+            <label ref={landmarkRef} htmlFor="addLandmark" className='addSpecificAddressLabel'>Landmark (Optional)</label>
           </div>
           <div className="addSpecificAddressInputContainer">
-            <input name="addAlternateMobile" className="addSpecificAddressInput" type='text' maxLength='10' />
-            <label htmlFor="addAlternateMobile" className='addSpecificAddressLabel'>Alternate Phone (Optional)</label>
+            <input name="addAlternateMobile" className="addSpecificAddressInput" type='text' maxLength='10' value={address.alternateMobileNum} onChange={(e) => dispatch({type: "updateAlterMobileNum", data: e.target.value})} onFocus={(e) => handleAlterMobileFocus(e)} onBlur={(e) => handleAlterMobileBlur(e)} />
+            <label ref={alterMobileRef} htmlFor="addAlternateMobile" className='addSpecificAddressLabel'>Alternate Phone (Optional)</label>
           </div>
         </div>
         <div className="addAddressTypeContainer">
@@ -189,8 +320,8 @@ let AddAddress = () => {
           </div>
         </div>
         <div className="addAddressSubmitContainer">
-          <button className="addAddressSubmitBtn">Save</button>
-          <button className="addAddressCancelBtn">Cancel</button>
+          <button className="addAddressSubmitBtn" onClick={handleSave}>Save</button>
+          <button className="addAddressCancelBtn" onClick={handleCancel}>Cancel</button>
         </div>
       </div>
     </div>
@@ -198,22 +329,28 @@ let AddAddress = () => {
 }
 
 function ProfileAddress() {
+  let [addNewAdd, setAddNewAdd] = useState(false)
+  let [editAddress, setEditAddress] = useState(false)
+
   return (
     <div className='profileAddressContainer'>
         <span className='profileAddressHead'>Manage Addresses</span>
         <div>
             <div className="profileAddAddressBtnContainer">
                 {/* Add Address Window */}
-                <AddAddress />
-                {/* <div className="profileAddAddressBtn">
+                {addNewAdd ? 
+                 <AddAddress addNewAdd={addNewAdd} setAddNewAdd={setAddNewAdd} /> : (
+                  <div className="profileAddAddressBtn" onClick={() => setAddNewAdd(true)}>
                     <img src={Add} className='profileAddAddressIcon' />
                     ADD A NEW ADDRESS
-                </div> */}
+                  </div>
+                 )
+              }
             </div>
             {/* Address Card */}
             <div>
-              <AddressCard />
-              <AddressCard />
+              <AddressCard editAddress={editAddress} setEditAddress={setEditAddress} />
+              <AddressCard editAddress={editAddress} setEditAddress={setEditAddress} />
             </div>
         </div>
     </div>
