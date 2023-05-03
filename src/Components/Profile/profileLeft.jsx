@@ -67,7 +67,7 @@ let ProfileNavLink = ({to, children, profileNavInitialActive }) => {
             {({isActive}) => 
                 isActive || profileNavInitialActive ? 
                     <div className="profileNavLinkActive profileNavLinkContent">{children}</div>       
-                     : 
+                    : 
                     <div className="profileNavLinkContent">{children}</div>
             }
         </NavLink>
