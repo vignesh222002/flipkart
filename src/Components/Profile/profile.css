@@ -321,6 +321,7 @@ a {
     width: auto;
     display: inline-block;
     cursor: inherit;
+    font-size: 14px;
     font-family: roboto-regular;
 }
 .profileInfoEmailAddress, .profileInfoMobileNumber {
@@ -451,6 +452,7 @@ a {
     transition: transform .2s ease;
     pointer-events: none;
     width: 100%;
+    font-family: roboto-regular;
 }
 .addAddressAreaInputContainer {
     width: 100%;
@@ -468,6 +470,7 @@ a {
     border-radius: 2px;
     padding: 20px 16px 0 13px;
     box-shadow: none;
+    font-family: roboto-regular;
 }
 .addAddressStateContainer {
     border: 1px solid #e0e0e0;
@@ -529,6 +532,7 @@ option {
     font-size: 12px;
     color: #878787;
     margin-bottom: 10px;
+    font-family: roboto-regular;
 }
 .addressTypeContainer {
     margin-bottom: 16px;
@@ -557,6 +561,7 @@ option {
     vertical-align: super;
     cursor: pointer;
     outline: none;
+    font-family: roboto-medium;
 }
 .addAddressCancelBtn {
     box-shadow: none;
@@ -576,6 +581,7 @@ option {
     background: #fff;
     cursor: pointer;
     outline: none;
+    font-family: roboto-medium;
 }
 
 /* Address Card */

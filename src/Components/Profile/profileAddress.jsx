@@ -18,10 +18,9 @@ let AddressCard = ({editAddress, setEditAddress}) => {
   }
 
   return (
-    <div className="addressCard">
+    <div className="addressCard" onClick={() => addressMenu && setAddressMenu(false)}>
       {editAddress ? 
         <AddAddress editAddress={editAddress} setEditAddress={setEditAddress} prevAddress={prevAddress} /> : (
-        
         <div className="addressCardContent">
           <div className="addressCardMenu" onMouseOver={() => setAddressMenu(true)} onMouseOut={() => setAddressMenu(false)}>
             <img src={AddressMenu} alt="Toggle" />
@@ -132,6 +131,34 @@ let AddAddress = ({addNewAdd, setAddNewAdd, editAddress, setEditAddress, prevAdd
   // useEffect(() => {
   //   console.log(address);
   // },[address])
+  useEffect(() => {
+    if (editAddress) {
+      if(address.name) {
+        nameRef.current.classList.add('panLabelActive')
+      }
+      if(address.mobileNum) {
+        mobileRef.current.classList.add('panLabelActive')
+      }
+      if(address.pincode) {
+        pincodeRef.current.classList.add('panLabelActive')
+      }
+      if(address.locality) {
+        localityRef.current.classList.add('panLabelActive')
+      }
+      if(address.area) {
+        areaRef.current.classList.add('panLabelActive')
+      }
+      if(address.city) {
+        cityRef.current.classList.add('panLabelActive')
+      }
+      if(address.landmark) {
+        landmarkRef.current.classList.add('panLabelActive')
+      }
+      if(address.alternateMobileNum) {
+        alterMobileRef.current.classList.add('panLabelActive')
+      }
+    }
+  })
 
   const nameRef = useRef()
   const mobileRef = useRef()

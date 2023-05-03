@@ -124,7 +124,7 @@ let ProfileLeftContent = () => {
                             <ProfileNavBoxContent>ACCOUNT SETTINGS</ProfileNavBoxContent>
                         </ProfileBoxContent>
                         <div className="profileNavLinkFlex">
-                        <ProfileNavLink  to="account" profileNavInitialActive={profileNavInitialActive}>Profile Information</ProfileNavLink>
+                        <ProfileNavLink to="account" profileNavInitialActive={profileNavInitialActive}>Profile Information</ProfileNavLink>
                         <ProfileNavLink to="address" ><span onClick={handleNavDeactive}>Manage Addresses</span></ProfileNavLink>
                         <ProfileNavLink to="pancard">PAN Card Information</ProfileNavLink>
                     </div>
