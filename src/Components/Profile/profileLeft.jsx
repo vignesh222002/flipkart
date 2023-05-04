@@ -1,6 +1,6 @@
 import { Link, NavLink, useNavigate } from "react-router-dom"
 import './profile.css'
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import ProfilePicMale from '../../Media/ProfilePicMale.svg'
 import { UserContext } from "../Context/UserInfoContext"
 
@@ -80,9 +80,14 @@ let ProfileNavLeftFooter = ({children}) => {
 }
 
 let ProfileLeftContent = () => {
-    let [profileNavInitialActive, setProfileNavInitialActive] = useState(true)
+    let [profileNavInitialActive, setProfileNavInitialActive] = useState()
     let userInfo = useContext(UserContext)
     let navigate = useNavigate()
+
+    useEffect(() => {
+        const isLogin = !(!localStorage.getItem("token"))
+        isLogin && navigate("account")
+    },[])
 
     function handleNavDeactive() {
         setProfileNavInitialActive(false)

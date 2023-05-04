@@ -1,6 +1,6 @@
 import { useEffect, useReducer, useRef } from "react"
 
-let AddAddress = ({addNewAdd, setAddNewAdd, editAddress, setEditAddress, prevAddress}) => {
+let AddAddress = ({addNewAdd, setAddNewAdd, editAddress, setEditAddress, prevAddress,toggle,open}) => {
     let initialAddress = editAddress ? {...prevAddress} : {
       name: "",
       mobileNum: "",
@@ -203,18 +203,19 @@ let AddAddress = ({addNewAdd, setAddNewAdd, editAddress, setEditAddress, prevAdd
         setAddNewAdd(false)
       }
       // Update Address
-      if(editAddress) {
-        setEditAddress(false)
+      if(open) {
+        toggle(null)
       }
     }
     function handleCancel() {
+        console.log("clicked")
       // Add New Address Cancel
       if(addNewAdd) {
         setAddNewAdd(false)
       }
       // Update Address Cancel
-      if(editAddress) {
-        setEditAddress(false)
+      if(open) {
+        toggle(null)
       }
     }
   

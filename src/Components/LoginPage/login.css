@@ -237,6 +237,12 @@ a {
 .backToLoginPopup:hover {
     text-decoration: none;
 }
+.alreadyRegistered {
+    margin-top: 10px;
+    font-size: 13px;
+    font-family: roboto-medium;
+    color: red;
+}
 
 /* Login OTP Page */
 

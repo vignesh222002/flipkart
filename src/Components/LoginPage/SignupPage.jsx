@@ -3,6 +3,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import './login.css'
 import { UserContext } from '../Context/UserInfoContext';
 import axios from 'axios';
+import { IP } from '../../IP Address/IPAddress';
 
 export let SignupPageLeft = () => {
 
@@ -18,6 +19,7 @@ export let SignupPageRight = ({setLoginProcess, setSignupProcess, setSignupOtpPr
     let userInfo = useContext(UserContext)
 
     let [mobileNo, setMobileNo] = useState()
+    let [registered, setRegistered] = useState(false)
 
     const inputRef = useRef();
     const labelRef = useRef();
@@ -51,23 +53,31 @@ export let SignupPageRight = ({setLoginProcess, setSignupProcess, setSignupOtpPr
     useEffect(() => {
         if (userInfo.user.mobileNumber && mobileNo) {
 
-            axios.post(`http://192.168.1.87:3000/register`, {
+            axios.post(`http://${IP}:3000/register`, {
                 "mobilenum": userInfo.user.officialNumber.toString()
             })
             .then(res => {
+                console.log(res.data);
                 if (res.data.status) {
                     setSignupProcess(false)
                     setSignupOtpProcess(true)
                 }
             })
+            .catch((err) => {
+                // console.log(err.response.data)
+                if(!err.response.data.status){
+                   setRegistered(true)
+                }
+            })
         }
-    },[userInfo.user.mobileNumber])
+    },[userInfo.user])
 
     return (
         <div className="loginPageRight">
             <div className="loginPageRightInput">
                 <input ref={inputRef} className='loginPageRightInput1' type="text" autoComplete='off' onFocus={handleFocus} onBlur={handleBlur} onChange={updateMobileNo}/>
                 <label ref={labelRef} className="loginPageRightInputLabel">Enter Mobile number</label>
+                <div className='alreadyRegistered'>{registered && "Mobile Number Already Registered"}</div>
             </div>
             <div className="loginPageRightDescription">By continuing, you agree to Flipkart's 
                 <Link className='blueLink'> Terms of Use </Link> and 
@@ -116,12 +126,13 @@ export let SignupOtpPageRight = ({callLogin, setLoginProcess, setSignupProcess, 
 
     function submitOTP() {
         if(otp) {
-            axios.post(`http://192.168.1.87:3000/verifyOTPSMS`, {
+            axios.post(`http://${IP}:3000/verifyOTPSMS`, {
                     "mobilenum": userInfo.user.officialNumber.toString(),
                     "otp" : otp.toString()
             })
             .then(res => {
                 if (res.data.status) {
+                    // console.log(res.data.token);
                     localStorage.setItem("token", res.data.token)
                     userInfo.login({
                         ...userInfo.user,
@@ -157,7 +168,7 @@ export let SignupOtpPageRight = ({callLogin, setLoginProcess, setSignupProcess, 
                 <Link className='signupOtpPageResendLink'>Resend?</Link>
             </div>
             <div className="signupPageEnterOtp">
-                <input ref={inputRef} type="text" className='signupPageEnterOtpInput' maxLength="10" autoComplete='off' onFocus={handleFocus} onBlur={handleBlur} onChange={(e) => handleSetOtp(e)}/>
+                <input ref={inputRef} type="text" className='signupPageEnterOtpInput' maxLength="6" autoComplete='off' onFocus={handleFocus} onBlur={handleBlur} onChange={(e) => handleSetOtp(e)}/>
                 <label ref={labelRef} className="signupPageEnterOtpLabel">Enter OTP</label>
             </div>
             <div className="signupOtpPageBtn">

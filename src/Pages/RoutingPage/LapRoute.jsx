@@ -27,7 +27,6 @@ let LapRoute = () => {
         <Routes>
             <Route path='/' element={<HomePage />} />
             <Route path='/profile' element={<ProfilePage />}>
-                <Route index element={<ProfileRightInfo />} />
                 <Route path="account" element={<ProfileRightInfo />} />
                 <Route path="address" element={<ProfileAddress />} />
                 <Route path="pancard" element={<ProfilePanCard />} />

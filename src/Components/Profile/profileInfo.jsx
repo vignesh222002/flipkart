@@ -226,6 +226,9 @@ function ProfileRightInfo() {
         email: "gtavignesh22042002@gmail.com",
         mobileNumber: "9361738902"
     })
+    useEffect(() => {
+        // get Personal Information
+    })
     function UpdateUser(user) {
         setUserInfo(user)
     }

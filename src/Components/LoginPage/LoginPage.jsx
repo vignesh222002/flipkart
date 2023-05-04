@@ -3,6 +3,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import './login.css'
 import { UserContext } from '../Context/UserInfoContext';
 import axios from 'axios';
+import { IP } from '../../IP Address/IPAddress';
 
 export let LoginPageLeft = () => {
     return (
@@ -43,7 +44,7 @@ export let LoginPageRight = ({setLoginProcess, setSignupProcess, setLoginOtpProc
     useEffect(() => {
         if (userInfo.user.mobileNumber && mobileNo) {
 
-            axios.post(`http://192.168.1.87:3000/login`, {
+            axios.post(`http://${IP}:3000/login`, {
                 "mobilenum": userInfo.user.officialNumber.toString()
             })
             .then(res => {
@@ -100,12 +101,13 @@ export let LoginOtpPageRight = ({callLogin, setLoginProcess, setLoginOtpProcess,
 
     function submitOTP() {
         if(otp) {
-            axios.post(`http://192.168.1.87:3000/verifyOTPSMS`, {
+            axios.post(`http://${IP}:3000/verifyOTPSMS`, {
                     "mobilenum": userInfo.user.officialNumber.toString(),
                     "otp" : otp.toString()
             })
             .then(res => {
                 if (res.data.status) {
+                    // console.log(res.data.token);
                     localStorage.setItem("token", res.data.token)
                     userInfo.login({
                         ...userInfo.user,
@@ -126,6 +128,12 @@ export let LoginOtpPageRight = ({callLogin, setLoginProcess, setLoginOtpProcess,
                 }
             })
         }
+    }
+
+    function resendCode() {
+        axios.post(`http://${IP}:3000/login`, {
+                "mobilenum": userInfo.user.officialNumber.toString()
+        })
     }
 
     return (
@@ -157,7 +165,7 @@ export let LoginOtpPageRight = ({callLogin, setLoginProcess, setLoginOtpProcess,
                 </div>
                 <button className='loginOtpVerifyBtn' onClick={submitOTP}>Verify</button>
             <div className="loginOtpPageRightDescription">Not received your code? 
-                <span className='blueLink resendLoginOTP'> Resend code</span>
+                <span className='blueLink resendLoginOTP' onClick={resendCode}> Resend code</span>
             </div>
         </div>
     )
