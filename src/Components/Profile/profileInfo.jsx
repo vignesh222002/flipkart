@@ -246,8 +246,6 @@ function ProfileRightInfo() {
     }
     useEffect(() => get(), [])
 
-
-
     return (
         <>
             <div className='profileRightInfo'>
