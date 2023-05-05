@@ -47,7 +47,7 @@ function ProfileRightInfo() {
 
                     {/* <ProfileEmailAddress userInfo={userInfo} handleChange={handleChange} get={get} /> */}
 
-                    <ProfileMobileNumber userInfo={userInfo} handleChange={handleChange} get={get} />
+                    <ProfileMobileNumber userInfo={userInfo} get={get} />
 
                     <div className="profileInfoFaq">
                         <div className="profileInfoFaqHead">FAQs</div>

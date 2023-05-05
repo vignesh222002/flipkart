@@ -1,22 +1,18 @@
 import { useCallback, useEffect, useState } from "react"
 import { ProfilePersonalInfoEditBtn, ProfilePersonalInfoHead, ProfilePersonalInfoHeadContainer, ProfilePersonalInfoInput, ProfilePersonalInfoInputContainer, ProfilePersonalInfoSaveBtn } from "./ProfileInfoCOmponents"
+import ProfileOtpPopup from "./ProfilePopup"
 
-let ProfileMobileNumber = ({ userInfo, handleChange, get }) => {
+let ProfileMobileNumber = ({ userInfo, get }) => {
     let [edit, setEdit] = useState(false)
+    let [newNumber, setNewNumber] = useState(userInfo.mobilenum)
     
     const handleCancel = useCallback(() => {
         setEdit(false)
         get()
-    }, [edit])
+    }, [edit])   
 
     function handleSave() {
-        // get Email
-        const token = localStorage.getItem('token')
-        // console.log(token);
-        const data = {
-            "mobilenum": userInfo.mobilenum.toString()
-        }
-        setEdit(false)
+        // setVerifyOtp(true)
     }
 
     return (
@@ -34,7 +30,7 @@ let ProfileMobileNumber = ({ userInfo, handleChange, get }) => {
                 <ProfilePersonalInfoInput>
                     {edit ? (
                         <>
-                            <input type="text" maxLength="10" name='mobilenum' className='profileInfoPersonalNameInput' required value={userInfo.mobilenum} onChange={(e) => handleChange(e)} />
+                            <input type="text" maxLength="10" name='mobilenum' className='profileInfoPersonalNameInput' required value={newNumber} onChange={(e) => setNewNumber(e.target.value)} />
                             <label htmlFor="mobilenum" className='profileInfoPersonalNameLabel'>Mobile Number</label>
                         </>
                     ) : (

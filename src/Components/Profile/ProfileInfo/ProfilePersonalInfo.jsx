@@ -80,7 +80,7 @@ let ProfilePersonalInfo = ({ userInfo, handleChange, get }) => {
             <div className="profilePersonalInfoGender">Your Gender</div>
             <div>
                 <label htmlFor="Male" className={`${edit ? "profilePersonalInfoSelectGenderContainerEdit" : "profilePersonalInfoSelectGenderContainer"}`}>
-                    <input defaultChecked={userInfo.gender == "Male" ? true : false} type="radio" onClick={(e) => handleChange(e)} name='gender' value="Male" className='profilePersonalInfoMaleInput' id='Male' />
+                    <input defaultChecked={userInfo.gender == "Male" ? true : false} type="radio" onClick={(e) => edit && handleChange(e)} name='gender' value="Male" className='profilePersonalInfoMaleInput' id='Male' />
 
                     <div className={`${edit ? "profilePersonalInfoGenderCheck" : "profilePersonalInfoGenderCheckDisabled"} ${edit ? (userInfo.gender == "Male" && "radioActive") : (userInfo.gender == 'Male' && "radioActiveDisabled")}`}></div>
 
@@ -88,7 +88,7 @@ let ProfilePersonalInfo = ({ userInfo, handleChange, get }) => {
                 </label>
 
                 <label htmlFor="Female" className={`${edit ? "profilePersonalInfoSelectGenderContainerEdit" : "profilePersonalInfoSelectGenderContainer"}`}>
-                    <input onClick={(e) => handleChange(e)} type="radio" name='gender' value="Female" defaultChecked={userInfo.gender == "Female" ? true : false} className='profilePersonalInfoFemaleInput' id='Female' />
+                    <input onClick={(e) => edit && handleChange(e)} type="radio" name='gender' value="Female" defaultChecked={userInfo.gender == "Female" ? true : false} className='profilePersonalInfoFemaleInput' id='Female' />
 
                     <div className={`${edit ? "profilePersonalInfoGenderCheck" : "profilePersonalInfoGenderCheckDisabled"} ${edit ? (userInfo.gender == "Female" && "radioActive") : (userInfo.gender == 'Female' && "radioActiveDisabled")}`}></div>
 
