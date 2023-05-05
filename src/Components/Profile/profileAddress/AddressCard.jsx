@@ -12,7 +12,7 @@ console.log("name is ",name)
   }
   
 
-let AddressCard = ({name,toggle,open,key}) => {
+let AddressCard = ({ name, toggle, open }) => {
     // console.log("name is ",name)
     let [addressMenu, setAddressMenu] = useState(false)
     let prevAddress = {
@@ -27,7 +27,6 @@ let AddressCard = ({name,toggle,open,key}) => {
         alternateMobileNum: "",
         type: "home"
     }
-    // const [editAddress, setEditAddress] = useState(false)
   
     return (
         <div key={name} className="addressCard" onClick={() => addressMenu && setAddressMenu(false)}>

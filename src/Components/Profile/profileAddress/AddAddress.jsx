@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useRef } from "react"
 
-let AddAddress = ({addNewAdd, setAddNewAdd, editAddress, setEditAddress, prevAddress,toggle,open}) => {
-    let initialAddress = editAddress ? {...prevAddress} : {
+let AddAddress = ({addNewAdd, setAddNewAdd, prevAddress, toggle, open}) => {
+    let initialAddress = open ? {...prevAddress} : {
       name: "",
       mobileNum: "",
       pincode: "",
@@ -80,7 +80,7 @@ let AddAddress = ({addNewAdd, setAddNewAdd, editAddress, setEditAddress, prevAdd
     //   console.log(address);
     // },[address])
     useEffect(() => {
-      if (editAddress) {
+      if (open) {
         if(address.name) {
           nameRef.current.classList.add('panLabelActive')
         }
@@ -223,7 +223,7 @@ let AddAddress = ({addNewAdd, setAddNewAdd, editAddress, setEditAddress, prevAdd
       <div className="addAddressContainer">
         <span className="addAddressType">
           {addNewAdd && "ADD A NEW ADDRESS"}
-          {editAddress && "EDIT ADDRESS"}
+          {open && "EDIT ADDRESS"}
         </span>
         <div className="addAddress">
           <div className="useLocationContainer">

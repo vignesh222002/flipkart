@@ -1,25 +1,15 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { ProfilePersonalInfoEditBtn, ProfilePersonalInfoHead, ProfilePersonalInfoHeadContainer, ProfilePersonalInfoInput, ProfilePersonalInfoInputContainer, ProfilePersonalInfoSaveBtn } from "./ProfileInfoCOmponents"
 
-let ProfileEmailAddress = ({ userInfo, UpdateUser }) => {
+let ProfileEmailAddress = ({ userInfo, handleChange, get }) => {
     let [edit, setEdit] = useState(false)
-    const [changeUser, setChangeUser] = useState({
-        email: userInfo.email
-    })
-    // useEffect(() => {
-    //     console.log('changed User',changeUser)
-    // },[changeUser])
 
-    function updateEmail(e) {
-        setChangeUser({
-            email: e.target.value
-        })
-    }
+    const handleCancel = useCallback(() => {
+        setEdit(false)
+        get()
+    }, [edit])
+
     function handleSave() {
-        UpdateUser({
-            ...userInfo,
-            ...changeUser
-        })
         setEdit(false)
     }
 
@@ -28,7 +18,7 @@ let ProfileEmailAddress = ({ userInfo, UpdateUser }) => {
             <ProfilePersonalInfoHeadContainer>
                 <ProfilePersonalInfoHead>Email Address</ProfilePersonalInfoHead>
                 {edit ? (
-                    <ProfilePersonalInfoEditBtn><span onClick={() => setEdit(false)}>Cancel</span></ProfilePersonalInfoEditBtn>
+                    <ProfilePersonalInfoEditBtn><span onClick={handleCancel}>Cancel</span></ProfilePersonalInfoEditBtn>
                 ) : (
                     <ProfilePersonalInfoEditBtn><span onClick={() => setEdit(true)}>Edit</span></ProfilePersonalInfoEditBtn>
                 )}
@@ -38,7 +28,7 @@ let ProfileEmailAddress = ({ userInfo, UpdateUser }) => {
                 <ProfilePersonalInfoInput>
                     {edit ? (
                         <>
-                            <input type="text" name='email' className='profileInfoPersonalNameInput' required value={changeUser.email} onChange={(e) => updateEmail(e)} />
+                            <input type="text" name='email' className='profileInfoPersonalNameInput' required value={userInfo.email} onChange={(e) => handleChange(e)} />
                             <label htmlFor="email" className='profileInfoPersonalNameLabel'>Email Address</label>
                         </>
                     ) : (

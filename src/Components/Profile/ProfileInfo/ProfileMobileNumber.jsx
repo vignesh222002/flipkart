@@ -1,25 +1,21 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { ProfilePersonalInfoEditBtn, ProfilePersonalInfoHead, ProfilePersonalInfoHeadContainer, ProfilePersonalInfoInput, ProfilePersonalInfoInputContainer, ProfilePersonalInfoSaveBtn } from "./ProfileInfoCOmponents"
 
-let ProfileMobileNumber = ({ userInfo, UpdateUser }) => {
+let ProfileMobileNumber = ({ userInfo, handleChange, get }) => {
     let [edit, setEdit] = useState(false)
-    const [changeUser, setChangeUser] = useState({
-        mobileNumber: userInfo.mobileNumber
-    })
-    // useEffect(() => {
-    //     console.log('changed User',changeUser)
-    // },[changeUser])
+    
+    const handleCancel = useCallback(() => {
+        setEdit(false)
+        get()
+    }, [edit])
 
-    function updateMobileNumber(e) {
-        setChangeUser({
-            mobileNumber: e.target.value
-        })
-    }
     function handleSave() {
-        UpdateUser({
-            ...userInfo,
-            ...changeUser
-        })
+        // get Email
+        const token = localStorage.getItem('token')
+        // console.log(token);
+        const data = {
+            "mobilenum": userInfo.mobilenum.toString()
+        }
         setEdit(false)
     }
 
@@ -28,7 +24,7 @@ let ProfileMobileNumber = ({ userInfo, UpdateUser }) => {
             <ProfilePersonalInfoHeadContainer>
                 <ProfilePersonalInfoHead>Mobile Number</ProfilePersonalInfoHead>
                 {edit ? (
-                    <ProfilePersonalInfoEditBtn><span onClick={() => setEdit(false)}>Cancel</span></ProfilePersonalInfoEditBtn>
+                    <ProfilePersonalInfoEditBtn><span onClick={handleCancel}>Cancel</span></ProfilePersonalInfoEditBtn>
                 ) : (
                     <ProfilePersonalInfoEditBtn><span onClick={() => setEdit(true)}>Edit</span></ProfilePersonalInfoEditBtn>
                 )}
@@ -38,11 +34,11 @@ let ProfileMobileNumber = ({ userInfo, UpdateUser }) => {
                 <ProfilePersonalInfoInput>
                     {edit ? (
                         <>
-                            <input type="text" maxLength="10" name='mobileNumber' className='profileInfoPersonalNameInput' required value={changeUser.mobileNumber} onChange={(e) => updateMobileNumber(e)} />
-                            <label htmlFor="mobileNumber" className='profileInfoPersonalNameLabel'>Mobile Number</label>
+                            <input type="text" maxLength="10" name='mobilenum' className='profileInfoPersonalNameInput' required value={userInfo.mobilenum} onChange={(e) => handleChange(e)} />
+                            <label htmlFor="mobilenum" className='profileInfoPersonalNameLabel'>Mobile Number</label>
                         </>
                     ) : (
-                        <input type="text" maxLength="10" name='mobileNumber' className='profileInfoPersonalDisabledName' value={userInfo.mobileNumber} disabled />
+                        <input type="text" maxLength="10" name='mobilenum' className='profileInfoPersonalDisabledName' value={userInfo.mobilenum} disabled />
                     )}
                 </ProfilePersonalInfoInput>
                 {edit && <div onClick={handleSave}><ProfilePersonalInfoSaveBtn /></div>}

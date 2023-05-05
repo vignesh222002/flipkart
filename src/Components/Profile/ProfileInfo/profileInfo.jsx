@@ -8,8 +8,15 @@ import ProfileEmailAddress from './ProfileEmailAddress'
 import ProfileMobileNumber from './ProfileMobileNumber'
 
 function ProfileRightInfo() {
-    const [userInfo, setUserInfo] = useState({})
-    // useEffect(() => console.log("updated",userInfo),[userInfo])
+    const [userInfo, setUserInfo] = useState({
+        firstname:"firstname",
+        lastname:"lastname",
+        gender:"gender",
+        email: "email",
+        mobilenum:"mobilenum"})
+
+    useEffect(() => console.log("updated",userInfo),[userInfo])
+
     function get() {
         // get Personal Information
         const token = localStorage.getItem('token')
@@ -23,19 +30,24 @@ function ProfileRightInfo() {
                 setUserInfo(res.data)
             })
 
-    }
+    }   
     useEffect(() => get(), [])
+
+
+    const handleChange = (e) => {
+        setUserInfo({...userInfo, [e.target.name] : e.target.value})
+    }
 
     return (
         <>
             <div className='profileRightInfo'>
                 <div className="profilePersonalInfo">
 
-                    <ProfilePersonalInfo userInfo={userInfo} />
+                    <ProfilePersonalInfo userInfo={userInfo} handleChange={handleChange} get={get} />
 
-                    <ProfileEmailAddress userInfo={userInfo} />
+                    {/* <ProfileEmailAddress userInfo={userInfo} handleChange={handleChange} get={get} /> */}
 
-                    <ProfileMobileNumber userInfo={userInfo} />
+                    <ProfileMobileNumber userInfo={userInfo} handleChange={handleChange} get={get} />
 
                     <div className="profileInfoFaq">
                         <div className="profileInfoFaqHead">FAQs</div>

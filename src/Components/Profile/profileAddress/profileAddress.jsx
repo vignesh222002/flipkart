@@ -30,7 +30,7 @@ function ProfileAddress() {
         </div>
         {/* Address Card */}
         <div>
-          {["1","2","3"].map((elem) => <AddressCard toggle={handleToggle} key={elem} name={elem} open={openKey === elem} />)}
+          {["1","2","3"].map((res) => <AddressCard toggle={handleToggle} key={res} name={res} open={openKey === res} />)}
 
         </div>
       </div>
