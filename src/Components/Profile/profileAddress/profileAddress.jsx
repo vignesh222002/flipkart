@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import Add from '../../Media/Add.svg'
-import AddAddress from './profileAddress/AddAddress'
-import AddressCard from './profileAddress/AddressCard'
+import Add from '../../../Media/Add.svg'
+import AddAddress from './AddAddress'
+import AddressCard from './AddressCard'
 
 
 function ProfileAddress() {

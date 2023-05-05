@@ -7,9 +7,9 @@ import CartMissingImage from '../../Media/cartMissingImage.webp'
 import BasketEmptyImage from '../../Media/basketEmptyImage.webp'
 import { useContext } from "react";
 import { UserContext } from "../../Components/Context/UserInfoContext";
-import ProfileRightInfo from "../../Components/Profile/profileInfo";
-import ProfileAddress from "../../Components/Profile/profileAddress";
-import ProfilePanCard from "../../Components/Profile/profilePanCard";
+import ProfileRightInfo from "../../Components/Profile/ProfileInfo/profileInfo";
+import ProfileAddress from "../../Components/Profile/profileAddress/profileAddress";
+import ProfilePanCard from "../../Components/Profile/ProfilePanCard/profilePanCard";
 
 let LapRoute = () => {
     

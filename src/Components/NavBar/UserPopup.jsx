@@ -23,7 +23,7 @@ function UserPopup({style, setProfileActive, redirectPath}) {
             <div className="morePopupContent">
                 <ul className="morePopupList">
                     <li className='morePopupListItem'>
-                        <Link to="/profile" className='morePopupListLink'>
+                        <Link to="/profile/account" className='morePopupListLink'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 14"><path fill="#2874F1" fillRule="nonzero" d="M7 .333A6.67 6.67 0 0 0 .333 7 6.67 6.67 0 0 0 7 13.667 6.67 6.67 0 0 0 13.667 7 6.67 6.67 0 0 0 7 .333zm0 2c1.107 0 2 .894 2 2 0 1.107-.893 2-2 2s-2-.893-2-2c0-1.106.893-2 2-2zM7 11.8a4.8 4.8 0 0 1-4-2.147C3.02 8.327 5.667 7.6 7 7.6c1.327 0 3.98.727 4 2.053A4.8 4.8 0 0 1 7 11.8z"></path></svg>
                             <div className='morePopupListItemContent'>My Profile</div>
                         </Link>
