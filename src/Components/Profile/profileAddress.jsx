@@ -6,7 +6,6 @@ import AddressCard from './profileAddress/AddressCard'
 
 function ProfileAddress() {
   let [addNewAdd, setAddNewAdd] = useState(false)
-  const [editAddress, setEditAddress] = useState(false)
   const [openKey, setOpenKey] = useState()
 
   const handleToggle = (key) => {

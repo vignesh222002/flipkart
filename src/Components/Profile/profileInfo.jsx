@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './profile.css'
 import MyProfileFooter from '../../Media/myProfileFooter.png'
+import axios from 'axios'
+import { IP } from '../../IP Address/IPAddress'
 
 let ProfilePersonalInfoHeadContainer = ({ children }) => {
     return <div className="profilePersonalInfoHeadContainer">{children}</div>
@@ -26,16 +28,22 @@ let ProfilePersonalInfoSaveBtn = () => {
     return <button className='profilePersonalInfoSaveBtn'>SAVE</button>
 }
 
-let ProfilePersonalInfo = ({ userInfo, UpdateUser }) => {
+let ProfilePersonalInfo = ({ userInfo }) => {
     let [edit, setEdit] = useState(false)
+    console.log(userInfo)
     const [changeUser, setChangeUser] = useState({
-        firstName: userInfo.firstName,
-        lastName: userInfo.lastName,
-        gender: userInfo.gender
+        firstname: userInfo?.firstname || "",
+        lastname: userInfo?.lastname || "",
+        gender: userInfo?.gender || "",
     })
-    // useEffect(() => {
-    //     console.log('changed User',changeUser)
-    // },[changeUser])
+    useEffect(() => {
+        console.log('changed User', changeUser)
+        setChangeUser({
+            firstname: userInfo?.firstname || "",
+            lastname: userInfo?.lastname || "",
+            gender: userInfo?.gender || "",
+        });
+    }, [])
 
     function updateFirstName(e) {
         setChangeUser({
@@ -58,10 +66,10 @@ let ProfilePersonalInfo = ({ userInfo, UpdateUser }) => {
         }
     }
     function handleSave() {
-        UpdateUser({
-            ...userInfo,
-            ...changeUser
-        })
+        // UpdateUser({
+        //     ...userInfo,
+        //     ...changeUser
+        // })
         setEdit(false)
     }
 
@@ -80,41 +88,42 @@ let ProfilePersonalInfo = ({ userInfo, UpdateUser }) => {
                 <ProfilePersonalInfoInput>
                     {edit ? (
                         <>
-                            <input type="text" name='firstName' className='profileInfoPersonalNameInput' required value={changeUser.firstName} onChange={(e) => updateFirstName(e)}/>
+                            <input type="text" name='firstName' className='profileInfoPersonalNameInput' required value={changeUser.firstname} onChange={(e) => updateFirstName(e)} />
                             <label htmlFor="firstName" className='profileInfoPersonalNameLabel'>First Name</label>
                         </>
                     ) : (
-                        <input type="text" name='firstName' className='profileInfoPersonalDisabledName' value={userInfo.firstName} disabled/>
+                        <input type="text" name='firstName' className='profileInfoPersonalDisabledName' value={userInfo.firstname} disabled />
                     )}
                 </ProfilePersonalInfoInput>
                 <ProfilePersonalInfoInput>
                     {edit ? (
                         <>
-                            <input type="text" name='lastName' className='profileInfoPersonalNameInput' required value={changeUser.lastName} onChange={(e) => updateLastName(e)} />
+                            <input type="text" name='lastName' className='profileInfoPersonalNameInput' required value={changeUser.lastname} onChange={(e) => updateLastName(e)} />
                             <label htmlFor="lastName" className='profileInfoPersonalNameLabel'>Last Name</label>
                         </>
                     ) : (
-                        <input type="text" name='lastName' className='profileInfoPersonalDisabledName' value={userInfo.lastName} disabled/>
+                        <input type="text" name='lastName' className='profileInfoPersonalDisabledName' value={userInfo.lastname} disabled />
                     )}
                 </ProfilePersonalInfoInput>
-                {edit && <div onClick={handleSave}><ProfilePersonalInfoSaveBtn /></div> }
+                {edit && <div onClick={handleSave}><ProfilePersonalInfoSaveBtn /></div>}
             </ProfilePersonalInfoInputContainer>
 
             <div className="profilePersonalInfoGender">Your Gender</div>
             <div>
-                <label htmlFor="male" className={`${edit ? "profilePersonalInfoSelectGenderContainerEdit" : "profilePersonalInfoSelectGenderContainer"}`}>
-                    <input defaultChecked={changeUser.gender == "male" ? true : false} type="radio" onClick={() => updateGender("male")} name='gender' className='profilePersonalInfoMaleInput' id='male'/>
-                    <div className={`${edit ? "profilePersonalInfoGenderCheck" : "profilePersonalInfoGenderCheckDisabled"} ${edit ? (changeUser.gender == "male" && "radioActive") : (changeUser.gender == 'male' && "radioActiveDisabled") }`}></div>
+                <label htmlFor="Male" className={`${edit ? "profilePersonalInfoSelectGenderContainerEdit" : "profilePersonalInfoSelectGenderContainer"}`}>
+                    <input defaultChecked={changeUser.gender == "Male" ? true : false} type="radio" onClick={() => updateGender("Male")} name='gender' className='profilePersonalInfoMaleInput' id='Male' />
+                    <div className={`${edit ? "profilePersonalInfoGenderCheck" : "profilePersonalInfoGenderCheckDisabled"} ${edit ? (changeUser.gender == "Male" && "radioActive") : (changeUser.gender == 'Male' && "radioActiveDisabled")}`}></div>
                     <div className="profilePersonalInfoGenderLabel">Male</div>
                 </label>
-                <label htmlFor="female" className={`${edit ? "profilePersonalInfoSelectGenderContainerEdit" : "profilePersonalInfoSelectGenderContainer"}`}>
-                    <input onClick={() => updateGender("female")} type="radio" name='gender' defaultChecked={changeUser.gender == "female" ? true : false} className='profilePersonalInfoFemaleInput' id='female' />
-                    <div className={`${edit ? "profilePersonalInfoGenderCheck" : "profilePersonalInfoGenderCheckDisabled"} ${edit ? (changeUser.gender == "female" && "radioActive") : (changeUser.gender == 'female' && "radioActiveDisabled")}`}></div>
+
+                <label htmlFor="Female" className={`${edit ? "profilePersonalInfoSelectGenderContainerEdit" : "profilePersonalInfoSelectGenderContainer"}`}>
+                    <input onClick={() => updateGender("Female")} type="radio" name='gender' defaultChecked={changeUser.gender == "Female" ? true : false} className='profilePersonalInfoFemaleInput' id='Female' />
+                    <div className={`${edit ? "profilePersonalInfoGenderCheck" : "profilePersonalInfoGenderCheckDisabled"} ${edit ? (changeUser.gender == "Female" && "radioActive") : (changeUser.gender == 'Female' && "radioActiveDisabled")}`}></div>
                     <div className="profilePersonalInfoGenderLabel">Female</div>
                 </label>
             </div>
         </div>
-        
+
     )
 }
 
@@ -155,14 +164,14 @@ let ProfileEmailAddress = ({ userInfo, UpdateUser }) => {
                 <ProfilePersonalInfoInput>
                     {edit ? (
                         <>
-                            <input type="text" name='email' className='profileInfoPersonalNameInput' required value={changeUser.email} onChange={(e) => updateEmail(e)}/>
+                            <input type="text" name='email' className='profileInfoPersonalNameInput' required value={changeUser.email} onChange={(e) => updateEmail(e)} />
                             <label htmlFor="email" className='profileInfoPersonalNameLabel'>Email Address</label>
                         </>
                     ) : (
-                        <input type="text" name='email' className='profileInfoPersonalDisabledName' value={userInfo.email} disabled/>
+                        <input type="text" name='email' className='profileInfoPersonalDisabledName' value={userInfo.email} disabled />
                     )}
                 </ProfilePersonalInfoInput>
-                {edit && <div onClick={handleSave}><ProfilePersonalInfoSaveBtn /></div> }
+                {edit && <div onClick={handleSave}><ProfilePersonalInfoSaveBtn /></div>}
             </ProfilePersonalInfoInputContainer>
         </div>
     )
@@ -205,47 +214,50 @@ let ProfileMobileNumber = ({ userInfo, UpdateUser }) => {
                 <ProfilePersonalInfoInput>
                     {edit ? (
                         <>
-                            <input type="text" maxLength="10" name='mobileNumber' className='profileInfoPersonalNameInput' required value={changeUser.mobileNumber} onChange={(e) => updateMobileNumber(e)}/>
+                            <input type="text" maxLength="10" name='mobileNumber' className='profileInfoPersonalNameInput' required value={changeUser.mobileNumber} onChange={(e) => updateMobileNumber(e)} />
                             <label htmlFor="mobileNumber" className='profileInfoPersonalNameLabel'>Mobile Number</label>
                         </>
                     ) : (
-                        <input type="text" maxLength="10" name='mobileNumber' className='profileInfoPersonalDisabledName' value={userInfo.mobileNumber} disabled/>
+                        <input type="text" maxLength="10" name='mobileNumber' className='profileInfoPersonalDisabledName' value={userInfo.mobileNumber} disabled />
                     )}
                 </ProfilePersonalInfoInput>
-                {edit && <div onClick={handleSave}><ProfilePersonalInfoSaveBtn /></div> }
+                {edit && <div onClick={handleSave}><ProfilePersonalInfoSaveBtn /></div>}
             </ProfilePersonalInfoInputContainer>
         </div>
     )
 }
 
 function ProfileRightInfo() {
-    const [userInfo, setUserInfo] = useState({
-        firstName: "Flipkart",
-        lastName: "Customer",
-        gender: "male",
-        email: "gtavignesh22042002@gmail.com",
-        mobileNumber: "9361738902"
-    })
-    useEffect(() => {
+    const [userInfo, setUserInfo] = useState({})
+    // useEffect(() => console.log("updated",userInfo),[userInfo])
+    function get() {
         // get Personal Information
-    })
-    function UpdateUser(user) {
-        setUserInfo(user)
+        const token = localStorage.getItem('token')
+        // console.log(token);
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        }
+
+        axios.get(`http://${IP}:3000/getProfile`, config)
+            .then(res => {
+                setUserInfo(res.data)
+            })
+
     }
-    // useEffect(() => {
-    //     console.log(userInfo);
-    // },[userInfo])
+    useEffect(() => get(), [])
+
+
 
     return (
         <>
             <div className='profileRightInfo'>
                 <div className="profilePersonalInfo">
-                    
-                    <ProfilePersonalInfo userInfo={userInfo} UpdateUser={UpdateUser} />
 
-                    <ProfileEmailAddress userInfo={userInfo} UpdateUser={UpdateUser} />
+                    <ProfilePersonalInfo userInfo={userInfo} />
 
-                    <ProfileMobileNumber userInfo={userInfo} UpdateUser={UpdateUser} />
+                    <ProfileEmailAddress userInfo={userInfo} />
+
+                    <ProfileMobileNumber userInfo={userInfo} />
 
                     <div className="profileInfoFaq">
                         <div className="profileInfoFaqHead">FAQs</div>

@@ -19,7 +19,7 @@ export let SignupPageRight = ({setLoginProcess, setSignupProcess, setSignupOtpPr
     let userInfo = useContext(UserContext)
 
     let [mobileNo, setMobileNo] = useState()
-    let [registered, setRegistered] = useState(false)
+    let [registered, setRegistered] = useState(false)   
 
     const inputRef = useRef();
     const labelRef = useRef();
@@ -57,15 +57,12 @@ export let SignupPageRight = ({setLoginProcess, setSignupProcess, setSignupOtpPr
                 "mobilenum": userInfo.user.officialNumber.toString()
             })
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 if (res.data.status) {
                     setSignupProcess(false)
                     setSignupOtpProcess(true)
                 }
-            })
-            .catch((err) => {
-                // console.log(err.response.data)
-                if(!err.response.data.status){
+                else if(!res.data.status) {
                    setRegistered(true)
                 }
             })

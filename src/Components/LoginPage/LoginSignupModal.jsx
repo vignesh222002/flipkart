@@ -8,6 +8,8 @@ let LoginSignupModal = ({callLogin, setCallLogin, redirectPath}) => {
     let [loginOtpProcess, setLoginOtpProcess] = useState(false)
     let [signupOtpProcess, setSignupOtpProcess] = useState(false)
 
+
+
     return (
         <div className="loginSignupModal">
             <div className="loginSignupModalBox">
