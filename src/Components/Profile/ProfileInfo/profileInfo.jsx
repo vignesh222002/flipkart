@@ -9,11 +9,11 @@ import ProfileMobileNumber from './ProfileMobileNumber'
 
 function ProfileRightInfo() {
     const [userInfo, setUserInfo] = useState({
-        firstname: null,
-        lastname: null,
-        gender: null,
-        email: null,
-        mobilenum: null})
+        firstname: "",
+        lastname: "",
+        gender: "",
+        email: "",
+        mobilenum: ""})
 
     // useEffect(() => console.log("updated",userInfo),[userInfo])
 

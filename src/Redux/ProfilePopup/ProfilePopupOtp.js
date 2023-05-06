@@ -46,7 +46,7 @@ const UpdateUserInfoReducer = (state = initialState, action) => {
             popup: true,
             purpose: "updateEmail",
             number1: action.email,
-            number2: action.mobille            
+            number2: action.mobile            
         }
         case 'didUpdate': return {
             ...state,

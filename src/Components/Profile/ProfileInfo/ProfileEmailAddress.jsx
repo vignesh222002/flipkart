@@ -1,9 +1,14 @@
 import { useState, useEffect, useCallback } from "react"
 import { ProfilePersonalInfoEditBtn, ProfilePersonalInfoHead, ProfilePersonalInfoHeadContainer, ProfilePersonalInfoInput, ProfilePersonalInfoInputContainer, ProfilePersonalInfoSaveBtn } from "./ProfileInfoCOmponents"
+import { IP, Port } from "../../../IP Address/IPAddress"
+import { useDispatch } from "react-redux"
+import { registerEmail } from "../../../Redux"
+import axios from "axios"
 
 let ProfileEmailAddress = ({ userInfo, get }) => {
     let [edit, setEdit] = useState(false)
     let [newEmail, setNewEmail] = useState(userInfo.email)
+    let dispatch = useDispatch()
 
     const handleCancel = useCallback(() => {
         setEdit(false)
@@ -11,7 +16,35 @@ let ProfileEmailAddress = ({ userInfo, get }) => {
     }, [edit])
 
     function handleSave() {
-        setEdit(false)
+        const token = localStorage.getItem('token')
+        // console.log("email :", newEmail, "mobile :", userInfo.mobilenum)
+
+        let data = JSON.stringify({
+            "email": newEmail
+        })
+
+        let config = {
+            method: 'put',
+            maxBodyLength: Infinity,
+            url: `http://${IP}:${Port}/updateProfileEmail`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            data: data
+        }
+
+        axios.request(config)
+            .then((response) => {
+                // console.log(response.data)
+                if (response.data.status) {
+                    dispatch(registerEmail(newEmail, userInfo.mobilenum))
+                    setEdit(false)
+                }
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 
     return (

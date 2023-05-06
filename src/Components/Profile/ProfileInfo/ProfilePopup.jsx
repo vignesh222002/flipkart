@@ -72,6 +72,39 @@ let ProfileOtpPopup = ({ purpose, number1, number2 }) => {
         }
 
         // Update Email
+
+        if (purpose == "updateEmail") {
+            let data = JSON.stringify({
+                "newEmail": number1,
+                "emailOTP": value.value1,
+                "SMSOTP": value.value2
+            })
+            console.log("data :", data)
+
+            const token = localStorage.getItem('token')
+
+            let config = {
+                method: 'post',
+                maxBodyLength: Infinity,
+                url: `http://${IP}:${Port}/verifyOTPEMAILSMS`,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                data: data
+            }
+
+            axios.request(config)
+                .then((response) => {
+                    console.log(response.data)
+                    if (response.data.status) {
+                        dispatch(didUpdate())
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
     }
 
     return (
