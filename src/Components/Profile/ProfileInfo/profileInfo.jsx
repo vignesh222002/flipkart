@@ -9,11 +9,11 @@ import ProfileMobileNumber from './ProfileMobileNumber'
 
 function ProfileRightInfo() {
     const [userInfo, setUserInfo] = useState({
-        firstname:"firstname",
-        lastname:"lastname",
-        gender:"gender",
-        email: "email",
-        mobilenum:""})
+        firstname: null,
+        lastname: null,
+        gender: null,
+        email: null,
+        mobilenum: null})
 
     // useEffect(() => console.log("updated",userInfo),[userInfo])
 
@@ -34,19 +34,14 @@ function ProfileRightInfo() {
     }   
     useEffect(() => get(), [])
 
-
-    const handleChange = (e) => {
-        setUserInfo({...userInfo, [e.target.name] : e.target.value})
-    }
-
     return (
         <>
             <div className='profileRightInfo'>
                 <div className="profilePersonalInfo">
 
-                    <ProfilePersonalInfo userInfo={userInfo} handleChange={handleChange} get={get} />
+                    <ProfilePersonalInfo userInfo={userInfo} get={get} />
 
-                    <ProfileEmailAddress userInfo={userInfo} handleChange={handleChange} get={get} />
+                    <ProfileEmailAddress userInfo={userInfo} get={get} />
 
                     <ProfileMobileNumber userInfo={userInfo} get={get} />
 

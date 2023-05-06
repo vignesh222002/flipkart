@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback } from "react"
 import { ProfilePersonalInfoEditBtn, ProfilePersonalInfoHead, ProfilePersonalInfoHeadContainer, ProfilePersonalInfoInput, ProfilePersonalInfoInputContainer, ProfilePersonalInfoSaveBtn } from "./ProfileInfoCOmponents"
 
-let ProfileEmailAddress = ({ userInfo, handleChange, get }) => {
+let ProfileEmailAddress = ({ userInfo, get }) => {
     let [edit, setEdit] = useState(false)
+    let [newEmail, setNewEmail] = useState(userInfo.email)
 
     const handleCancel = useCallback(() => {
         setEdit(false)
@@ -28,7 +29,7 @@ let ProfileEmailAddress = ({ userInfo, handleChange, get }) => {
                 <ProfilePersonalInfoInput>
                     {edit ? (
                         <>
-                            <input type="text" name='email' className='profileInfoPersonalNameInput' required value={userInfo.email} onChange={(e) => handleChange(e)} />
+                            <input type="text" name='email' className='profileInfoPersonalNameInput' required value={newEmail} onChange={(e) => setNewEmail(e.target.value)} />
                             <label htmlFor="email" className='profileInfoPersonalNameLabel'>Email Address</label>
                         </>
                     ) : (

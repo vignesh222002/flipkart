@@ -13,6 +13,14 @@ export const didUpdate = () => {
     }
 }
 
+export const registerEmail = (email, mobile) => {
+    return {
+        type: "updateEmail",
+        email: email,
+        mobile: mobile,
+    }
+}
+
 // State
 
 let initialState = {
@@ -32,6 +40,13 @@ const UpdateUserInfoReducer = (state = initialState, action) => {
             purpose: "updateMobile",
             number1: action.prev,
             number2: `+91${action.current}`,
+        }
+        case 'updateEmail' : return {
+            ...state,
+            popup: true,
+            purpose: "updateEmail",
+            number1: action.email,
+            number2: action.mobille            
         }
         case 'didUpdate': return {
             ...state,

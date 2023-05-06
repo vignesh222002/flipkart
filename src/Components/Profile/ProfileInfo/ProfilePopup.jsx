@@ -36,8 +36,9 @@ let ProfileOtpPopup = ({ purpose, number1, number2 }) => {
         dispatch(didUpdate())
     }
     function submitHandler() {
+        // Update Mobile Number
+
         if (purpose == "updateMobile") {
-            // Submit Handler
             let data = JSON.stringify({
                 "newMobilenum": number2,
                 "oldOTP": value.value1,
@@ -69,6 +70,8 @@ let ProfileOtpPopup = ({ purpose, number1, number2 }) => {
                     console.log(error)
                 })
         }
+
+        // Update Email
     }
 
     return (
