@@ -3,7 +3,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import './login.css'
 import { UserContext } from '../Context/UserInfoContext';
 import axios from 'axios';
-import { IP } from '../../IP Address/IPAddress';
+import { IP, Port } from '../../IP Address/IPAddress';
 
 export let SignupPageLeft = () => {
 
@@ -53,7 +53,7 @@ export let SignupPageRight = ({setLoginProcess, setSignupProcess, setSignupOtpPr
     useEffect(() => {
         if (userInfo.user.mobileNumber && mobileNo) {
 
-            axios.post(`http://${IP}:3000/register`, {
+            axios.post(`http://${IP}:${Port}/register`, {
                 "mobilenum": userInfo.user.officialNumber.toString()
             })
             .then(res => {
@@ -123,7 +123,7 @@ export let SignupOtpPageRight = ({callLogin, setLoginProcess, setSignupProcess, 
 
     function submitOTP() {
         if(otp) {
-            axios.post(`http://${IP}:3000/verifyOTPSMS`, {
+            axios.post(`http://${IP}:${Port}/verifyOTPSMS`, {
                     "mobilenum": userInfo.user.officialNumber.toString(),
                     "otp" : otp.toString()
             })

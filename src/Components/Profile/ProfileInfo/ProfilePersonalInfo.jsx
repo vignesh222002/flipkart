@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
 import { ProfilePersonalInfoEditBtn, ProfilePersonalInfoHead, ProfilePersonalInfoHeadContainer, ProfilePersonalInfoInput, ProfilePersonalInfoInputContainer, ProfilePersonalInfoSaveBtn } from "./ProfileInfoCOmponents"
 import axios from "axios"
-import { IP } from "../../../IP Address/IPAddress"
+import { IP, Port } from "../../../IP Address/IPAddress"
 
 let ProfilePersonalInfo = ({ userInfo, handleChange, get }) => {
     let [edit, setEdit] = useState(false)
@@ -23,7 +23,7 @@ let ProfilePersonalInfo = ({ userInfo, handleChange, get }) => {
         let config = {
             method: 'put',
             maxBodyLength: Infinity,
-            url: `http://${IP}:3000/updateProfile1`,
+            url: `http://${IP}:${Port}/updateProfile1`,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`

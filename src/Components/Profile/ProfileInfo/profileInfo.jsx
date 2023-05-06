@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import '.././profile.css'
 import MyProfileFooter from '../../../Media/myProfileFooter.png'
 import axios from 'axios'
-import { IP } from '../../../IP Address/IPAddress'
+import { IP, Port } from '../../../IP Address/IPAddress'
 import ProfilePersonalInfo from './ProfilePersonalInfo'
 import ProfileEmailAddress from './ProfileEmailAddress'
 import ProfileMobileNumber from './ProfileMobileNumber'
@@ -13,20 +13,21 @@ function ProfileRightInfo() {
         lastname:"lastname",
         gender:"gender",
         email: "email",
-        mobilenum:"mobilenum"})
+        mobilenum:""})
 
-    useEffect(() => console.log("updated",userInfo),[userInfo])
+    // useEffect(() => console.log("updated",userInfo),[userInfo])
 
     function get() {
         // get Personal Information
         const token = localStorage.getItem('token')
-        // console.log(token);
+        // console.log(token)
         const config = {
             headers: { Authorization: `Bearer ${token}` }
         }
 
-        axios.get(`http://${IP}:3000/getProfile`, config)
+        axios.get(`http://${IP}:${Port}/getProfile`, config)
             .then(res => {
+                // console.log(res.data)
                 setUserInfo(res.data)
             })
 
@@ -45,7 +46,7 @@ function ProfileRightInfo() {
 
                     <ProfilePersonalInfo userInfo={userInfo} handleChange={handleChange} get={get} />
 
-                    {/* <ProfileEmailAddress userInfo={userInfo} handleChange={handleChange} get={get} /> */}
+                    <ProfileEmailAddress userInfo={userInfo} handleChange={handleChange} get={get} />
 
                     <ProfileMobileNumber userInfo={userInfo} get={get} />
 

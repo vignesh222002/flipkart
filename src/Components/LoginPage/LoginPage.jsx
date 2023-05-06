@@ -3,7 +3,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import './login.css'
 import { UserContext } from '../Context/UserInfoContext';
 import axios from 'axios';
-import { IP } from '../../IP Address/IPAddress';
+import { IP, Port } from '../../IP Address/IPAddress';
 
 export let LoginPageLeft = () => {
     return (
@@ -44,11 +44,12 @@ export let LoginPageRight = ({setLoginProcess, setSignupProcess, setLoginOtpProc
     useEffect(() => {
         if (userInfo.user.mobileNumber && mobileNo) {
 
-            axios.post(`http://${IP}:3000/login`, {
+            axios.post(`http://${IP}:${Port}/login`, {
                 "mobilenum": userInfo.user.officialNumber.toString()
             })
             .then(res => {
                 if (res.data.status) {
+                    // console.log(res.data)
                     setLoginProcess(false)
                     setLoginOtpProcess(true)
                 }
@@ -101,13 +102,15 @@ export let LoginOtpPageRight = ({callLogin, setLoginProcess, setLoginOtpProcess,
 
     function submitOTP() {
         if(otp) {
-            axios.post(`http://${IP}:3000/verifyOTPSMS`, {
+            // console.log("mobilenum :", userInfo.user.officialNumber)
+            // console.log("otp :", otp)
+            axios.post(`http://${IP}:${Port}/verifyOTPSMS`, {
                     "mobilenum": userInfo.user.officialNumber.toString(),
                     "otp" : otp.toString()
             })
             .then(res => {
                 if (res.data.status) {
-                    // console.log(res.data.token);
+                    // console.log(res.data)
                     localStorage.setItem("token", res.data.token)
                     userInfo.login({
                         ...userInfo.user,
@@ -127,11 +130,12 @@ export let LoginOtpPageRight = ({callLogin, setLoginProcess, setLoginOtpProcess,
                     }
                 }
             })
+            .catch(err => console.log(err))
         }
     }
 
     function resendCode() {
-        axios.post(`http://${IP}:3000/login`, {
+        axios.post(`http://${IP}:${Port}/login`, {
                 "mobilenum": userInfo.user.officialNumber.toString()
         })
     }

@@ -1,18 +1,48 @@
 import { useCallback, useEffect, useState } from "react"
 import { ProfilePersonalInfoEditBtn, ProfilePersonalInfoHead, ProfilePersonalInfoHeadContainer, ProfilePersonalInfoInput, ProfilePersonalInfoInputContainer, ProfilePersonalInfoSaveBtn } from "./ProfileInfoCOmponents"
-import ProfileOtpPopup from "./ProfilePopup"
+import { useDispatch } from "react-redux"
+import { updateMobileNumber } from "../../../Redux"
+import { IP, Port } from "../../../IP Address/IPAddress"
+import axios from "axios"
 
 let ProfileMobileNumber = ({ userInfo, get }) => {
     let [edit, setEdit] = useState(false)
     let [newNumber, setNewNumber] = useState(userInfo.mobilenum)
-    
+    let dispatch = useDispatch()
+
     const handleCancel = useCallback(() => {
         setEdit(false)
         get()
-    }, [edit])   
+    }, [edit])
 
     function handleSave() {
-        // setVerifyOtp(true)
+        // console.log("old :",userInfo.mobilenum, "new :", newNumber)
+        const token = localStorage.getItem('token')
+
+        let data = JSON.stringify({
+            "newMobilenum": `+91${newNumber.toString()}`
+        })
+
+        let config = {
+            method: 'put',
+            maxBodyLength: Infinity,
+            url: `http://${IP}:${Port}/updateProfileMobileNum`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            data: data
+        }
+        axios.request(config)
+            .then(res => {
+                // console.log(res.data)
+                if (res.data.status) {
+                    dispatch(updateMobileNumber(userInfo.mobilenum, newNumber))
+                    setEdit(false)
+
+                }
+            })
+            .catch(err => console.log(err))
     }
 
     return (

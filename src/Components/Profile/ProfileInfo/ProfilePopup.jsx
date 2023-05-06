@@ -1,6 +1,9 @@
-import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import '../profile.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { didUpdate } from '../../../Redux'
+import { IP, Port } from '../../../IP Address/IPAddress'
+import axios from 'axios'
 
 let ProfileOtpPopupInput = ({ name, number, handleChange }) => {
     return (
@@ -16,22 +19,62 @@ let ProfileOtpPopup = ({ purpose, number1, number2 }) => {
         value1: "",
         value2: ""
     })
+    let dispatch = useDispatch()
+
+    // useEffect(() => {
+    //     console.log("value", value)
+    // }, [value])
 
     function handleChange(e) {
         setValue({
             ...value,
-            [e.target.name] : e.target.value
-        }) 
+            [e.target.name]: e.target.value
+        })
     }
 
+    function cancelHandler() {
+        dispatch(didUpdate())
+    }
     function submitHandler() {
-        // Submit Handler
+        if (purpose == "updateMobile") {
+            // Submit Handler
+            let data = JSON.stringify({
+                "newMobilenum": number2,
+                "oldOTP": value.value1,
+                "newOTP": value.value2,
+            })
+            // console.log("data :", data)
+
+            const token = localStorage.getItem('token')
+
+            let config = {
+                method: 'post',
+                maxBodyLength: Infinity,
+                url: `http://${IP}:${Port}/verifyOldNewMobileOTP`,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                data: data
+            }
+
+            axios.request(config)
+                .then((response) => {
+                    // console.log(response.data)
+                    if (response.data.status) {
+                        dispatch(didUpdate())
+                    }
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
     }
 
     return (
         <div className="profileOtpPopupContainer">
             <div className="profileOtpPopupContentContainer">
-                <button className="profileOtpPopupCancelBtn">✕</button>
+                <button className="profileOtpPopupCancelBtn" onClick={cancelHandler} >✕</button>
                 <div className="profileOtpPopupContent">
                     <div className="profileOtpPopupRow">
                         <div className="profileOtpPopupRowVerify">Verify OTP</div>

@@ -7,9 +7,9 @@ export const updateMobileNumber = (prev, current) => {
         current: current
     }
 }
-export const didUpdateMobileNumber = () => {
+export const didUpdate = () => {
     return {
-        type: "didUpdateMobileNumber"
+        type: "didUpdate"
     }
 }
 
@@ -31,15 +31,16 @@ const UpdateUserInfoReducer = (state = initialState, action) => {
             popup: true,
             purpose: "updateMobile",
             number1: action.prev,
-            number2: action.current
+            number2: `+91${action.current}`,
         }
-        case 'didUpdateMobileNumber': return {
+        case 'didUpdate': return {
             ...state,
             popup: false,
             purpose: "",
             number1: "",
             number2: ""
         }
+        default: return state
     }
 }
 

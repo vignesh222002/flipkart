@@ -9,27 +9,33 @@ import LoginSignupModule from "../../Components/LoginSignupModule/LoginSignupMod
 import { UserContext } from "../../Components/Context/UserInfoContext"
 import UserPopup from "../../Components/NavBar/UserPopup"
 import ProfileContent from "../../Components/Profile/profileContent"
+import { useSelector } from 'react-redux'
+import ProfileOtpPopup from "../../Components/Profile/ProfileInfo/ProfilePopup"
 
 let ProfilePage = () => {
     let [loginActive, setLoginActive] = useState(false)
     let [moreActive, setMoreActive] = useState(false)
     let [callLogin, setCallLogin] = useState(false)
     let [profileActive, setProfileActive] = useState(false)
-    let redirectPath="/profile"
+    let redirectPath = "/profile"
     let userInfo = useContext(UserContext)
     let login = userInfo.user.isLogin
 
+    const popup = useSelector(state => state.updateUserInfo)
+    // console.log(popup)
+
     return (
         <div className="profilePageBody">
-            <NavbarMain navbarLoginBtn={!login} navbarBecameSeller={true} navbarMore={true} navbarCart={true} navbarUser={login} setLoginActive={setLoginActive} setMoreActive={setMoreActive} setCallLogin={setCallLogin} setProfileActive={setProfileActive}/>
-            {loginActive && <LoginPopup style={{right: '32%'}} setLoginActive={setLoginActive} />}
-            {moreActive && <MorePopup setMoreActive={setMoreActive}/>}
-            {profileActive && <UserPopup style={{right: '30%'}} redirectPath={redirectPath} setProfileActive={setProfileActive} />}
+            {popup.popup && <ProfileOtpPopup purpose={popup.purpose} number1={popup.number1} number2={popup.number2} />}
+            <NavbarMain navbarLoginBtn={!login} navbarBecameSeller={true} navbarMore={true} navbarCart={true} navbarUser={login} setLoginActive={setLoginActive} setMoreActive={setMoreActive} setCallLogin={setCallLogin} setProfileActive={setProfileActive} />
+            {loginActive && <LoginPopup style={{ right: '32%' }} setLoginActive={setLoginActive} />}
+            {moreActive && <MorePopup setMoreActive={setMoreActive} />}
+            {profileActive && <UserPopup style={{ right: '30%' }} redirectPath={redirectPath} setProfileActive={setProfileActive} />}
             <Sector />
             {login ? (
                 <ProfileContent />
             ) : (
-                <LoginSignupModule callLogin={callLogin} redirectPath={redirectPath}/>
+                <LoginSignupModule callLogin={callLogin} redirectPath={redirectPath} />
             )}
             <Footer />
         </div>
