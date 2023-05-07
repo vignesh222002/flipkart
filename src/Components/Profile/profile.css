@@ -899,3 +899,56 @@ option {
     border: 1px solid #e0e0e0;
     font-family: roboto-medium;
 }
+
+/* Profile Delete Popup */
+
+.profileDeletePopupContent {
+    padding: 40px;
+    max-width: 450px;
+}
+.profileDeletePopupHead {
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+    font-family: roboto-medium;
+}
+.profileAddressDeletePopup {
+    margin-top: 45px;
+}
+.profileAddressDeletedeleteBtn {
+    width: 175px;
+    height: 48px;
+    text-transform: uppercase;
+    background: #2874f0;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.2);
+    border: none;
+    color: #fff;
+    display: inline-block;
+    border-radius: 2px;
+    cursor: pointer;
+    padding: 15px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: box-shadow .2s ease;
+    font-family: roboto-medium;
+    text-align: center;
+}
+.profileAddressDeleteCancelBtn {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    color: #2874f0;
+    font-size: 14px;
+    width: 175px;
+    height: 48px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: box-shadow .2s ease;
+    display: inline-block;
+    border-radius: 2px;
+    padding: 15px 20px;
+    cursor: pointer;
+    outline: none;
+    font-family: roboto-medium;
+    text-align: center;
+}

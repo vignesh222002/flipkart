@@ -1,36 +1,21 @@
 import { useEffect, useState } from "react"
 import AddressMenu from "../../../Media/AddressMenu.svg"
 import AddAddress from "./AddAddress"
-import { IP, Port } from "../../../IP Address/IPAddress"
-import axios from "axios"
+import { triggerDeleteAddress } from "../../../Redux"
+import { useDispatch } from "react-redux"
+
 let AddressMenuPopup = ({ toggle, name, id, setAddressMenu }) => {
     // console.log("name is ", name)
-    function deleteAddress() {
-        const token = localStorage.getItem('token')
+    let dispatch = useDispatch()
 
-        let config = {
-            method: 'delete',
-            maxBodyLength: Infinity,
-            url: `http://${IP}:${Port}/deleteAddress/${id}`,
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        }
-
-        axios.request(config)
-            .then((response) => {
-                // console.log(response.data)
-                // if(response.data.status)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+    function handleDelete() {
+        dispatch(triggerDeleteAddress(id))
     }
 
     return (
         <div className="addressMenuPopup" onMouseOver={() => setAddressMenu(true)} onMouseOut={() => setAddressMenu(false)}>
             <div className="addressMenuPopupEditBtn" onClick={() => toggle(name)}><span>Edit</span></div>
-            <div className="addressMenuPopupDeleteBtn" onClick={() => deleteAddress()} ><span>Delete</span></div>
+            <div className="addressMenuPopupDeleteBtn" onClick={() => handleDelete()} ><span>Delete</span></div>
         </div>
     )
 }

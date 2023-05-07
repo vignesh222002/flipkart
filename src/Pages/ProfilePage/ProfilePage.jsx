@@ -11,6 +11,7 @@ import UserPopup from "../../Components/NavBar/UserPopup"
 import ProfileContent from "../../Components/Profile/profileContent"
 import { useSelector } from 'react-redux'
 import ProfileOtpPopup from "../../Components/Profile/ProfileInfo/ProfilePopup"
+import ProfileDeletePopup from "../../Components/Profile/profileAddress/profileDeletePopup"
 
 let ProfilePage = () => {
     let [loginActive, setLoginActive] = useState(false)
@@ -23,10 +24,13 @@ let ProfilePage = () => {
 
     const popup = useSelector(state => state.updateUserInfo)
     // console.log(popup)
+    const deletePopup = useSelector(state => state.deleteAddressPopup.deletePopup)
 
     return (
         <div className="profilePageBody">
             {popup.popup && <ProfileOtpPopup purpose={popup.purpose} number1={popup.number1} number2={popup.number2} />}
+            {deletePopup && <ProfileDeletePopup />}
+
             <NavbarMain navbarLoginBtn={!login} navbarBecameSeller={true} navbarMore={true} navbarCart={true} navbarUser={login} setLoginActive={setLoginActive} setMoreActive={setMoreActive} setCallLogin={setCallLogin} setProfileActive={setProfileActive} />
             {loginActive && <LoginPopup style={{ right: '32%' }} setLoginActive={setLoginActive} />}
             {moreActive && <MorePopup setMoreActive={setMoreActive} />}
