@@ -1,15 +1,32 @@
 import { useDispatch } from 'react-redux'
 import '../profile.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { didUpdate } from '../../../Redux'
 import { IP, Port } from '../../../IP Address/IPAddress'
 import axios from 'axios'
 
 let ProfileOtpPopupInput = ({ name, number, handleChange }) => {
+    let labelRef = useRef()
+
+    function handleFocus(e) {
+        e.target.classList.add('panInputActive')
+        if (e.target.id == labelRef.current.id) {
+            labelRef.current.classList.add('panLabelActive')
+        }
+    }
+    function handleBlur(e) {
+        e.target.classList.remove('panInputActive')
+        if(e.target.value.length == 0) {
+            if (e.target.id == labelRef.current.id) {
+                labelRef.current.classList.remove('panLabelActive')
+            }
+        }
+    }
+
     return (
         <div className="profileOtpPopupInputContainer">
-            <input type="text" maxLength="6" className="profileOtpPopupInput" onChange={(e) => handleChange(e)} name={name} />
-            <label htmlFor={name} className="profileOtpPopup">Enter OTP sent to {number}</label>
+            <input id={name} type="text" maxLength="6" className="profileOtpPopupInput" onChange={(e) => handleChange(e)} name={name} onFocus={(e) => handleFocus(e)} onBlur={(e) => handleBlur(e)} />
+            <label ref={labelRef} id={name} htmlFor={name} className="profileOtpPopup">Enter OTP sent to {number}</label>
         </div>
     )
 }
@@ -31,7 +48,6 @@ let ProfileOtpPopup = ({ purpose, number1, number2 }) => {
             [e.target.name]: e.target.value
         })
     }
-
     function cancelHandler() {
         dispatch(didUpdate())
     }
