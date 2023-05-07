@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import AddressMenu from "../../../Media/AddressMenu.svg"
 import AddAddress from "./AddAddress"
 import { IP, Port } from "../../../IP Address/IPAddress"
@@ -19,7 +19,8 @@ let AddressMenuPopup = ({ toggle, name, id, setAddressMenu }) => {
 
         axios.request(config)
             .then((response) => {
-                console.log(response.data)
+                // console.log(response.data)
+                // if(response.data.status)
             })
             .catch((error) => {
                 console.log(error)
@@ -29,12 +30,10 @@ let AddressMenuPopup = ({ toggle, name, id, setAddressMenu }) => {
     return (
         <div className="addressMenuPopup" onMouseOver={() => setAddressMenu(true)} onMouseOut={() => setAddressMenu(false)}>
             <div className="addressMenuPopupEditBtn" onClick={() => toggle(name)}><span>Edit</span></div>
-            <div className="addressMenuPopupDeleteBtn" onClick={deleteAddress()}><span>Delete</span></div>
+            <div className="addressMenuPopupDeleteBtn" onClick={() => deleteAddress()} ><span>Delete</span></div>
         </div>
     )
 }
-
-// onClick={() => addressMenu && setAddressMenu(false)}
 
 let AddressCard = ({ name, toggle, open, prevAddress }) => {
     // console.log("name is ",name)
@@ -42,7 +41,7 @@ let AddressCard = ({ name, toggle, open, prevAddress }) => {
     let [addressMenu, setAddressMenu] = useState(false)
 
     return (
-        <div key={name} className="addressCard" >
+        <div key={name} className="addressCard" onClick={() => addressMenu && setAddressMenu(false)} >
             {open ?
                 <AddAddress toggle={toggle} prevAddress={prevAddress} open={open} /> :
                 (
