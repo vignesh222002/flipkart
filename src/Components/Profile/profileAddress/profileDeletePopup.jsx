@@ -23,7 +23,7 @@ function ProfileDeletePopup() {
         axios.request(config)
             .then((response) => {
                 // console.log(response.data)
-                if (response.data.status) {
+                if (response.data == "Address Deleted Successfully") {
                     dispatch(didtriggerDeleteAddress())
                 }
             })
