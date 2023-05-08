@@ -2,7 +2,7 @@ import axios from "axios"
 import { useEffect, useReducer, useRef } from "react"
 import { IP, Port } from "../../../IP Address/IPAddress"
 
-let AddAddress = ({ addNewAdd, setAddNewAdd, prevAddress, toggle, open }) => {
+let AddAddress = ({ addNewAdd, setAddNewAdd, prevAddress, toggle, open, name }) => {
   let initialAddress = open ? { ...prevAddress } : {
     name: "",
     mobilenum: "",
@@ -78,9 +78,9 @@ let AddAddress = ({ addNewAdd, setAddNewAdd, prevAddress, toggle, open }) => {
   }
   let [address, dispatch] = useReducer(reducer, initialAddress)
 
-  // useEffect(() => {
-  //   console.log(address);
-  // },[address])
+  useEffect(() => {
+    console.log(address);
+  }, [address])
   useEffect(() => {
     if (open) {
       if (address.name) {
@@ -242,7 +242,41 @@ let AddAddress = ({ addNewAdd, setAddNewAdd, prevAddress, toggle, open }) => {
     }
     // Update Address
     if (open) {
-      toggle(null)
+      let data = JSON.stringify({
+        "address": address.address,
+        "name": address.name,
+        "mobilenum": address.mobilenum,
+        "pincode": address.pincode,
+        "locality": address.locality,
+        "city": address.city,
+        "state": address.state,
+        "landmark": address.landmark,
+        "alternate_phno": address.alternate_phno,
+        "address_type": address.address_type,
+        "isDefault": "false",
+      })
+
+      let config = {
+        method: 'put',
+        maxBodyLength: Infinity,
+        url: `http://${IP}:${Port}/updateAddress/${name}`,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        data: data
+      }
+
+      axios.request(config)
+        .then((response) => {
+          console.log(JSON.stringify(response.data))
+          if (response.data.status) {
+            toggle(null)
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        })
     }
   }
   function handleCancel() {

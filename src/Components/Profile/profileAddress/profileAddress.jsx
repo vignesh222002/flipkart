@@ -4,6 +4,7 @@ import AddAddress from './AddAddress'
 import AddressCard from './AddressCard'
 import { IP, Port } from '../../../IP Address/IPAddress'
 import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 
 function ProfileAddress() {
@@ -11,6 +12,7 @@ function ProfileAddress() {
   const [openKey, setOpenKey] = useState()
   let [address, setAddress] = useState([])
   let res = []
+  const deletePopup = useSelector(state => state.deleteAddressPopup.deletePopup)
 
   // useEffect(() => console.log(address),[address])
 
@@ -42,7 +44,7 @@ function ProfileAddress() {
         console.log(error)
       })
   }
-  useEffect(() => getAddress(), [addNewAdd, openKey])
+  useEffect(() => getAddress(), [deletePopup, addNewAdd, openKey])
 
   return (
     <div className='profileAddressContainer'>

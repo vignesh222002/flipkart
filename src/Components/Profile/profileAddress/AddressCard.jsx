@@ -28,7 +28,7 @@ let AddressCard = ({ name, toggle, open, prevAddress }) => {
     return (
         <div key={name} className="addressCard" onClick={() => addressMenu && setAddressMenu(false)} >
             {open ?
-                <AddAddress toggle={toggle} prevAddress={prevAddress} open={open} /> :
+                <AddAddress toggle={toggle} prevAddress={prevAddress} name={name} open={open} /> :
                 (
                     <div className="addressCardContent">
                         <div className="addressCardMenu" onMouseOver={() => setAddressMenu(true)} onMouseOut={() => setAddressMenu(false)}>

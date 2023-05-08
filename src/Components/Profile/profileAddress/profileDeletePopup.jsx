@@ -3,10 +3,12 @@ import { didtriggerDeleteAddress, triggerDeleteAddress } from "../../../Redux"
 import { IP, Port } from "../../../IP Address/IPAddress"
 import axios from "axios"
 import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 function ProfileDeletePopup() {
     let dispatch = useDispatch()
     const id = useSelector(state => state.deleteAddressPopup.id)
+    let navigate = useNavigate()
 
     function handleDelete() {
         const token = localStorage.getItem('token')
@@ -25,6 +27,7 @@ function ProfileDeletePopup() {
                 // console.log(response.data)
                 if (response.data == "Address Deleted Successfully") {
                     dispatch(didtriggerDeleteAddress())
+                    navigate('address')
                 }
             })
             .catch((error) => {
