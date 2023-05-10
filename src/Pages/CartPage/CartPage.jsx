@@ -15,7 +15,7 @@ let CartPage = () => {
     let [loginActive, setLoginActive] = useState(false)
     let [callLogin, setCallLogin] = useState(false)
     let [profileActive, setProfileActive] = useState(false)
-    let redirectPath="/cart"
+    let redirectPath="/cart/flipkart"
     let cartLoginRoute = useSelector(state => state.cartLoginPath.cartLoginRoute)
     let dispatch = useDispatch()
     let userInfo = useContext(UserContext)

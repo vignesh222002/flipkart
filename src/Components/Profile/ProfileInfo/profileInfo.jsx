@@ -15,6 +15,13 @@ function ProfileRightInfo() {
         email: "",
         mobilenum: ""})
 
+    function handleChange(e) {
+        setUserInfo({
+            ...userInfo,
+            [e.target.name]: e.target.value
+        })
+    }
+
     // useEffect(() => console.log("updated",userInfo),[userInfo])
 
     function get() {
@@ -39,7 +46,7 @@ function ProfileRightInfo() {
             <div className='profileRightInfo'>
                 <div className="profilePersonalInfo">
 
-                    <ProfilePersonalInfo userInfo={userInfo} get={get} />
+                    <ProfilePersonalInfo userInfo={userInfo} get={get} handleChange={handleChange} />
 
                     <ProfileEmailAddress userInfo={userInfo} get={get} />
 

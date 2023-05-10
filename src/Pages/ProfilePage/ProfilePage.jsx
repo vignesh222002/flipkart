@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import './ProfilePage.css'
 import NavbarMain from "../../Components/NavBar/NavbarMain"
 import Sector from "../../Components/Sector/Sector"
@@ -18,9 +18,10 @@ let ProfilePage = () => {
     let [moreActive, setMoreActive] = useState(false)
     let [callLogin, setCallLogin] = useState(false)
     let [profileActive, setProfileActive] = useState(false)
-    let redirectPath = "/profile"
+    let redirectPath = "/profile/account"
     let userInfo = useContext(UserContext)
     let login = userInfo.user.isLogin
+
 
     let width =  window.innerWidth
     let loginPopupStyle

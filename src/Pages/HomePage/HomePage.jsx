@@ -45,7 +45,7 @@ let HomePage = () => {
             {profileActive && <UserPopup redirectPath={redirectPath} style={userPopupStyle} setProfileActive={setProfileActive} />}
             {callLogin && <LoginSignupModal redirectPath={redirectPath} callLogin={callLogin} setCallLogin={setCallLogin}/>}
             <ImageSlider />
-            <Carousel api="1" head="Watch" />
+            <Carousel api="112" head="Watch" />
             <Footer />
         </>
     )

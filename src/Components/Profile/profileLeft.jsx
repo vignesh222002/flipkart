@@ -11,15 +11,15 @@ let ProfileLeftCard = ({style, children}) => {
     )
 } 
 
-let ShowProfile = () => {
+let ShowProfile = ({ user }) => {
 
     return (
         <div className="showProfile">
             <img src={ProfilePicMale} alt="ProfilePicMale" />
             <div className="showProfileInfomation">
                 <div className="showProfileHello">Hello,</div>
-                <div className="showProfileName">Flipkart Customer</div>
-            </div>
+                <div className="showProfileName">{user.firstname} {user.lastname}</div>
+            </div>  
         </div>
     )
 }
@@ -79,7 +79,7 @@ let ProfileNavLeftFooter = ({children}) => {
     return <div className="profileNavLeftFooter">{children}</div>
 }
 
-let ProfileLeftContent = () => {
+let ProfileLeftContent = ({ user }) => {
     let userInfo = useContext(UserContext)
     let navigate = useNavigate()
 
@@ -102,7 +102,7 @@ let ProfileLeftContent = () => {
     return (
         <div>
             <ProfileLeftCard>
-                <ShowProfile />
+                <ShowProfile user={user} />
             </ProfileLeftCard>
             <ProfileLeftCard style={{marginBottom: "16px"}}>
                 <div>

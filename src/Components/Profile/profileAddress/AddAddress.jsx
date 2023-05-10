@@ -78,9 +78,9 @@ let AddAddress = ({ addNewAdd, setAddNewAdd, prevAddress, toggle, open, name }) 
   }
   let [address, dispatch] = useReducer(reducer, initialAddress)
 
-  useEffect(() => {
-    console.log(address);
-  }, [address])
+  // useEffect(() => {
+  //   console.log(address);
+  // }, [address])
   useEffect(() => {
     if (open) {
       if (address.name) {
