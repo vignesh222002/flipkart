@@ -116,7 +116,6 @@ a {
     z-index: 19;
     top: 50px;
     font-family: roboto-regular;
-    right: 12%;
     opacity: 1;
     transition: opacity .3s ease-in-out;
     position: fixed;

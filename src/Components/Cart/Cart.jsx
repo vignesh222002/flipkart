@@ -14,11 +14,11 @@ export let CartNav = ({children}) => {
     )
 }
 
-export let CartNavLink = ({children, to, cartInitialActive}) => {
+export let CartNavLink = ({children, to}) => {
     return (
         <NavLink to={to} className='cartNavLink'>
             {({isActive}) =>
-                isActive || cartInitialActive ? 
+                isActive ? 
                     <div className="cartNavLinkContent">{children}</div> 
                         :
                     <div>{children}</div>
@@ -96,14 +96,13 @@ export let CartMissingContent = ({source, head, description, button, btnStyle}) 
 }
 
 let CartMissing = () => {
-    let [cartInitialActive, setCartInitialActive] = useState(true)
 
     return (
         <div className='cartMissingContainer'>
             <div className="cartMissingContent">
                 <CartNav>
-                    <CartNavLink to="flipkart" cartInitialActive={cartInitialActive}>Flipkart</CartNavLink>
-                    <CartNavLink to="grocery"><span onClick={() => setCartInitialActive(false)}>Grocery</span></CartNavLink>
+                    <CartNavLink to="flipkart">Flipkart</CartNavLink>
+                    <CartNavLink to="grocery">Grocery</CartNavLink>
                 </CartNav>
                 <Outlet />
             </div>

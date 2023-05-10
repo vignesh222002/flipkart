@@ -22,6 +22,21 @@ let ProfilePage = () => {
     let userInfo = useContext(UserContext)
     let login = userInfo.user.isLogin
 
+    let width =  window.innerWidth
+    let loginPopupStyle
+    let morePopupStyle
+    let userPopupStyle
+    if(width > "1366") {
+        loginPopupStyle = { right: "33.5%" }
+        morePopupStyle = { right: "19%" }
+        userPopupStyle = { right: "32%" }
+    }
+    else if (width > "900") {
+        loginPopupStyle = { right: "32%" }
+        morePopupStyle = { right: "12%" }
+        userPopupStyle = { right: "30.5%" }
+    }
+
     const popup = useSelector(state => state.updateUserInfo)
     // console.log(popup)
     const deletePopup = useSelector(state => state.deleteAddressPopup.deletePopup)
@@ -32,9 +47,9 @@ let ProfilePage = () => {
             {deletePopup && <ProfileDeletePopup />}
 
             <NavbarMain navbarLoginBtn={!login} navbarBecameSeller={true} navbarMore={true} navbarCart={true} navbarUser={login} setLoginActive={setLoginActive} setMoreActive={setMoreActive} setCallLogin={setCallLogin} setProfileActive={setProfileActive} />
-            {loginActive && <LoginPopup style={{ right: '32%' }} setLoginActive={setLoginActive} />}
-            {moreActive && <MorePopup setMoreActive={setMoreActive} />}
-            {profileActive && <UserPopup style={{ right: '30%' }} redirectPath={redirectPath} setProfileActive={setProfileActive} />}
+            {loginActive && <LoginPopup style={loginPopupStyle} setLoginActive={setLoginActive} />}
+            {moreActive && <MorePopup style={morePopupStyle} setMoreActive={setMoreActive} />}
+            {profileActive && <UserPopup style={userPopupStyle} redirectPath={redirectPath} setProfileActive={setProfileActive} />}
             <Sector />
             {login ? (
                 <ProfileContent />

@@ -1,10 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './carousel.css'
 import mock from "./mock.json"
 import CarouselContent from './CarouselContent'
+import axios from 'axios'
+import { IP, Port } from '../../IP Address/IPAddress'
 
-function Carousel({ head, to }) {
+function Carousel({ head, to, api }) {
+    // let mock
+
+    // useEffect(() => {
+    //     axios.get(`http://${IP}:${Port}/getSubcategoryProducts/${api}`)
+    //         .then((res) => {
+    //             console.log(res.data)
+    //             mock = res.data
+    //         })
+    // })
+
     return (
         // <div style={{ display: "flex" }}>
         <div className='carouselContainer'>

@@ -952,3 +952,43 @@ option {
     font-family: roboto-medium;
     text-align: center;
 }
+
+/* No Address */
+
+.noAddressContainer {
+    background-color: #fff;
+    min-height: 600px;
+    padding: 24px 32px;
+    position: relative;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.08);
+}
+.noAddressContent {
+    padding-top: 100px;
+    text-align: center;
+    min-height: 600px;
+}
+.noAddressHead {
+    display: block;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 30px;
+}
+.noAddressFoot {
+    display: block;
+    font-size: 14px;
+    margin-top: 8px;
+    font-family: roboto-regular;
+}
+.noAddressAddAddressBtn {
+    margin-top: 20px;
+    padding: 15px 45px;
+    font-size: 15px;
+    font-weight: 500;
+    background: #2874f0;
+    color: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    border: none;
+    font-family: roboto-medium;
+    cursor: pointer;
+}

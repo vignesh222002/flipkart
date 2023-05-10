@@ -3,55 +3,54 @@ import Slide1 from "../../Media/Slide1.webp"
 import Slide2 from "../../Media/Slide2.webp"
 import Slide3 from "../../Media/Slide3.webp"
 import Slide4 from "../../Media/Slide4.webp"
+import Slide5 from "../../Media/Slide5.webp"
+import Slide6 from "../../Media/Slide6.webp"
 import SliderImageContent, { SlideLeftBtn, SlideRighttBtn } from './SliderImageContent'
 import { useEffect } from 'react'
 import HomeContent from './homeContent'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from 'react-slick'
 
+function SampleNextArrow({ onClick }) {
+    return (
+        <SlideRighttBtn onClick={onClick} />
+    )
+}
+
+function SamplePrevArrow({ onClick }) {
+    return (
+        <SlideLeftBtn onClick={onClick} />
+    )
+}
 
 let ImageSlider = () => {
-    
 
-    let imageIndex = 0
-    let interValId
-
-    const autoSlide = (content, images) => {
-
-        interValId = setInterval(() => {
-            ++imageIndex
-            slideImage(content, images)
-        }, 2000)
+    const settings = {
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        speed: 220,
+        autoplaySpeed: 2000,
+        cssEase: "linear",
+        nextArrow: <SampleNextArrow />,
+        prevArrow: <SamplePrevArrow />
     }
-
-    const slideImage = (content, images) => {
-        //
-        imageIndex = imageIndex === images.length ? 0 : imageIndex < 0 ? images.length - 1 : imageIndex
-
-        // console.log(imageIndex);
-        //
-        content.style.transform = `translate(-${imageIndex * 100}vw)`
-    }
-
-    useEffect( () => {
-        // const wrapper = document.querySelector(".imageSliderContainer")
-        const content = document.querySelector(".imageSlider")
-        const images = document.querySelectorAll(".sliderImageContentContainer")
-        // const buttons = document.querySelectorAll(".homeSliderButton")
-
-        autoSlide(content, images)
-
-    })
 
     return (
         <HomeContent >
             <div className="imageSliderContainer">
-                <SlideLeftBtn />
                 <div className="imageSlider">
-                    <SliderImageContent image={Slide1} />
-                    <SliderImageContent image={Slide2} />
-                    <SliderImageContent image={Slide3} />
-                    <SliderImageContent image={Slide4} />
+                    <Slider {...settings}>
+                        <SliderImageContent image={Slide1} />
+                        <SliderImageContent image={Slide2} />
+                        <SliderImageContent image={Slide3} />
+                        <SliderImageContent image={Slide4} />
+                        <SliderImageContent image={Slide5} />
+                        <SliderImageContent image={Slide6} />
+                    </Slider>
                 </div>
-                <SlideRighttBtn />
             </div>
         </HomeContent>
     )

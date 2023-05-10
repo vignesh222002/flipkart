@@ -17,6 +17,21 @@ let HomePage = () => {
     let [profileActive, setProfileActive] = useState(false)
     let userInfo = useContext(UserContext)
     let redirectPath="/"
+
+    let width =  window.innerWidth
+    let loginPopupStyle
+    let morePopupStyle
+    let userPopupStyle
+    if(width > "1366") {
+        loginPopupStyle = { right: "33.5%" }
+        morePopupStyle = { right: "19%" }
+        userPopupStyle = { right: "32%" }
+    }
+    else if (width > "900") {
+        loginPopupStyle = { right: "32%" }
+        morePopupStyle = { right: "12%" }
+        userPopupStyle = { right: "30.5%" }
+    }
     
     let isLogin = userInfo.user.isLogin
     // console.log(login)
@@ -25,12 +40,12 @@ let HomePage = () => {
         <>
             <NavbarMain navbarLoginBtn={!isLogin} navbarBecameSeller={true} navbarMore={true} navbarCart={true} navbarUser={isLogin} setLoginActive={setLoginActive} setMoreActive={setMoreActive} setCallLogin={setCallLogin} setProfileActive={setProfileActive}/>
             <Navbar2 />
-            {loginActive && <LoginPopup style={{right: '32%'}} setLoginActive={setLoginActive} />}
-            {moreActive && <MorePopup setMoreActive={setMoreActive}/>}
-            {profileActive && <UserPopup redirectPath={redirectPath} style={{right: '32%'}} setProfileActive={setProfileActive} />}
+            {loginActive && <LoginPopup style={loginPopupStyle} setLoginActive={setLoginActive} />}
+            {moreActive && <MorePopup style={morePopupStyle} setMoreActive={setMoreActive}/>}
+            {profileActive && <UserPopup redirectPath={redirectPath} style={userPopupStyle} setProfileActive={setProfileActive} />}
             {callLogin && <LoginSignupModal redirectPath={redirectPath} callLogin={callLogin} setCallLogin={setCallLogin}/>}
             <ImageSlider />
-            <Carousel head="Fashion" />
+            <Carousel api="1" head="Watch" />
             <Footer />
         </>
     )

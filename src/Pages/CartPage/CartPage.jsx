@@ -26,11 +26,23 @@ let CartPage = () => {
 
     let login = userInfo.user.isLogin
 
+    let width =  window.innerWidth
+    let loginPopupStyle
+    let userPopupStyle
+    if(width > "1366") {
+        loginPopupStyle = { right: "15.5%" }
+        userPopupStyle = { right: "14.5%" }
+    }
+    else if (width > "900") {
+        loginPopupStyle = { right: "6.5%" }
+        userPopupStyle = { right: "5%" }
+    }
+
     return (
             <div className="cartPageBody">
                 <NavbarMain style={{boxShadow: '0 2px 2.5px 0 rgb(0 0 0 / 30%)'}} navbarLoginBtn={!login} navbarBecameSeller={false} navbarMore={false} navbarCart={false} navbarUser={login} setLoginActive={setLoginActive} setCallLogin={setCallLogin} setProfileActive={setProfileActive}/>
-                {loginActive && <LoginPopup style={{right: '6%'}} setLoginActive={setLoginActive} />}
-                {profileActive && <UserPopup style={{right: '5%'}} setProfileActive={setProfileActive} redirectPath={redirectPath}/>}
+                {loginActive && <LoginPopup style={loginPopupStyle} setLoginActive={setLoginActive} />}
+                {profileActive && <UserPopup style={userPopupStyle} setProfileActive={setProfileActive} redirectPath={redirectPath}/>}
                 {callLogin && <LoginSignupModal callLogin={callLogin} setCallLogin={setCallLogin} redirectPath={redirectPath} />}
                 {login ? (
                     <CartMissing/>
