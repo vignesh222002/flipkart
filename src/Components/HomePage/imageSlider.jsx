@@ -5,11 +5,13 @@ import Slide3 from "../../Media/Slide3.webp"
 import Slide4 from "../../Media/Slide4.webp"
 import SliderImageContent, { SlideLeftBtn, SlideRighttBtn } from './SliderImageContent'
 import { useEffect } from 'react'
+import HomeContent from './homeContent'
+
 
 let ImageSlider = () => {
     
 
-    let imageIndex = 1
+    let imageIndex = 0
     let interValId
 
     const autoSlide = (content, images) => {
@@ -24,7 +26,7 @@ let ImageSlider = () => {
         //
         imageIndex = imageIndex === images.length ? 0 : imageIndex < 0 ? images.length - 1 : imageIndex
 
-        console.log(imageIndex);
+        // console.log(imageIndex);
         //
         content.style.transform = `translate(-${imageIndex * 100}vw)`
     }

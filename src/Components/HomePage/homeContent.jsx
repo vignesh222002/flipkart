@@ -1,5 +1,4 @@
 import './homeContent.css'
-import ImageSlider from './imageSlider'
 
 let HomeContent = ({children}) => {
 

@@ -1,5 +1,4 @@
 
-
 export let SlideLeftBtn = () => {
     return (
         <div className="slideLeftBtn homeSliderButton" id='prev'>
