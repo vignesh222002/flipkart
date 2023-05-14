@@ -5,16 +5,13 @@ import CartPage from '../../Pages/CartPage/CartPage';
 import { CartMissingContent } from "../../Components/Cart/Cart";
 import CartMissingImage from '../../Media/cartMissingImage.webp'
 import BasketEmptyImage from '../../Media/basketEmptyImage.webp'
-import { useContext } from "react";
-import { UserContext } from "../../Components/Context/UserInfoContext";
 import ProfileRightInfo from "../../Components/Profile/ProfileInfo/profileInfo";
 import ProfileAddress from "../../Components/Profile/profileAddress/profileAddress";
 import ProfilePanCard from "../../Components/Profile/ProfilePanCard/profilePanCard";
 
 let LapRoute = () => {
     
-    let userInfo = useContext(UserContext)
-    let isLogin = userInfo.user.isLogin
+    let isLogin = !(!localStorage.getItem("token"))
     let cartShopBtn = isLogin ? ({
         button: "Shop now",
         btnStyle: {background: '#2874f0'}

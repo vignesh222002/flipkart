@@ -1,9 +1,7 @@
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import './cart.css'
-import { useContext, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { cartLoginRouteTrue } from '../../store/CartLoginRoute/cartLoginRoute'
-import { UserContext } from '../Context/UserInfoContext'
+import { cartLoginRouteTrue } from '../../state/cartLoginRoute/CartLoginRoute'
 
 export let CartNav = ({children}) => {
 
@@ -78,8 +76,7 @@ export let MissingCartShopBtn = ({style, children}) => {
 }
 
 export let CartMissingContent = ({source, head, description, button, btnStyle}) => {
-    let userInfo = useContext(UserContext)
-    let isLogin = userInfo.user.isLogin
+    let isLogin = !(!localStorage.getItem("token"))
 
     return (
         <CardItemsMissing>

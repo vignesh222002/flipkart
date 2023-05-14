@@ -6,7 +6,7 @@ import NavbarLoginBtn from "./NavbarLoginBtn";
 import NavbarUser from "./NavbarUser";
 import NavbarMore from "./NavbarMore";
 import { useDispatch } from "react-redux";
-import { cartLoginRouteFalse } from "../../store";
+import { cartLoginRouteFalse } from "../../state/cartLoginRoute/CartLoginRoute";
 
 
 let NavbarLogo = () => {
