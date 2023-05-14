@@ -1,5 +1,5 @@
 import "../profile.css"
-import { didtriggerDeleteAddress, triggerDeleteAddress } from "../../../Redux"
+import { didtriggerDeleteAddress, triggerDeleteAddress } from "../../../store"
 import { IP, Port } from "../../../IP Address/IPAddress"
 import axios from "axios"
 import { useDispatch, useSelector } from "react-redux"

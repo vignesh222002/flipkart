@@ -2,7 +2,7 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import './cart.css'
 import { useContext, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { cartLoginRouteTrue } from '../../Redux/CartLoginRoute/cartLoginRoute'
+import { cartLoginRouteTrue } from '../../store/CartLoginRoute/cartLoginRoute'
 import { UserContext } from '../Context/UserInfoContext'
 
 export let CartNav = ({children}) => {

@@ -2,12 +2,12 @@
 
 @font-face {
     font-family: roboto-medium;
-    src: url("../../Fonts/roboto-medium-webfont.woff2");
+    src: url("../../../public/Fonts/roboto-medium-webfont.woff2");
     font-variant: normal;
 }
 @font-face {
     font-family: roboto-regular;
-    src: url("../../Fonts/roboto-regular-webfont.woff2");
+    src: url("../../../public/Fonts/roboto-regular-webfont.woff2");
     font-variant: normal;
 }
 

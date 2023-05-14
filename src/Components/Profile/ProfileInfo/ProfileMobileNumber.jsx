@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
 import { ProfilePersonalInfoEditBtn, ProfilePersonalInfoHead, ProfilePersonalInfoHeadContainer, ProfilePersonalInfoInput, ProfilePersonalInfoInputContainer, ProfilePersonalInfoSaveBtn } from "./ProfileInfoCOmponents"
 import { useDispatch } from "react-redux"
-import { updateMobileNumber } from "../../../Redux"
+import { updateMobileNumber } from "../../../store"
 import { IP, Port } from "../../../IP Address/IPAddress"
 import axios from "axios"
 

@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react"
 import { ProfilePersonalInfoEditBtn, ProfilePersonalInfoHead, ProfilePersonalInfoHeadContainer, ProfilePersonalInfoInput, ProfilePersonalInfoInputContainer, ProfilePersonalInfoSaveBtn } from "./ProfileInfoCOmponents"
 import { IP, Port } from "../../../IP Address/IPAddress"
 import { useDispatch } from "react-redux"
-import { registerEmail } from "../../../Redux"
+import { registerEmail } from "../../../store"
 import axios from "axios"
 
 let ProfileEmailAddress = ({ userInfo, get }) => {

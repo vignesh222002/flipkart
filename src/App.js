@@ -4,7 +4,7 @@ import './App.css';
 import UserInfoContext from './Components/Context/UserInfoContext';
 import LapRoute from './Pages/RoutingPage/LapRoute';
 import { Provider } from 'react-redux';
-import store from './Redux/store';
+import store from './store/store';
 
 
 function App() {
