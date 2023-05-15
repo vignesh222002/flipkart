@@ -6,7 +6,6 @@ import LoginPopup from "../../Components/NavBar/LoginPopUP"
 import MorePopup from "../../Components/NavBar/MorePopup"
 import Footer from "../../Components/Footer/Footer"
 import LoginSignupModule from "../../Components/LoginSignupModule/LoginSignupModule"
-import { UserContext } from "../../Components/Context/UserInfoContext"
 import UserPopup from "../../Components/NavBar/UserPopup"
 import ProfileContent from "../../Components/Profile/profileContent"
 import { useSelector } from 'react-redux'
@@ -19,8 +18,7 @@ let ProfilePage = () => {
     let [callLogin, setCallLogin] = useState(false)
     let [profileActive, setProfileActive] = useState(false)
     let redirectPath = "/profile/account"
-    let userInfo = useContext(UserContext)
-    let login = userInfo.user.isLogin
+    let login = !(!localStorage.getItem("token"))
 
 
     let width =  window.innerWidth

@@ -1,9 +1,10 @@
 import { Link, useNavigate, useNavigation } from 'react-router-dom'
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './login.css'
-import { UserContext } from '../Context/UserInfoContext';
 import axios from 'axios';
 import { IP, Port } from '../../IP Address/IPAddress';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateLoginIslogin, updateLoginNumber } from '../../state/login/login';
 
 export let LoginPageLeft = () => {
     return (
@@ -15,7 +16,8 @@ export let LoginPageLeft = () => {
 }
 
 export let LoginPageRight = ({setLoginProcess, setSignupProcess, setLoginOtpProcess}) => {
-    let userInfo = useContext(UserContext)
+    let userInfo = useSelector(state => state.login)
+    let dispatch = useDispatch()
 
     let [mobileNo, setMobileNo] = useState()
 
@@ -42,10 +44,10 @@ export let LoginPageRight = ({setLoginProcess, setSignupProcess, setLoginOtpProc
     }
 
     useEffect(() => {
-        if (userInfo.user.mobileNumber && mobileNo) {
+        if (userInfo.mobileNumber && mobileNo) {
 
             axios.post(`http://${IP}:${Port}/login`, {
-                "mobilenum": userInfo.user.officialNumber.toString()
+                "mobilenum": userInfo.officialNumber.toString()
             })
             .then(res => {
                 if (res.data.status) {
@@ -55,14 +57,10 @@ export let LoginPageRight = ({setLoginProcess, setSignupProcess, setLoginOtpProc
                 }
             })
         }
-    },[userInfo.user])
+    },[userInfo])
 
     function otpRequest() {
-        userInfo.login({
-            ...userInfo.user,
-            mobileNumber: mobileNo,
-            officialNumber: '+91' + mobileNo
-        })
+        dispatch(updateLoginNumber({ mobileNumber: mobileNo, officialNumber: '+91' + mobileNo }))
     }
 
     return (
@@ -82,7 +80,8 @@ export let LoginPageRight = ({setLoginProcess, setSignupProcess, setLoginOtpProc
 }
 
 export let LoginOtpPageRight = ({callLogin, setLoginProcess, setLoginOtpProcess, setCallLogin, redirectPath}) => {
-    let userInfo = useContext(UserContext)
+    let userInfo = useSelector(state => state.login)
+    let dispatch = useDispatch()
     let [otp, setOTP] = useState()
     let navigate = useNavigate()
 
@@ -93,29 +92,21 @@ export let LoginOtpPageRight = ({callLogin, setLoginProcess, setLoginOtpProcess,
     function backToLogin() {
         setLoginOtpProcess(false)
         setLoginProcess(true)
-        userInfo.login({
-            ...userInfo.user,
-            mobileNumber: null,
-            officialNumber: null
-        })
+        dispatch(updateLoginNumber({ mobileNumber: null, officialNumber: null }))
     }
 
     function submitOTP() {
         if(otp) {
-            // console.log("mobilenum :", userInfo.user.officialNumber)
             // console.log("otp :", otp)
             axios.post(`http://${IP}:${Port}/verifyOTPSMS`, {
-                    "mobilenum": userInfo.user.officialNumber.toString(),
+                    "mobilenum": userInfo.officialNumber.toString(),
                     "otp" : otp.toString()
             })
             .then(res => {
                 if (res.data.status) {
                     // console.log(res.data)
                     localStorage.setItem("token", res.data.token)
-                    userInfo.login({
-                        ...userInfo.user,
-                        isLogin: !(!localStorage.getItem("token"))
-                    })
+                    dispatch(updateLoginIslogin())
                 }
                 return res
             })
@@ -136,7 +127,7 @@ export let LoginOtpPageRight = ({callLogin, setLoginProcess, setLoginOtpProcess,
 
     function resendCode() {
         axios.post(`http://${IP}:${Port}/login`, {
-                "mobilenum": userInfo.user.officialNumber.toString()
+                "mobilenum": userInfo.officialNumber.toString()
         })
     }
 
@@ -144,7 +135,7 @@ export let LoginOtpPageRight = ({callLogin, setLoginProcess, setLoginOtpProcess,
         <div className="loginOtpPageRight">
             <div>Please enter the OTP sent to</div>
             <div>
-                <span className='loginOtpPageRightuser'>{userInfo.user.mobileNumber}.</span>
+                <span className='loginOtpPageRightuser'>{userInfo.mobileNumber}.</span>
                 <Link className='blueLink changeLoginNumber' onClick={backToLogin} >Change</Link>
             </div>
             <div className="loginOtpPageRightInput">

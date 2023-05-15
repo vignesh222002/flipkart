@@ -1,9 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './login.css'
-import { UserContext } from '../Context/UserInfoContext';
 import axios from 'axios';
 import { IP, Port } from '../../IP Address/IPAddress';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateLoginIslogin, updateLoginNumber } from '../../state/login/login';
 
 export let SignupPageLeft = () => {
 
@@ -16,7 +17,8 @@ export let SignupPageLeft = () => {
 }
 
 export let SignupPageRight = ({setLoginProcess, setSignupProcess, setSignupOtpProcess}) => {
-    let userInfo = useContext(UserContext)
+    let userInfo = useSelector(state => state.login)
+    let dispatch = useDispatch()
 
     let [mobileNo, setMobileNo] = useState()
     let [registered, setRegistered] = useState(false)   
@@ -44,17 +46,13 @@ export let SignupPageRight = ({setLoginProcess, setSignupProcess, setSignupOtpPr
         setSignupProcess(false)
     }
     let handleSignupOtp = () => {
-        userInfo.login({
-            ...userInfo.user,
-            mobileNumber: mobileNo,
-            officialNumber: '+91' + mobileNo
-        })
+        dispatch(updateLoginNumber({ mobileNumber: mobileNo, officialNumber: '+91' + mobileNo }))
     }
     useEffect(() => {
-        if (userInfo.user.mobileNumber && mobileNo) {
+        if (userInfo.mobileNumber && mobileNo) {
 
             axios.post(`http://${IP}:${Port}/register`, {
-                "mobilenum": userInfo.user.officialNumber.toString()
+                "mobilenum": userInfo.officialNumber.toString()
             })
             .then(res => {
                 // console.log(res.data);
@@ -67,7 +65,7 @@ export let SignupPageRight = ({setLoginProcess, setSignupProcess, setSignupOtpPr
                 }
             })
         }
-    },[userInfo.user])
+    },[userInfo])
 
     return (
         <div className="loginPageRight">
@@ -87,8 +85,9 @@ export let SignupPageRight = ({setLoginProcess, setSignupProcess, setSignupOtpPr
 }
 
 export let SignupOtpPageRight = ({callLogin, setLoginProcess, setSignupProcess, setSignupOtpProcess, setCallLogin, redirectPath}) => {
-    let userInfo = useContext(UserContext)
-    // console.log(userInfo.user)
+    let userInfo = useSelector(state => state.login)
+    let dispatch = useDispatch()
+    
     let navigate = useNavigate()
     let [otp, setOtp] = useState(null)
 
@@ -124,17 +123,14 @@ export let SignupOtpPageRight = ({callLogin, setLoginProcess, setSignupProcess, 
     function submitOTP() {
         if(otp) {
             axios.post(`http://${IP}:${Port}/verifyOTPSMS`, {
-                    "mobilenum": userInfo.user.officialNumber.toString(),
+                    "mobilenum": userInfo.officialNumber.toString(),
                     "otp" : otp.toString()
             })
             .then(res => {
                 if (res.data.status) {
                     // console.log(res.data.token);
                     localStorage.setItem("token", res.data.token)
-                    userInfo.login({
-                        ...userInfo.user,
-                        isLogin: !(!localStorage.getItem("token"))
-                    })
+                    dispatch(updateLoginIslogin())
                 }
                 return res
             })
@@ -155,7 +151,7 @@ export let SignupOtpPageRight = ({callLogin, setLoginProcess, setSignupProcess, 
     return (
         <div className='signupOtpPageRight'>
             <div className="signupOtpMObileNo">
-                <div className='signupOtpPageInput'>{userInfo.user.mobileNumber}</div>
+                <div className='signupOtpPageInput'>{userInfo.mobileNumber}</div>
                 <label className="signupOtpPageLabel"><span>Mobile Number</span></label>
                 <span className="signupOtpPageSpan">+91</span>
                 <Link className='signupOtpPageChangeNo' onClick={goToSignup}>Change?</Link>

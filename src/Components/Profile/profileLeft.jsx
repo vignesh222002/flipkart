@@ -1,8 +1,8 @@
 import { Link, NavLink, useNavigate } from "react-router-dom"
 import './profile.css'
-import { useContext, useEffect, useState } from "react"
 import ProfilePicMale from '../../Media/ProfilePicMale.svg'
-import { UserContext } from "../Context/UserInfoContext"
+import { useDispatch, useSelector } from "react-redux"
+import { updateLoginIslogin } from "../../state/login/login"
 
 let ProfileLeftCard = ({style, children}) => {
 
@@ -80,7 +80,7 @@ let ProfileNavLeftFooter = ({children}) => {
 }
 
 let ProfileLeftContent = ({ user }) => {
-    let userInfo = useContext(UserContext)
+    let dispatch = useDispatch()
     let navigate = useNavigate()
 
     // useEffect(() => {
@@ -90,12 +90,7 @@ let ProfileLeftContent = ({ user }) => {
 
     function handleLogout() {
         localStorage.clear()
-        userInfo.login({
-            ...userInfo.user,
-            mobileNumber: null,
-            officialNumber: null,
-            isLogin: !(!localStorage.getItem("token"))
-        })
+        dispatch(updateLoginIslogin())
         navigate('/')
     }
 

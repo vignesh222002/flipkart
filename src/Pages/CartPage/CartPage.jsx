@@ -7,7 +7,6 @@ import CartMissing from "../../Components/Cart/Cart"
 import CartFooter from "../../Components/CartFooter/CartFooter"
 import { useDispatch, useSelector } from "react-redux"
 import { cartLoginRouteFalse } from "../../state/cartLoginRoute/CartLoginRoute"
-import { UserContext } from "../../Components/Context/UserInfoContext"
 import LoginSignupModule from "../../Components/LoginSignupModule/LoginSignupModule"
 import UserPopup from "../../Components/NavBar/UserPopup"
 
@@ -18,13 +17,12 @@ let CartPage = () => {
     let redirectPath="/cart/flipkart"
     let cartLoginRoute = useSelector(state => state.cartLoginPath.cartLoginRoute)
     let dispatch = useDispatch()
-    let userInfo = useContext(UserContext)
 
     useEffect(() => {
         dispatch(cartLoginRouteFalse())
     },[])
 
-    let login = userInfo.user.isLogin
+    let login = !(!localStorage.getItem("token"))
 
     let width =  window.innerWidth
     let loginPopupStyle

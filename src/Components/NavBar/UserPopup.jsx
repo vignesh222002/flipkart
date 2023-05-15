@@ -1,19 +1,15 @@
 import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { UserContext } from '../Context/UserInfoContext'
+import { useDispatch } from 'react-redux'
+import { updateLoginIslogin } from '../../state/login/login'
 
 function UserPopup({style, setProfileActive, redirectPath}) {
-    let userInfo = useContext(UserContext)
     let navigate = useNavigate()
+    let dispatch = useDispatch()
 
     function handleLogout() {
         localStorage.clear()
-        userInfo.login({
-            ...userInfo.user,
-            mobileNumber: null,
-            officialNumber: null,
-            isLogin: !(!localStorage.getItem("token"))
-        })
+        dispatch(updateLoginIslogin())
         navigate(redirectPath)
     }
 

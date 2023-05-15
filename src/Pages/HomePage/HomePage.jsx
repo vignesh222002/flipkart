@@ -5,7 +5,6 @@ import LoginPopup from "../../Components/NavBar/LoginPopUP"
 import MorePopup from "../../Components/NavBar/MorePopup"
 import NavbarMain from "../../Components/NavBar/NavbarMain"
 import Navbar2 from "../../Components/NavBar2/Navbar2"
-import { UserContext } from "../../Components/Context/UserInfoContext"
 import UserPopup from "../../Components/NavBar/UserPopup"
 import ImageSlider from "../../Components/HomePage/imageSlider"
 import Carousel from "../../Components/Carousel/Carousel"
@@ -15,7 +14,6 @@ let HomePage = () => {
     let [moreActive, setMoreActive] = useState(false)
     let [callLogin, setCallLogin] = useState(false)
     let [profileActive, setProfileActive] = useState(false)
-    let userInfo = useContext(UserContext)
     let redirectPath="/"
 
     let width =  window.innerWidth
@@ -33,7 +31,7 @@ let HomePage = () => {
         userPopupStyle = { right: "30.5%" }
     }
     
-    let isLogin = userInfo.user.isLogin
+    let isLogin = !(!localStorage.getItem("token"))
     // console.log(login)
 
     return (

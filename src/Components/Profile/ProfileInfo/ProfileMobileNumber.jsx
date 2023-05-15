@@ -39,7 +39,7 @@ let ProfileMobileNumber = ({ userInfo, get }) => {
                 if (res.data.status) {
                     dispatch(updateMobileNumber({ prev: userInfo.mobilenum, current: newNumber }))
                     setEdit(false)
-
+                    get()
                 }
             })
             .catch(err => console.log(err))

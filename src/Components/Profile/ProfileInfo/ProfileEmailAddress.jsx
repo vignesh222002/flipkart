@@ -40,6 +40,7 @@ let ProfileEmailAddress = ({ userInfo, get }) => {
                 if (response.data.status) {
                     dispatch(updateEmail({ email: newEmail, mobile: userInfo.mobilenum }))
                     setEdit(false)
+                    get()
                 }
             })
             .catch((error) => {
