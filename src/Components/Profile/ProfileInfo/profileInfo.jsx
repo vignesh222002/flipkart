@@ -35,9 +35,8 @@ function ProfileRightInfo() {
         axios.get(`http://${IP}:${Port}/getProfile`, config)
             .then(res => {
                 // console.log(res.data)
-                setUserInfo(res.data)
+                setUserInfo(res.data.message)
             })
-
     }   
     useEffect(() => get(), [])
 

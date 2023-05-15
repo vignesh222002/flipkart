@@ -38,7 +38,7 @@ let CartPage = () => {
 
     return (
             <div className="cartPageBody">
-                <NavbarMain style={{boxShadow: '0 2px 2.5px 0 rgb(0 0 0 / 30%)'}} navbarLoginBtn={!login} navbarBecameSeller={false} navbarMore={false} navbarCart={false} navbarUser={login} setLoginActive={setLoginActive} setCallLogin={setCallLogin} setProfileActive={setProfileActive}/>
+                <NavbarMain style={{boxShadow: '0 2px 2.5px 0 rgb(0 0 0 / 30%)'}} navbarLoginBtn={!login} navbarBecameSeller={false} navbarMore={false} navbarCart={false} navbarUser={login} setLoginActive={setLoginActive} setCallLogin={setCallLogin} profileActive={profileActive} setProfileActive={setProfileActive}/>
                 {loginActive && <LoginPopup style={loginPopupStyle} setLoginActive={setLoginActive} />}
                 {profileActive && <UserPopup style={userPopupStyle} setProfileActive={setProfileActive} redirectPath={redirectPath}/>}
                 {callLogin && <LoginSignupModal callLogin={callLogin} setCallLogin={setCallLogin} redirectPath={redirectPath} />}

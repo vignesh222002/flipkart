@@ -36,7 +36,7 @@ let HomePage = () => {
 
     return (
         <>
-            <NavbarMain navbarLoginBtn={!isLogin} navbarBecameSeller={true} navbarMore={true} navbarCart={true} navbarUser={isLogin} setLoginActive={setLoginActive} setMoreActive={setMoreActive} setCallLogin={setCallLogin} setProfileActive={setProfileActive}/>
+            <NavbarMain navbarLoginBtn={!isLogin} navbarBecameSeller={true} navbarMore={true} navbarCart={true} navbarUser={isLogin} setLoginActive={setLoginActive} moreActive={moreActive} setMoreActive={setMoreActive} setCallLogin={setCallLogin} profileActive={profileActive} setProfileActive={setProfileActive}/>
             <Navbar2 />
             {loginActive && <LoginPopup style={loginPopupStyle} setLoginActive={setLoginActive} />}
             {moreActive && <MorePopup style={morePopupStyle} setMoreActive={setMoreActive}/>}

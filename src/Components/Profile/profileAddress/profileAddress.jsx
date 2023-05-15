@@ -41,7 +41,7 @@ function ProfileAddress() {
       .then((response) => {
         res = [...response.data.address]
         res = res.reverse()
-        console.log(res?.length)
+        // console.log(res?.length)
         if (res?.length > 0) {
           setNoAdd(false)
         }

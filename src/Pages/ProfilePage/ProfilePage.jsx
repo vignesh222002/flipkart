@@ -45,7 +45,7 @@ let ProfilePage = () => {
             {popup.popup && <ProfileOtpPopup purpose={popup.purpose} number1={popup.number1} number2={popup.number2} />}
             {deletePopup && <ProfileDeletePopup />}
 
-            <NavbarMain navbarLoginBtn={!login} navbarBecameSeller={true} navbarMore={true} navbarCart={true} navbarUser={login} setLoginActive={setLoginActive} setMoreActive={setMoreActive} setCallLogin={setCallLogin} setProfileActive={setProfileActive} />
+            <NavbarMain navbarLoginBtn={!login} navbarBecameSeller={true} navbarMore={true} navbarCart={true} navbarUser={login} setLoginActive={setLoginActive} moreActive={moreActive} setMoreActive={setMoreActive} setCallLogin={setCallLogin}profileActive={profileActive} setProfileActive={setProfileActive} />
             {loginActive && <LoginPopup style={loginPopupStyle} setLoginActive={setLoginActive} />}
             {moreActive && <MorePopup style={morePopupStyle} setMoreActive={setMoreActive} />}
             {profileActive && <UserPopup style={userPopupStyle} redirectPath={redirectPath} setProfileActive={setProfileActive} />}
