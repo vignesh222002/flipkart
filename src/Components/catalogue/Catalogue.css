@@ -1,0 +1,42 @@
+/* Catalogue */
+
+.catalogueContainer {
+    width: 100%;
+    position: relative;margin: 0 auto;
+    min-width: 978px;
+    max-width: 1680px;
+    padding: 8px;
+}
+.catalogueFlex {
+    display: flex;
+    flex-flow: row;
+}
+.catalogueFilterContainer {
+    display: flex;
+    flex: 0 0 280px;
+    max-width: 280px;
+    padding: 0px 10px 0px 0px;
+    flex-flow: column;
+}
+.catalogueProductContainer {
+    display: flex;
+    flex-grow: 1;
+    overflow: auto;
+    flex-flow: column;
+}
+.catalogueFilterContent {
+    width: 100%;
+    position: relative;
+    background: #fff;
+    box-shadow: 0 1px 8px 0 rgba(0,0,0,.06);
+}
+.catalogueFilterHead {
+    padding: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 18px;
+    text-transform: capitalize;
+    font-weight: 500;
+    letter-spacing: .3px;
+    display: inline-block;
+}

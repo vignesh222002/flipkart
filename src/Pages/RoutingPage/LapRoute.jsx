@@ -8,6 +8,7 @@ import BasketEmptyImage from '../../Media/basketEmptyImage.webp'
 import ProfileRightInfo from "../../Components/Profile/ProfileInfo/profileInfo";
 import ProfileAddress from "../../Components/Profile/profileAddress/profileAddress";
 import ProfilePanCard from "../../Components/Profile/ProfilePanCard/profilePanCard";
+import CataloguePage from "../cataloguePage/CataloguePage";
 
 let LapRoute = () => {
     
@@ -32,6 +33,7 @@ let LapRoute = () => {
                 <Route path="flipkart" element={<CartMissingContent source={CartMissingImage} head="Missing Cart items?" description="Login to see the items you added previously" button={cartShopBtn.button} btnStyle={cartShopBtn.btnStyle} /> }></Route>
                 <Route path="grocery" element={<CartMissingContent source={BasketEmptyImage} head="Your basket is empty!" description="Enjoy Upto 50% Savings on Grocery" button="Shop now" btnStyle={{background: '#2874f0'}} /> }></Route>
             </Route>
+            <Route path="/catalogue" element={<CataloguePage />}></Route>
         </Routes>
     )
 }
