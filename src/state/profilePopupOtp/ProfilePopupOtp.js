@@ -1,6 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { didUpdate } from "../../store"
-
 
 let initialState = {
     popup: false,
@@ -23,9 +21,9 @@ const profilePopupSlice = createSlice({
             state.popup = true
             state.purpose = "updateEmail"
             state.number1 = action.payload.email
-            state.number2 = action.payload.mobile     
+            state.number2 = action.payload.mobile  
         },
-        didUpdate1: (state) => {
+        didUpdate: (state) => {
             state.popup = false
             state.purpose = ""
             state.number1 = ""
@@ -35,4 +33,4 @@ const profilePopupSlice = createSlice({
 })
 
 export default profilePopupSlice.reducer
-export const { updateMobileNumber, updateEmail, didUpdate1 } = profilePopupSlice.actions
+export const { updateMobileNumber, updateEmail, didUpdate } = profilePopupSlice.actions

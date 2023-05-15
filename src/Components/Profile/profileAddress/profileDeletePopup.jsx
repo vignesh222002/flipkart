@@ -1,5 +1,5 @@
 import "../profile.css"
-import { didtriggerDeleteAddress, triggerDeleteAddress } from "../../../store"
+import { didTriggerDeleteAddress } from "../../../state/deleteAddress/DeleteAddress"
 import { IP, Port } from "../../../IP Address/IPAddress"
 import axios from "axios"
 import { useDispatch, useSelector } from "react-redux"
@@ -26,7 +26,7 @@ function ProfileDeletePopup() {
             .then((response) => {
                 // console.log(response.data)
                 if (response.data == "Address Deleted Successfully") {
-                    dispatch(didtriggerDeleteAddress())
+                    dispatch(didTriggerDeleteAddress())
                     navigate('address')
                 }
             })
@@ -36,7 +36,7 @@ function ProfileDeletePopup() {
     }
 
     function handleCancel() {
-        dispatch(didtriggerDeleteAddress())
+        dispatch(didTriggerDeleteAddress())
     }
 
     return (

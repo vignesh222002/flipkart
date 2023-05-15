@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
 import '../profile.css'
 import { useEffect, useRef, useState } from 'react'
-import { didUpdate } from '../../../store'
+import { didUpdate } from '../../../state/profilePopupOtp/ProfilePopupOtp'
 import { IP, Port } from '../../../IP Address/IPAddress'
 import axios from 'axios'
 

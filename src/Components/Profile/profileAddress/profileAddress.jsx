@@ -41,46 +41,44 @@ function ProfileAddress() {
       .then((response) => {
         res = [...response.data.address]
         res = res.reverse()
+        console.log(res?.length)
+        if (res?.length > 0) {
+          setNoAdd(false)
+        }
+        else{
+          setNoAdd(true)
+        }
         setAddress([...res])
       })
       .catch((error) => {
         console.log(error)
       })
-    
   }
   useEffect(() => getAddress(), [deletePopup, addNewAdd, openKey])
-  useEffect(() => {
-    if (address.length == 0) {
-      setNoAdd(true)
-    }
-    else {
-     setNoAdd(false)
-    }
-  }, [addNewAdd])
 
   return (
     (noAdd) ? (<NoAddress setNoAdd={setNoAdd} setAddNewAdd={setAddNewAdd} />) : (
-    <div className='profileAddressContainer'>
-      <span className='profileAddressHead'>Manage Addresses</span>
-      <div>
-        <div className="profileAddAddressBtnContainer">
-          {/* Add Address Window */}
-          {addNewAdd ?
-            <AddAddress addNewAdd={addNewAdd} setAddNewAdd={setAddNewAdd} /> : (
-              <div className="profileAddAddressBtn" onClick={() => setAddNewAdd(true)}>
-                <img src={Add} className='profileAddAddressIcon' />
-                ADD A NEW ADDRESS
-              </div>
-            )
-          }
-        </div>
-        {/* Address Card */}
+      <div className='profileAddressContainer'>
+        <span className='profileAddressHead'>Manage Addresses</span>
         <div>
-          {address.map((res) => <AddressCard prevAddress={res} toggle={handleToggle} key={res.id} name={res.id} open={openKey === res.id} />)}
+          <div className="profileAddAddressBtnContainer">
+            {/* Add Address Window */}
+            {addNewAdd ?
+              <AddAddress addNewAdd={addNewAdd} setAddNewAdd={setAddNewAdd} /> : (
+                <div className="profileAddAddressBtn" onClick={() => setAddNewAdd(true)}>
+                  <img src={Add} className='profileAddAddressIcon' />
+                  ADD A NEW ADDRESS
+                </div>
+              )
+            }
+          </div>
+          {/* Address Card */}
+          <div>
+            {address.map((res) => <AddressCard prevAddress={res} toggle={handleToggle} key={res.id} name={res.id} open={openKey === res.id} />)}
 
+          </div>
         </div>
       </div>
-    </div>
     )
   )
 }

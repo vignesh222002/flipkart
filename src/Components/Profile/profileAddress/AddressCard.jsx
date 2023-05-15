@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import AddressMenu from "../../../Media/AddressMenu.svg"
 import AddAddress from "./AddAddress"
-import { triggerDeleteAddress } from "../../../store"
+import { triggerDeleteAddress } from "../../../state/deleteAddress/DeleteAddress"
 import { useDispatch } from "react-redux"
 
 let AddressMenuPopup = ({ toggle, name, id, setAddressMenu }) => {

@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react"
 import { ProfilePersonalInfoEditBtn, ProfilePersonalInfoHead, ProfilePersonalInfoHeadContainer, ProfilePersonalInfoInput, ProfilePersonalInfoInputContainer, ProfilePersonalInfoSaveBtn } from "./ProfileInfoCOmponents"
 import { IP, Port } from "../../../IP Address/IPAddress"
 import { useDispatch } from "react-redux"
-import { registerEmail } from "../../../store"
+import { updateEmail } from "../../../state/profilePopupOtp/ProfilePopupOtp"
 import axios from "axios"
 
 let ProfileEmailAddress = ({ userInfo, get }) => {
@@ -38,7 +38,7 @@ let ProfileEmailAddress = ({ userInfo, get }) => {
             .then((response) => {
                 // console.log(response.data)
                 if (response.data.status) {
-                    dispatch(registerEmail(newEmail, userInfo.mobilenum))
+                    dispatch(updateEmail({ email: newEmail, mobile: userInfo.mobilenum }))
                     setEdit(false)
                 }
             })

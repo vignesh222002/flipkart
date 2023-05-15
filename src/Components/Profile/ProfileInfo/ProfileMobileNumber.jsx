@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
 import { ProfilePersonalInfoEditBtn, ProfilePersonalInfoHead, ProfilePersonalInfoHeadContainer, ProfilePersonalInfoInput, ProfilePersonalInfoInputContainer, ProfilePersonalInfoSaveBtn } from "./ProfileInfoCOmponents"
 import { useDispatch } from "react-redux"
-import { updateMobileNumber } from "../../../store"
+import { updateMobileNumber } from "../../../state/profilePopupOtp/ProfilePopupOtp"
 import { IP, Port } from "../../../IP Address/IPAddress"
 import axios from "axios"
 
@@ -37,7 +37,7 @@ let ProfileMobileNumber = ({ userInfo, get }) => {
             .then(res => {
                 // console.log(res.data)
                 if (res.data.status) {
-                    dispatch(updateMobileNumber(userInfo.mobilenum, newNumber))
+                    dispatch(updateMobileNumber({ prev: userInfo.mobilenum, current: newNumber }))
                     setEdit(false)
 
                 }
