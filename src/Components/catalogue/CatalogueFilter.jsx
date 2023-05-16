@@ -12,7 +12,7 @@ function CatalogueFilter() {
 
   useEffect(() => {
     setFilterActive(filter.F_Assured || !(!filter.discount) || !(!filter.rating))
-  },[filterActive, filter])
+  }, [filterActive, filter])
 
   function handleClearAll() {
     dispatch(clearAllFilter())
@@ -25,8 +25,10 @@ function CatalogueFilter() {
     <div>
       <div className="catalogueFilterContent">
         <section className="catalogueFilterHeadContainer">
-          <div className="catalogueFilterHead"><span>Filters</span></div>
-          <div className="catalogueFilterHeadClearAll" onClick={() => handleClearAll()}><span>Clear all</span></div>
+          <div style={{display: "flex", justifyContent: "space-between"}}>
+            <div className="catalogueFilterHead"><span>Filters</span></div>
+            {filterActive && <div className="catalogueFilterHeadClearAll" onClick={() => handleClearAll()}><span>Clear all</span></div>}
+          </div>
           {filterActive &&
             <div className="catalogueFilterDisplayContainer">
               {filter.F_Assured && <FilterCardCancelButton name="F_Assured" content="Plus (FAssured)" />}

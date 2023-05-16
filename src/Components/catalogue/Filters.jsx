@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import './Catalogue.css'
 import FilterFAssured from '../../Media/FlipkartAssured.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { didUpdateDiscount, didUpdateF_Assured, didUpdateRating, updateDiscount, updateF_Assured, updateRating } from '../../state/filter/Filter'
+import { Link } from 'react-router-dom'
+import HelpMeFilter from '../../Media/HelpMeFilter.png'
 
 export function FilterCardCancelButton({content, name}) {
     let dispatch = useDispatch()
@@ -139,5 +142,18 @@ export function FilterRating() {
                 </div>
             }
         </section>
+    )
+}
+
+export function FilterHelpMe() {
+
+    return (
+        <div className="filterHelpMeContainer">
+            <Link className='filterHelpMeLink'>
+                <div>Need help?</div>
+                <div className="filterHelpMeContent"><span>Help me decide</span><svg style={{transform: "rotate(180deg)"}} width="16" height="11" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg"><path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#2874f0"></path></svg></div>
+                <img src={HelpMeFilter} alt="Help Me" />
+            </Link>
+        </div>
     )
 }

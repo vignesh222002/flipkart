@@ -11,6 +11,12 @@
     font-variant: normal;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+    border: none;
+    outline: none;
+}
 .catalogueContainer {
     width: 100%;
     position: relative;margin: 0 auto;
@@ -22,18 +28,22 @@
     display: flex;
     flex-flow: row;
 }
+.catalogueProductContainer {
+    display: flex;
+    flex-grow: 1;
+    overflow: auto;
+    flex-flow: column;
+}
+
+/* Catalogue Page Filter */
+
 .catalogueFilterContainer {
     display: flex;
     flex: 0 0 280px;
     max-width: 280px;
     padding: 0px 10px 0px 0px;
     flex-flow: column;
-}
-.catalogueProductContainer {
-    display: flex;
-    flex-grow: 1;
-    overflow: auto;
-    flex-flow: column;
+    font-family: roboto-medium;
 }
 .catalogueFilterContent {
     width: 100%;
@@ -53,7 +63,6 @@
     text-transform: capitalize;
     width: 67%;
     letter-spacing: .3px;
-    display: inline-block;
 }
 .catalogueFilterHeadClearAll {
     cursor: pointer;
@@ -61,7 +70,6 @@
     font-size: 12px;
     text-transform: uppercase;
     font-weight: 500;
-    display: inline-block;
 }
 .catalogueFilterFAssuredContainer {
     display: flex;
@@ -171,6 +179,7 @@
 }
 .catalogueFilterDiscountContent {
     margin: 7px 0;
+    font-family: roboto-regular;
 }
 .catalogueFilterDiscountClearContainer {
     vertical-align: bottom;
@@ -227,6 +236,7 @@
     transition: background-color .1s;
     max-width: 200px;
     padding: 8px;
+    font-family: roboto-regular;
 }
 .filterCardCancelButtonLogo {
     display: inline-block;
@@ -240,3 +250,25 @@
     max-width: 90%;
     display: inline-block;
 }
+
+.filterHelpMeContainer {
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    font-family: roboto-regular;
+}
+.filterHelpMeLink {
+    text-align: center;
+    padding-top: 30px;
+    display: block;
+    cursor: pointer;
+}
+.filterHelpMeContent {
+    color: #2874f0;
+    line-height: 1;
+    font-size: 18px;
+    margin: 5px 0 20px;
+}
+
+/* Catalogue Page Product */
+
