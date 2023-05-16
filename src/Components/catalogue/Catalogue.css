@@ -33,6 +33,7 @@ a {
     flex-grow: 1;
     overflow: auto;
     flex-flow: column;
+    font-family: roboto-regular;
 }
 
 /* Catalogue Page Filter */
@@ -272,3 +273,56 @@ a {
 
 /* Catalogue Page Product */
 
+.catalogueHeadProductContentContainer {
+    background-color: rgb(255, 255, 255);
+    align-items: flex-end;
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+}
+.catalogueHeadProductContent {
+    flex-grow: 1;
+    overflow: auto;
+    display: block;
+    background: #fff;
+    padding: 12px 16px 0;
+    border-bottom: 1px solid #f0f0f0;
+    height: 100%;
+    min-height: 72px;
+}
+.catalogueHeadBreadcums {
+    font-size: 12px;
+    color: #878787;
+}
+.catalogueHeadBreadcumsContent {
+    max-width: 80px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+.catalogueHeadShowing {
+    font-weight: 500;
+    font-size: 16px;
+    margin-top: 8px;
+}
+.catalogueHeadBreadcumsContent:hover {
+    color: #2874f0;
+}
+
+/* Catalogue Product Card */
+
+.catalogueProductCardContainer {
+    width: 25%;
+    color: #212121;
+    line-height: 1.4;
+    font-size: 14px;
+}
+.catalogueProductCardContent {
+    overflow: hidden;
+    margin: 0 8px;
+    position: relative;
+    transition: box-shadow .2s ease-in-out;
+    filter: none!important;
+    height: 100%;
+}

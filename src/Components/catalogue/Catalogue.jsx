@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './Catalogue.css'
 import CatalogueFilter from './CatalogueFilter'
 import { FilterHelpMe } from './Filters'
+import CatalogueProduct from './CatalogueProduct'
 
 export function CatalogueContainer({ children }) {
   return <div className='catalogueContainer'>{children}</div>
@@ -29,7 +30,9 @@ function CataloguePageContent() {
             <CatalogueFilter />
             <FilterHelpMe />
           </CatalogueFilterContainer>
-          <CatalogueProductContainer />
+          <CatalogueProductContainer>
+            <CatalogueProduct />
+          </CatalogueProductContainer>
         </CatalogueFlex>
       </CatalogueContainer>
     </div>

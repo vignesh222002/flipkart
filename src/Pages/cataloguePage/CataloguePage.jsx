@@ -42,7 +42,7 @@ let CataloguePage = () => {
             {callLogin && <LoginSignupModal redirectPath={redirectPath} callLogin={callLogin} setCallLogin={setCallLogin}/>}
             <Sector />
             <CataloguePageContent />
-            {/* <Footer /> */}
+            <Footer />
         </>
     )
 }
