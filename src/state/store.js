@@ -3,6 +3,7 @@ import cartLoginRouteReducer from './cartLoginRoute/CartLoginRoute'
 import deleteAddressReducer from './deleteAddress/DeleteAddress'
 import profilePopupReducer from './profilePopupOtp/ProfilePopupOtp'
 import loginReducer from './login/login'
+import filterReducer from './filter/Filter'
 
 const store = configureStore({
     reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
         deleteAddressPopup: deleteAddressReducer,
         updateUserInfo: profilePopupReducer,
         login: loginReducer,
+        filter: filterReducer,
     }
 })
 

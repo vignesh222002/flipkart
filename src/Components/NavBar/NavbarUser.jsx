@@ -21,7 +21,7 @@ let NavbarUser = ({ profileActive, setProfileActive }) => {
 
         axios.request(config)
             .then((response) => {
-                console.log(response.data)
+                // console.log(response.data)
                 if(response.data.status) setUserName(response.data.message)
             })
             .catch((error) => {

@@ -6,6 +6,7 @@ import MorePopup from "../../Components/NavBar/MorePopup"
 import NavbarMain from "../../Components/NavBar/NavbarMain"
 import UserPopup from "../../Components/NavBar/UserPopup"
 import Sector from "../../Components/Sector/Sector"
+import CataloguePageContent from "../../Components/catalogue/Catalogue"
 
 let CataloguePage = () => {
     let [loginActive, setLoginActive] = useState(false)
@@ -40,6 +41,7 @@ let CataloguePage = () => {
             {profileActive && <UserPopup redirectPath={redirectPath} style={userPopupStyle} setProfileActive={setProfileActive} />}
             {callLogin && <LoginSignupModal redirectPath={redirectPath} callLogin={callLogin} setCallLogin={setCallLogin}/>}
             <Sector />
+            <CataloguePageContent />
             {/* <Footer /> */}
         </>
     )
