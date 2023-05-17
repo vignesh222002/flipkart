@@ -321,8 +321,90 @@ a {
 .catalogueProductCardContent {
     overflow: hidden;
     margin: 0 8px;
-    position: relative;
     transition: box-shadow .2s ease-in-out;
     filter: none!important;
     height: 100%;
+}
+.catalogueProductCardImageLink {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+.catalogueProductCardImage {
+    max-width: 100%;
+    max-height: 100%;
+    transition: opacity .5s linear;
+    opacity: 1;
+    margin: auto;
+    z-index: 0;
+    width: auto;
+}
+.catalogueProductCardDetail {
+    width: 100%;
+    padding: 5px 16px 8px;
+    will-change: transform;
+    position: relative;
+    background: #fff;
+    z-index: 2;
+    transition: transform .35s cubic-bezier(.17,.67,.21,1);
+}
+.catalogueProductCardBrand {
+    color: #878787;
+    font-size: 14px;
+    font-weight: 500;
+}
+.catalogueProductCardName {
+    display: inline-block;
+    width: calc(100% - 80px);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0;
+}
+.catalogueProductCardFAssuredContainer {
+    display: inline-block;
+    font-size: 0;
+}
+.catalogueProductCardFAssuredImage {
+    width: 66px;
+    height: 18px;
+}
+.catalogueProductCardDescription {
+    margin: 0;
+    display: block;
+    padding: 0 10px 0 0;
+}
+.catalogueProductCardDescriptionPrice {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 500;
+    color: #212121;
+}
+.catalogueProductCardDescriptionMrp {
+    display: inline-block;
+    margin-left: 8px;
+    text-decoration: line-through;
+    font-size: 14px;
+    color: #878787;
+}
+.catalogueProductCardDescriptionDiscount {
+    color: #388e3c;
+    font-size: 13px;
+    letter-spacing: -.2px;
+    font-weight: 500;
+    margin-left: 8px;
+    display: inline-block;
+}
+
+.catalogueProductDisplayContainer {
+    display: block;
+    width: 100%;
+    padding-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: #fff;
+    background-color: #fff;
+    flex-wrap: wrap;
+    row-gap: 10px;
 }

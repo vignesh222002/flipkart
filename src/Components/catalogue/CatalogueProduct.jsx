@@ -1,12 +1,20 @@
 import React from 'react'
 import './Catalogue.css'
-import { CatalogueHead } from './Products'
+import { CatalogueHead, CatalogueProductCard, CatalogueProductDisplay } from './Products'
 
 function CatalogueProduct() {
     return (
-       <>
-        <CatalogueHead />
-       </>
+        <>
+            <CatalogueHead />
+            <CatalogueProductDisplay>
+                <CatalogueProductCard />
+                <CatalogueProductCard />
+                <CatalogueProductCard />
+                <CatalogueProductCard />
+                <CatalogueProductCard />
+                <CatalogueProductCard />
+            </CatalogueProductDisplay>
+        </>
     )
 }
 

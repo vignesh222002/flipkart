@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Catalogue.css'
 import { Link } from 'react-router-dom'
+import FAssured from '../../Media/FlipkartAssured.png'
 
 export function CatalogueHeadBreadcums({ category }) {
     return (
@@ -33,10 +34,28 @@ export function CatalogueHead() {
     )
 }
 
-export function CatalogueProductCard() {
+export function CatalogueProductDisplay({children}) {
+    return <div className="catalogueProductDisplayContainer">{children}</div>
+}
+
+export function CatalogueProductCard(to) {
+    const [cardActive, setCardActive] = useState(false)
+
+    const width =  window.innerWidth
+    let cardHeight
+    let imageHeight
+    if(width > "1366" ) {
+        cardHeight = { height: "500px" }
+        imageHeight = { height: "396px" }
+    }
+    else if(width <= "1366" ) {
+        cardHeight = { height: "300px" }
+        imageHeight = { height: "185px" }
+    }
+
     const data = {
         "id": 24,
-        "image_url": "https://rukminim1.flixcart.com/image/832/832/xif0q/watch/d/j/v/1-1841nc01-titan-men-original-imagg6wvczh7hf8j.jpeg?q=70",
+        "image_url": "https://rukminim1.flixcart.com/image/612/612/jwzabgw0/watch/c/h/g/ls2821-limestone-original-imafhjcr3xkxgqaz.jpeg?q=70",
         "name": "Titan Edge Squircle Analog Watch - For Men 1841NC01",
         "highlights": null,
         "mrp": 41995,
@@ -47,13 +66,27 @@ export function CatalogueProductCard() {
         "rating": 4,
         "price": 41575.05
     }
+    const detailStyle = !cardActive ? { transform: "translate3d(0px, 0px, 0px)" } : { transform: "translate3d(0px, -17px, 0px)" }
+    const cardStyle = cardActive ? { boxShadow: "0 3px 16px 0 rgba(0,0,0,.11)" } : {}
 
     return (
-        <div className="catalogueProductCardContainer">
-            <div className="catalogueProductCardContent">
-                <Link className=''>
-
+        <div className="catalogueProductCardContainer" style={cardHeight} onMouseOver={() => setCardActive(true)} onMouseLeave={() => setCardActive(false)}>
+            <div className="catalogueProductCardContent" style={cardStyle}>
+                <Link className='catalogueProductCardImageLink' style={imageHeight} to={to}>
+                    <img src={data.image_url} alt="Image" className='catalogueProductCardImage' />
                 </Link>
+                <div style={detailStyle} className="catalogueProductCardDetail">
+                    <div className="catalogueProductCardBrand">{data.brand}</div>
+                    <Link to={to} className='catalogueProductCardName'>{data.name}</Link>
+                    <div className="catalogueProductCardFAssuredContainer">
+                        <img src={FAssured} alt="F_Assured" className="catalogueProductCardFAssuredImage" />
+                    </div>
+                    <Link to={to} className='catalogueProductCardDescription'>
+                        <div className="catalogueProductCardDescriptionPrice">₹{data.price}</div>
+                        <div className="catalogueProductCardDescriptionMrp">₹{data.mrp}</div>
+                        <div className="catalogueProductCardDescriptionDiscount">{data.discount}% off</div>
+                    </Link>
+                </div>
             </div>
         </div>
     )
