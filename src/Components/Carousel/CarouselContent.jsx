@@ -8,18 +8,22 @@ import CarouselCard from './CarouselCard';
 import axios from 'axios'
 import { IP, Port } from '../../IP Address/IPAddress'
 
-function SampleNextArrow({ onClick }) {
+function SampleNextArrow({ onClick, hideButton="" }) {
+
+  // console.log("hideBUtton is ",hideButton)
   return (
-    <SlideRighttBtn onClick={onClick} />
+    <SlideRighttBtn hideButton={hideButton === "next"} onClick={onClick} />
   )
 }
-function SamplePrevArrow({ onClick }) {
+function SamplePrevArrow({ onClick, hideButton }) {
+  // console.log(hideButton)
   return (
-    <SlideLeftBtn onClick={onClick} />
+    <SlideLeftBtn hideButton={hideButton === "prev"} onClick={onClick} />
   )
 }
 
 function CarouselContent({ api, to }) {
+  const [hideButton, setHideButton] = useState("prev")
   const responsive = [
     {
       breakpoint: 1550,
@@ -71,28 +75,45 @@ function CarouselContent({ api, to }) {
     slidesToScroll: 4,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
-    responsive: responsive
-
+    responsive: responsive,
+    afterAll: (o, n) => {
+      // console.log("after is ", o, n)
+    }
+    ,
+    beforeChange: (oldIndex, newIndex) => {
+      // console.log(oldIndex, newIndex)
+      if (oldIndex === 0) {
+        setHideButton("next")
+        return
+      }
+      if (newIndex === data?.length - 5) {
+        setHideButton("prev ")
+        return
+      }
+    }
   }
+
   let [data, setData] = useState(null)
 
-    useEffect(() => {
-        axios.get(`http://${IP}:${Port}/getSubcategoryProducts/${api}`)
-            .then((res) => {
-                // console.log(res.data)
-                setData(res.data)
-            })
-    },[])
+  useEffect(() => {
+    axios.get(`http://${IP}:${Port}/getSubcategoryProducts/${api}`)
+      .then((res) => {
+        // console.log(res.data)
+        setData(res.data)
+      })
+  }, [])
 
   return (
     <div className='carousel'>
       <div className="carouselContent">
+        {/* {console.log("length ", data?.length)} */}
         {
           data != null && <Slider {...settings}>
-          {data.map((data) => <CarouselCard key={data.id} data={data} to={to} /> )}
-        </Slider >
+            {data.map((data) => <CarouselCard key={data.id} data={data} to={to} api={api} />)}
+            {/* {data.map((data) => <CarouselCard key={data.id} data={data} to={to} api={api} /> )} */}
+          </Slider >
         }
-        
+
       </div>
     </div>
   )

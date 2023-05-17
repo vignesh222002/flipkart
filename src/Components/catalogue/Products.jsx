@@ -23,12 +23,12 @@ export function CatalogueHeadShowing({ length, category }) {
     )
 }
 
-export function CatalogueHead() {
+export function CatalogueHead({ length, category }) {
     return (
         <div className='catalogueHeadProductContentContainer'>
             <div className="catalogueHeadProductContent">
-                <CatalogueHeadBreadcums />
-                <CatalogueHeadShowing />
+                <CatalogueHeadBreadcums category={category} />
+                <CatalogueHeadShowing length={length} category={category}  />
             </div>
         </div>
     )
@@ -38,7 +38,7 @@ export function CatalogueProductDisplay({children}) {
     return <div className="catalogueProductDisplayContainer">{children}</div>
 }
 
-export function CatalogueProductCard(to) {
+export function CatalogueProductCard({ to, data }) {
     const [cardActive, setCardActive] = useState(false)
 
     const width =  window.innerWidth
@@ -53,19 +53,6 @@ export function CatalogueProductCard(to) {
         imageHeight = { height: "185px" }
     }
 
-    const data = {
-        "id": 24,
-        "image_url": "https://rukminim1.flixcart.com/image/612/612/jwzabgw0/watch/c/h/g/ls2821-limestone-original-imafhjcr3xkxgqaz.jpeg?q=70",
-        "name": "Titan Edge Squircle Analog Watch - For Men 1841NC01",
-        "highlights": null,
-        "mrp": 41995,
-        "discount": "1",
-        "f_assured": true,
-        "category": "Watches Store",
-        "brand": "Titan",
-        "rating": 4,
-        "price": 41575.05
-    }
     const detailStyle = !cardActive ? { transform: "translate3d(0px, 0px, 0px)" } : { transform: "translate3d(0px, -17px, 0px)" }
     const cardStyle = cardActive ? { boxShadow: "0 3px 16px 0 rgba(0,0,0,.11)" } : {}
 

@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-function CarouselCard({ data, to }) {
+function CarouselCard({ data, to, api }) {
     let [zoom, setZoom] = useState({
         transform: "scale(1)"
     })
+    let navigate = useNavigate()
     function handleZoomIn() {
         setZoom({
             transform: "scale(1.05)"
@@ -15,9 +16,12 @@ function CarouselCard({ data, to }) {
             transform: "scale(1)"
         })
     }
+    function handleClick() {
+        navigate(`catalogue/${api}`)
+    }
 
     return (
-        <div className="carouselCard" onMouseOver={handleZoomIn} onMouseLeave={() => handleZoomOut()}>
+        <div className="carouselCard" onClick={() => handleClick()} onMouseOver={handleZoomIn} onMouseLeave={() => handleZoomOut()}>
             <div className="carouselCardLink">
                 <Link to={to}>
                     <div className="carouselCardImageContainer" style={zoom}>

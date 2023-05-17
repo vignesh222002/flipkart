@@ -293,6 +293,7 @@ a {
 .catalogueHeadBreadcums {
     font-size: 12px;
     color: #878787;
+    display: inline-block;
 }
 .catalogueHeadBreadcumsContent {
     max-width: 80px;
@@ -334,6 +335,7 @@ a {
     max-width: 100%;
     max-height: 100%;
     transition: opacity .5s linear;
+    width: fit-content;
     opacity: 1;
     margin: auto;
     z-index: 0;
@@ -395,11 +397,10 @@ a {
     margin-left: 8px;
     display: inline-block;
 }
-
 .catalogueProductDisplayContainer {
     display: block;
     width: 100%;
-    padding-top: 8px;
+    padding: 8px;
     display: flex;
     align-items: center;
     justify-content: space-around;
