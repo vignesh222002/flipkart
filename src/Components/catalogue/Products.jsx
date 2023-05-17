@@ -28,27 +28,27 @@ export function CatalogueHead({ length, category }) {
         <div className='catalogueHeadProductContentContainer'>
             <div className="catalogueHeadProductContent">
                 <CatalogueHeadBreadcums category={category} />
-                <CatalogueHeadShowing length={length} category={category}  />
+                <CatalogueHeadShowing length={length} category={category} />
             </div>
         </div>
     )
 }
 
-export function CatalogueProductDisplay({children}) {
+export function CatalogueProductDisplay({ children }) {
     return <div className="catalogueProductDisplayContainer">{children}</div>
 }
 
 export function CatalogueProductCard({ to, data }) {
     const [cardActive, setCardActive] = useState(false)
 
-    const width =  window.innerWidth
+    const width = window.innerWidth
     let cardHeight
     let imageHeight
-    if(width > "1366" ) {
+    if (width > "1366") {
         cardHeight = { height: "500px" }
         imageHeight = { height: "396px" }
     }
-    else if(width <= "1366" ) {
+    else if (width <= "1366") {
         cardHeight = { height: "300px" }
         imageHeight = { height: "185px" }
     }
@@ -65,15 +65,28 @@ export function CatalogueProductCard({ to, data }) {
                 <div style={detailStyle} className="catalogueProductCardDetail">
                     <div className="catalogueProductCardBrand">{data.brand}</div>
                     <Link to={to} className='catalogueProductCardName'>{data.name}</Link>
-                    <div className="catalogueProductCardFAssuredContainer">
-                        <img src={FAssured} alt="F_Assured" className="catalogueProductCardFAssuredImage" />
-                    </div>
+                    {data.f_assured &&
+                        <div className="catalogueProductCardFAssuredContainer">
+                            <img src={FAssured} alt="F_Assured" className="catalogueProductCardFAssuredImage" />
+                        </div>
+                    }
                     <Link to={to} className='catalogueProductCardDescription'>
-                        <div className="catalogueProductCardDescriptionPrice">₹{data.price}</div>
+                        <div className="catalogueProductCardDescriptionPrice">₹{Math.round(data.price)}</div>
                         <div className="catalogueProductCardDescriptionMrp">₹{data.mrp}</div>
                         <div className="catalogueProductCardDescriptionDiscount">{data.discount}% off</div>
                     </Link>
                 </div>
+            </div>
+        </div>
+    )
+}
+
+export function GoTopButton({ handler }) {
+    return (
+        <div className="goToTopButtonContainer">
+            <div className="goToTopButtonContent" onClick={() => handler()}>
+                <svg style={{ transform: "rotate(180deg)" }} width="20" height="7" className='goToTopButtonArrow' viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg"><path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#2874f0"></path></svg>
+                <span>Back to top</span>
             </div>
         </div>
     )

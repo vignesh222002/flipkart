@@ -354,6 +354,7 @@ a {
     color: #878787;
     font-size: 14px;
     font-weight: 500;
+    font-family: roboto-medium;
 }
 .catalogueProductCardName {
     display: inline-block;
@@ -381,6 +382,7 @@ a {
     font-size: 16px;
     font-weight: 500;
     color: #212121;
+    font-family: roboto-medium;
 }
 .catalogueProductCardDescriptionMrp {
     display: inline-block;
@@ -408,4 +410,41 @@ a {
     background-color: #fff;
     flex-wrap: wrap;
     row-gap: 10px;
+}
+
+/* Go To Top */
+
+.goToTopButtonContainer {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    color: #2874f0;
+    z-index: 3;
+}
+.goToTopButtonContent {
+    transform: translateY(0);
+    visibility: visible;
+    margin: 0 auto;
+    width: 120px;
+    font-size: 14px;
+    height: 40px;
+    font-weight: 500;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 3px 16px 0 rgba(0,0,0,.11);
+    padding-top: 10px;
+    transition: transform .3s ease-in-out;
+    cursor: pointer;
+    border: 1px solid #e0e0e0;
+    font-family: roboto-medium;
+}
+.goToTopButtonArrow {
+    transform: rotate(90deg);
+    width: 6px;
+    height: 11px;
+    margin-right: 10px;
+    vertical-align: baseline;
 }

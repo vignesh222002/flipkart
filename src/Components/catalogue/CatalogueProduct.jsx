@@ -3,21 +3,22 @@ import './Catalogue.css'
 import { CatalogueHead, CatalogueProductCard, CatalogueProductDisplay } from './Products'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import axios from 'axios'
-import { IP, Port } from '../../IP Address/IPAddress'
 import { useParams } from 'react-router-dom'
+import { getCatalogueProduct, getCatalogueProductFilter } from '../../utils/Catalogue'
+import { useSelector } from 'react-redux'
 
 function CatalogueProduct() {
     let [data, setData] = useState(null)
     let { api } = useParams()
+    let f_Assured = useSelector((state) => state.filter.F_Assured)
+
+    // useEffect(() => {
+    //     getCatalogueProduct(api, setData)
+    // }, [])
 
     useEffect(() => {
-        axios.get(`http://${IP}:${Port}/getSubcategoryProducts/${api}`)
-            .then((res) => {
-                // console.log(res.data)
-                setData(res.data)
-            })
-    }, [])
+        getCatalogueProductFilter(api, setData, f_Assured)
+    },[f_Assured])
 
     return (
         <>

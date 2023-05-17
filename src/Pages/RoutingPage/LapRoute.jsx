@@ -9,6 +9,7 @@ import ProfileRightInfo from "../../Components/Profile/ProfileInfo/profileInfo";
 import ProfileAddress from "../../Components/Profile/profileAddress/profileAddress";
 import ProfilePanCard from "../../Components/Profile/ProfilePanCard/profilePanCard";
 import CataloguePage from "../cataloguePage/CataloguePage";
+import ProductPage from "../productPage/ProductPage";
 
 let LapRoute = () => {
     
@@ -34,6 +35,7 @@ let LapRoute = () => {
                 <Route path="grocery" element={<CartMissingContent source={BasketEmptyImage} head="Your basket is empty!" description="Enjoy Upto 50% Savings on Grocery" button="Shop now" btnStyle={{background: '#2874f0'}} /> }></Route>
             </Route>
             <Route path="/catalogue/:api" element={<CataloguePage />}></Route>
+            <Route path="/product" element={<ProductPage />}></Route>
         </Routes>
     )
 }

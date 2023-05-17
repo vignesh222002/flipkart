@@ -44,6 +44,7 @@ let HomePage = () => {
             {callLogin && <LoginSignupModal redirectPath={redirectPath} callLogin={callLogin} setCallLogin={setCallLogin}/>}
             <ImageSlider />
             <Carousel api="112" head="Watch" />
+            <Carousel api="72" head="Watch" />
             <Footer />
         </>
     )

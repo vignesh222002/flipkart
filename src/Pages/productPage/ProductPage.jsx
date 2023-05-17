@@ -6,11 +6,10 @@ import MorePopup from "../../Components/NavBar/MorePopup"
 import NavbarMain from "../../Components/NavBar/NavbarMain"
 import UserPopup from "../../Components/NavBar/UserPopup"
 import Sector from "../../Components/Sector/Sector"
-import CataloguePageContent from "../../Components/catalogue/Catalogue"
 import { GoTopButton } from "../../Components/catalogue/Products"
 import { scrollToTop, scrollToTopSmooth } from "../../utils/helper"
 
-let CataloguePage = () => {
+let ProductPage = () => {
     let [loginActive, setLoginActive] = useState(false)
     let [moreActive, setMoreActive] = useState(false)
     let [callLogin, setCallLogin] = useState(false)
@@ -51,8 +50,6 @@ let CataloguePage = () => {
         }
     }, [])
 
-
-
     useEffect(() => {
         scrollToTop()
     }, [])
@@ -67,10 +64,10 @@ let CataloguePage = () => {
             {profileActive && <UserPopup redirectPath={redirectPath} style={userPopupStyle} setProfileActive={setProfileActive} />}
             {callLogin && <LoginSignupModal redirectPath={redirectPath} callLogin={callLogin} setCallLogin={setCallLogin} />}
             <Sector />
-            <CataloguePageContent />
-            <Footer />
+            {/* Code */}
+            {/* <Footer /> */}
         </>
     )
 }
 
-export default CataloguePage
+export default ProductPage
