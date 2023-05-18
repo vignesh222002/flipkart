@@ -1,12 +1,11 @@
 import axios from "axios";
 import { IP, Port } from "../IP Address/IPAddress";
-import { useDispatch } from "react-redux";
+import { updateData } from "../state/sector/Sector";
 
-function getSegment(id, dispatcher) {
-    let dispatch = useDispatch()
-
+export function getSegment(id, dispatch) {
     axios.get(`http://${IP}:${Port}/getSegment/${id}`)
         .then((res) => {
-            dispatch(dispatcher(   Object.entries(res[Object.keys(res)[0]])   ))
-        })
+            // console.log("res is ",res.data)
+            dispatch(updateData(Object.entries(res.data[Object.keys(res.data)[0]])))
+        }).catch(err=>console.log(err))
 }

@@ -12,8 +12,8 @@ function NoAddress({ setNoAdd, setAddNewAdd }) {
         <div className='noAddressContainer'>
             <div className="noAddressContent">
                 <img src={NoAddressImg} />
-                <span class="noAddressHead">No Addresses found in your account!</span>
-                <span class="noAddressFoot">Add a delivery address.</span>
+                <span className="noAddressHead">No Addresses found in your account!</span>
+                <span className="noAddressFoot">Add a delivery address.</span>
                 <button className='noAddressAddAddressBtn' onClick={() => handleAddAddress()}>ADD ADDRESSES</button>
             </div>
         </div>

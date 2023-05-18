@@ -1,9 +1,22 @@
 import { SectorButton, SectorContent, SectorLink } from './SectorButtons'
 import './sector.css'
-import obj from './mock.json'
+import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch } from "react-redux";
+import { getSegment } from '../../utils/Sector';
+
+
 
 let Sector = () => {
-    let value = Object.entries(obj[Object.keys(obj)[0]])
+    let sector = useSelector((state) => state.sector)
+    let dispatch = useDispatch()
+    // useEffect(() => console.log(sector),[sector])
+    // useEffect(() => {console.log("sector Active ",sector.sectorActive)},[sector.sectorActive])
+    // useEffect(() => console.log("sector Data is " ,sector?.data),[sector.data])
+
+    useEffect(() => {
+        if(sector.trigger) getSegment(sector.id, dispatch)
+    },[sector.trigger])
 
     return (
         <div className="sectorContainer">
@@ -18,8 +31,7 @@ let Sector = () => {
                 <SectorLink>Flights</SectorLink>
                 <SectorLink>Offer Zone</SectorLink>
                 <SectorLink>Grocery</SectorLink>
-
-                <SectorContent data={value} />
+                {sector.sectorActive && <SectorContent data={sector?.data} />}
             </div>
         </div>
     )

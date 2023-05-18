@@ -22,7 +22,7 @@ function ProfileRightInfo() {
         })
     }
 
-    useEffect(() => console.log("updated",userInfo),[userInfo])
+    // useEffect(() => console.log("updated",userInfo),[userInfo])
 
     function get() {
         // get Personal Information

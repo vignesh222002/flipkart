@@ -35,7 +35,7 @@ function ProfileContent() {
 
     axios.request(config)
       .then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         if (response.data.status) setUser(response.data.message)
       })
       .catch((error) => {
