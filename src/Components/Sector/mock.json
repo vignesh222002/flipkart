@@ -1,0 +1,28 @@
+{
+    "Electronics": {
+        "Smart Wearable Tech": [
+            "Smart watches",
+            "Smart Glasses(VR)",
+            "Smart Bands"
+        ],
+        "Health care Appliances": [
+            "Bp Monitors",
+            "Weighing Scale"
+        ],
+        "Laptops": [
+            "Gaming Laptops"
+        ],
+        "Mobile  Accessories": [
+            "Mobile Cases",
+            "Headphones & Headsets",
+            "PowerBanks",
+            "Memory cards"
+        ],
+        "Mobiles": [
+            "Realme",
+            "Mi",
+            "Samsung"
+        ]
+    }
+}
+

@@ -1,16 +1,101 @@
+@font-face {
+    font-family: roboto-medium;
+    src: url("../../../public/Fonts/roboto-medium-webfont.woff2");
+    font-variant: normal;
+}
+@font-face {
+    font-family: roboto-regular;
+    src: url("../../../public/Fonts/roboto-regular-webfont.woff2");
+    font-variant: normal;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+    border: none;
+    outline: none;
+}
 .sectorContainer {
+    position: relative;
+    min-height: 40px;
+    color: #000;
+    width: 100%;
     z-index: 6;
     background-color: #fff;
     box-shadow: 0 1px 1px 0 rgb(0 0 0 / 16%);
-    position: relative;
     padding-top: 56px;
+    font-family: roboto-regular;
 }
+
 .sector {
     color: #000;
     display: flex;
     max-width: 1248px;
     justify-content: space-between;
+    align-items: center;
     height: 40px;
-    /* min-height: 40px; */
     margin: auto;
+    position: relative;
+}
+@media (max-width: 1140px) {
+    .sector{
+        max-width: 978px
+    }
+}
+.sectorButtonContainer {
+    cursor: pointer;
+    flex-grow: 1;
+    justify-content: center;
+    font-weight: 500;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-family: roboto-medium;
+}
+.sectorContent {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    top: 40px;
+    background: #fff;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    z-index: 6;
+    box-shadow: 0 1px 2px 1px rgba(0,0,0,.16);
+}
+.sectorTabel {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 25px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+.sectorTabel:nth-child(2n) {
+    background: #f9f9f9;
+}
+.sectorTabelHead {
+    margin-top: 5px;
+    padding: 8px 0;
+    font-weight: 500;
+    color: #212121;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: roboto-medium;
+}
+.sectorTabelHead::after {
+    content: "â–º";
+    font-size: 8px;
+    color: #c2c2c2;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+.sectorTabelLink {
+    padding: 5px 0;
+    color: #666;
+    font-size: 13px;
+    cursor: pointer;
 }

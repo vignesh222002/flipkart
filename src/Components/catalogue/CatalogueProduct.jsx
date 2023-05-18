@@ -25,6 +25,7 @@ function CatalogueProduct() {
             <CatalogueHead length={data?.length} category={data?.[0].category} />
             <CatalogueProductDisplay>
                 {data?.map((data) => <CatalogueProductCard key={data.id} data={data} />) }
+                {data?.map((data) => <CatalogueProductCard key={data.id} data={data} />) }
             </CatalogueProductDisplay>
         </>
     )
