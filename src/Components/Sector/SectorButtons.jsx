@@ -4,14 +4,13 @@ import { didSector, triggerSector } from "../../state/sector/Sector"
 import { useDispatch } from "react-redux"
 
 
-export function SectorButton({ id, children }) {
+export function SectorButton({ id, children, sectorActive, setSectorActive, select, selectSector }) {
     let dispatch = useDispatch()
 
-    const [arrowActive, setArrowActive] = useState(false)
-    const buttonStyle = arrowActive ? {
+    const buttonStyle = sectorActive && select ? {
         color: "#2874f0"
     } : {}
-    const arrowStyle = arrowActive ? {
+    const arrowStyle = sectorActive && select ? {
         marginLeft: "8px",
         transform: "rotate(90deg)"
     } : {
@@ -20,12 +19,13 @@ export function SectorButton({ id, children }) {
     }
 
     function handleHover() {
-        setArrowActive(true)
+        selectSector(id)
         dispatch(triggerSector(id))
+        setSectorActive(true)
     }
     function handleDidHover() {
-        setArrowActive(false)
         dispatch(didSector())
+        setSectorActive(false)
     }
 
     return (
@@ -65,17 +65,19 @@ export function SectorTabel({ head, data }) {
         <div className="sectorTabel">
             <Link className="sectorTabelHead">{head && head}</Link>
             {data?.map((res, index) => <SectorTabelLink key={index} data={res} />)}
+            <Link className="sectorTabelHead">{head && head}</Link>
             {data?.map((res, index) => <SectorTabelLink key={index} data={res} />)}
+            <Link className="sectorTabelHead">{head && head}</Link>
             {data?.map((res, index) => <SectorTabelLink key={index} data={res} />)}
         </div>
     )
 }
 
-export function SectorContent({ data }) {
+export function SectorContent({ setSectorActive, data }) {
     let dispatch = useDispatch()
 
     return (
-        <div className="sectorContent">
+        <div className="sectorContent" onMouseOver={() => setSectorActive(true)} onMouseLeave={() => setSectorActive(false)}>
             {data?.map((data, index) => <SectorTabel key={index} head={data[0]} data={data[1]} />)}
         </div>
     )

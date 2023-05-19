@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Catalogue.css'
-import FilterFAssured from '../../Media/FlipkartAssured.png'
 import { useDispatch, useSelector } from 'react-redux'
-import { didUpdateDiscount, didUpdateF_Assured, didUpdateRating, updateDiscount, updateF_Assured, updateRating } from '../../state/filter/Filter'
+import { didUpdateDiscount, didUpdateF_Assured, didUpdateRating, updateDiscount, updateRating } from '../../state/filter/Filter'
 import { Link } from 'react-router-dom'
 import HelpMeFilter from '../../Media/HelpMeFilter.png'
 
@@ -47,33 +46,6 @@ export function FilterSelectCheckBox({ filterValue, name, description, handlerFu
     )
 }
 
-export function FilterFLipkartAssured() {
-    let filter = useSelector((state) => state.filter.F_Assured)
-    let dispatch = useDispatch()
-
-    function handleFilter(e) {
-        let name = e.target.name
-        if(name == "F_Assured") {
-          (filter) ? (dispatch(didUpdateF_Assured())) : (dispatch(updateF_Assured()))
-        }
-      }
-
-    return (
-        <section className='catalogueFilterFAssuredContainer'>
-            <label htmlFor='F_Assured' className='catalogueFilterFAssuredLabel' >
-                <input id='F_Assured' name='F_Assured' type="checkbox" className="catalogueFilterFAssuredInput" onClick={(e) => handleFilter(e)} />
-                <div className={`catalogueFilterFAssuredDummyInput ${filter && 'active'}`}></div>
-                <div className="catalogueFilterFAssuredLogoContainer">
-                    <img src={FilterFAssured} alt="FlipkartAssured" className="catalogueFilterFAssuredLogo" />
-                </div>
-            </label>
-            <div className="catalogueFilterFAssuredQuestionContainer">
-                <span className="catalogueFilterFAssuredQuestion">?</span>
-            </div>
-        </section>
-    )
-}
-
 export function FilterDiscount() {
     let filter = useSelector((state) => state.filter.discount)
     let dispatch = useDispatch()
@@ -84,7 +56,7 @@ export function FilterDiscount() {
     // useEffect(() => console.log("discount ", filter), [filter])
 
     function handlerFunction(e) {
-        dispatch(updateDiscount(e.target.name))
+        filter ? dispatch(didUpdateDiscount()) : dispatch(updateDiscount(e.target.name))
     }
     function handleClear(e) {
         dispatch(didUpdateDiscount())
@@ -120,7 +92,7 @@ export function FilterRating() {
     // useEffect(() => console.log("rating ", filter), [filter])
 
     function handlerFunction(e) {
-        dispatch(updateRating(e.target.name))
+        filter ? dispatch(didUpdateRating()) : dispatch(updateRating(e.target.name))
     }
     function handleClear(e) {
         dispatch(didUpdateRating())

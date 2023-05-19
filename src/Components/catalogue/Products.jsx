@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './Catalogue.css'
 import { Link } from 'react-router-dom'
 import FAssured from '../../Media/FlipkartAssured.png'
+import { calculatePrice } from '../../utils/helper'
 
 export function CatalogueHeadBreadcums({ category }) {
     return (
@@ -71,7 +72,7 @@ export function CatalogueProductCard({ to, data }) {
                         </div>
                     }
                     <Link to={to} className='catalogueProductCardDescription'>
-                        <div className="catalogueProductCardDescriptionPrice">₹{Math.round(data.price)}</div>
+                        <div className="catalogueProductCardDescriptionPrice">₹{data.price ? Math.round(data.price) : Math.round(calculatePrice(data.mrp, data.discount))}</div>
                         <div className="catalogueProductCardDescriptionMrp">₹{data.mrp}</div>
                         <div className="catalogueProductCardDescriptionDiscount">{data.discount}% off</div>
                     </Link>
@@ -85,7 +86,7 @@ export function GoTopButton({ handler }) {
     return (
         <div className="goToTopButtonContainer">
             <div className="goToTopButtonContent" onClick={() => handler()}>
-                <svg style={{ transform: "rotate(180deg)" }} width="20" height="7" className='goToTopButtonArrow' viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg"><path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#2874f0"></path></svg>
+                <svg style={{ transform: "rotate(90deg)" }} width="20" height="7" className='goToTopButtonArrow' viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg"><path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#2874f0"></path></svg>
                 <span>Back to top</span>
             </div>
         </div>

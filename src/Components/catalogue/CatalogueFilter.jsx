@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import './Catalogue.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearAllFilter } from '../../state/filter/Filter'
-import { FilterCardCancelButton, FilterDiscount, FilterFLipkartAssured, FilterRating } from './Filters'
+import { FilterCardCancelButton, FilterDiscount, FilterRating } from './Filters'
+import { FilterFLipkartAssured } from './filter/FlipkartAssured'
 
 
 function CatalogueFilter() {
@@ -12,7 +13,8 @@ function CatalogueFilter() {
 
   useEffect(() => {
     setFilterActive(filter.F_Assured || !(!filter.discount) || !(!filter.rating))
-  }, [filterActive, filter])
+  }, [filter])
+
 
   function handleClearAll() {
     dispatch(clearAllFilter())

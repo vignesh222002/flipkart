@@ -1,15 +1,22 @@
 import { SectorButton, SectorContent, SectorLink } from './SectorButtons'
 import './sector.css'
 import { useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from "react-redux";
 import { getSegment } from '../../utils/Sector';
 
 
 
 let Sector = () => {
+    const [sectorActive, setSectorActive] = useState(false)
+    let [selected, setSelected] = useState()
     let sector = useSelector((state) => state.sector)
     let dispatch = useDispatch()
+
+    function selectSector(key) {
+        selected != key && setSelected(key)
+    }
+ 
     // useEffect(() => console.log(sector),[sector])
     // useEffect(() => {console.log("sector Active ",sector.sectorActive)},[sector.sectorActive])
     // useEffect(() => console.log("sector Data is " ,sector?.data),[sector.data])
@@ -21,17 +28,17 @@ let Sector = () => {
     return (
         <div className="sectorContainer">
             <div className="sector">
-                <SectorButton id="1" >Electronics</SectorButton>
-                <SectorButton id="2" >TVs & Appliances</SectorButton>
-                <SectorButton id="3" >Men</SectorButton>
-                <SectorButton id="4" >Women</SectorButton>
-                <SectorButton id="5" >Baby & Kids</SectorButton>
-                <SectorButton id="6" >Home & Furniture</SectorButton>
-                <SectorButton id="7" >Sports, Books & More</SectorButton>
+                <SectorButton select={selected == "1"} selectSector={selectSector} sectorActive={sectorActive} setSectorActive={setSectorActive} id="1" >Electronics</SectorButton>
+                <SectorButton select={selected == "2"} selectSector={selectSector} sectorActive={sectorActive} setSectorActive={setSectorActive} id="2" >TVs & Appliances</SectorButton>
+                <SectorButton select={selected == "3"} selectSector={selectSector} sectorActive={sectorActive} setSectorActive={setSectorActive} id="3" >Men</SectorButton>
+                <SectorButton select={selected == "4"} selectSector={selectSector} sectorActive={sectorActive} setSectorActive={setSectorActive} id="4" >Women</SectorButton>
+                <SectorButton select={selected == "5"} selectSector={selectSector} sectorActive={sectorActive} setSectorActive={setSectorActive} id="5" >Baby & Kids</SectorButton>
+                <SectorButton select={selected == "6"} selectSector={selectSector} sectorActive={sectorActive} setSectorActive={setSectorActive} id="6" >Home & Furniture</SectorButton>
+                <SectorButton select={selected == "7"} selectSector={selectSector} sectorActive={sectorActive} setSectorActive={setSectorActive} id="7" >Sports, Books & More</SectorButton>
                 <SectorLink>Flights</SectorLink>
                 <SectorLink>Offer Zone</SectorLink>
                 <SectorLink>Grocery</SectorLink>
-                {sector.sectorActive && <SectorContent data={sector?.data} />}
+                {sectorActive && <SectorContent setSectorActive={setSectorActive} data={sector?.data} />}
             </div>
         </div>
     )

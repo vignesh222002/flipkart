@@ -22,7 +22,7 @@ function CatalogueProduct() {
 
     return (
         <>
-            <CatalogueHead length={data?.length} category={data?.[0].category} />
+            <CatalogueHead length={data?.length} category={data?.[0].category_name} />
             <CatalogueProductDisplay>
                 {data?.map((data) => <CatalogueProductCard key={data.id} data={data} />) }
                 {data?.map((data) => <CatalogueProductCard key={data.id} data={data} />) }

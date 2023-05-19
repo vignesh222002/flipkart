@@ -10,3 +10,7 @@ export const scrollToTopSmooth = () => {
         behavior: 'smooth'
     })
 }
+
+export function calculatePrice(mrp, discount){
+    return mrp-(mrp*discount/100);
+}
