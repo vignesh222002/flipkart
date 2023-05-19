@@ -6,6 +6,8 @@ import { IP, Port } from '../../../IP Address/IPAddress'
 import ProfilePersonalInfo from './ProfilePersonalInfo'
 import ProfileEmailAddress from './ProfileEmailAddress'
 import ProfileMobileNumber from './ProfileMobileNumber'
+import { getUser } from '../../../utils/Profile'
+import { useDispatch, useSelector } from 'react-redux'
 
 function ProfileRightInfo() {
     const [userInfo, setUserInfo] = useState({
@@ -13,14 +15,10 @@ function ProfileRightInfo() {
         lastname: "",
         gender: "",
         email: "",
-        mobilenum: ""})
-
-    function handleChange(e) {
-        setUserInfo({
-            ...userInfo,
-            [e.target.name]: e.target.value
-        })
-    }
+        mobilenum: ""
+    })
+    let dispatch = useDispatch()
+    let user = useSelector((state) => state.userInfo)
 
     // useEffect(() => console.log("updated",userInfo),[userInfo])
 
@@ -37,19 +35,23 @@ function ProfileRightInfo() {
                 // console.log(res.data)
                 setUserInfo(res.data.message)
             })
-    }   
-    useEffect(() => get(), [])
+    }
+    useEffect(() => {
+        // get()
+        getUser(dispatch)
+    }, [])
+    // useEffect(() => console.log(user) , [user])
 
     return (
         <>
             <div className='profileRightInfo'>
                 <div className="profilePersonalInfo">
 
-                    <ProfilePersonalInfo userInfo={userInfo} get={get} handleChange={handleChange} />
+                    <ProfilePersonalInfo />
 
-                    <ProfileEmailAddress userInfo={userInfo} get={get} />
+                    <ProfileEmailAddress userInfo={user} get={get} />
 
-                    <ProfileMobileNumber userInfo={userInfo} get={get} />
+                    <ProfileMobileNumber userInfo={user} get={get} />
 
                     <div className="profileInfoFaq">
                         <div className="profileInfoFaqHead">FAQs</div>

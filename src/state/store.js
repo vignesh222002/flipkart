@@ -5,6 +5,7 @@ import profilePopupReducer from './profilePopupOtp/ProfilePopupOtp'
 import loginReducer from './login/login'
 import filterReducer from './filter/Filter'
 import sectorReducer from './sector/Sector'
+import userInfoReducer from './userInformation/UserInformation'
 
 const store = configureStore({
     reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
         login: loginReducer,
         filter: filterReducer,
         sector: sectorReducer,
+        userInfo: userInfoReducer,
     }
 })
 
