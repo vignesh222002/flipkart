@@ -10,34 +10,10 @@ import { getUser } from '../../../utils/Profile'
 import { useDispatch, useSelector } from 'react-redux'
 
 function ProfileRightInfo() {
-    const [userInfo, setUserInfo] = useState({
-        firstname: "",
-        lastname: "",
-        gender: "",
-        email: "",
-        mobilenum: ""
-    })
     let dispatch = useDispatch()
     let user = useSelector((state) => state.userInfo)
 
-    // useEffect(() => console.log("updated",userInfo),[userInfo])
-
-    function get() {
-        // get Personal Information
-        const token = localStorage.getItem('token')
-        // console.log(token)
-        const config = {
-            headers: { Authorization: `Bearer ${token}` }
-        }
-
-        axios.get(`http://${IP}:${Port}/getProfile`, config)
-            .then(res => {
-                // console.log(res.data)
-                setUserInfo(res.data.message)
-            })
-    }
     useEffect(() => {
-        // get()
         getUser(dispatch)
     }, [])
     // useEffect(() => console.log(user) , [user])
@@ -49,9 +25,9 @@ function ProfileRightInfo() {
 
                     <ProfilePersonalInfo />
 
-                    <ProfileEmailAddress userInfo={user} get={get} />
+                    <ProfileEmailAddress userInfo={user} />
 
-                    <ProfileMobileNumber userInfo={user} get={get} />
+                    <ProfileMobileNumber userInfo={user} />
 
                     <div className="profileInfoFaq">
                         <div className="profileInfoFaqHead">FAQs</div>

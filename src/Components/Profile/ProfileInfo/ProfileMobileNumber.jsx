@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux"
 import { updateMobileNumber } from "../../../state/profilePopupOtp/ProfilePopupOtp"
 import { IP, Port } from "../../../IP Address/IPAddress"
 import axios from "axios"
+import { getUser } from "../../../utils/Profile"
 
 let ProfileMobileNumber = ({ userInfo, get }) => {
     let [edit, setEdit] = useState(false)
@@ -12,7 +13,7 @@ let ProfileMobileNumber = ({ userInfo, get }) => {
 
     const handleCancel = useCallback(() => {
         setEdit(false)
-        get()
+        getUser(dispatch)
     }, [edit])
 
     function handleSave() {
@@ -39,7 +40,6 @@ let ProfileMobileNumber = ({ userInfo, get }) => {
                 if (res.data.status) {
                     dispatch(updateMobileNumber({ prev: userInfo.mobilenum, current: newNumber }))
                     setEdit(false)
-                    get()
                 }
             })
             .catch(err => console.log(err))

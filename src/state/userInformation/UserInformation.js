@@ -20,17 +20,8 @@ const userInfoSlice = createSlice({
             state.email = action.payload.email
             state.mobilenum = action.payload.mobilenum
         },
-        updateF_Name: (state, action) => {
-            state.firstname = action.payload
-        },
-        updateL_Name: (state, action) => {
-            state.lastname = action.payload
-        },
-        updateGender: (state, action) => {
-            state.gender = action.payload
-        }
     }
 })
 
 export default userInfoSlice.reducer
-export const { updateUserInfo, updateF_Name, updateL_Name, updateGender } = userInfoSlice.actions
+export const { updateUserInfo } = userInfoSlice.actions

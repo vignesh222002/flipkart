@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { didUpdate } from '../../../state/profilePopupOtp/ProfilePopupOtp'
 import { IP, Port } from '../../../IP Address/IPAddress'
 import axios from 'axios'
+import { getUser } from '../../../utils/Profile'
 
 let ProfileOtpPopupInput = ({ name, number, handleChange }) => {
     let labelRef = useRef()
@@ -49,7 +50,7 @@ let ProfileOtpPopup = ({ purpose, number1, number2 }) => {
         })
     }
     function cancelHandler() {
-        dispatch(didUpdate())
+        dispatch(didUpdate())   
     }
     function submitHandler() {
         // Update Mobile Number
@@ -80,6 +81,7 @@ let ProfileOtpPopup = ({ purpose, number1, number2 }) => {
                     // console.log(response.data)
                     if (response.data.status) {
                         dispatch(didUpdate())
+                        getUser(dispatch)
                     }
                 })
                 .catch((error) => {
@@ -95,7 +97,7 @@ let ProfileOtpPopup = ({ purpose, number1, number2 }) => {
                 "emailOTP": value.value1,
                 "SMSOTP": value.value2
             })
-            console.log("data :", data)
+            // console.log("data :", data)
 
             const token = localStorage.getItem('token')
 
@@ -115,6 +117,7 @@ let ProfileOtpPopup = ({ purpose, number1, number2 }) => {
                     console.log(response.data)
                     if (response.data.status) {
                         dispatch(didUpdate())
+                        getUser(dispatch)
                     }
                 })
                 .catch((error) => {

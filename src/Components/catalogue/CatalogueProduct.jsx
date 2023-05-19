@@ -12,13 +12,13 @@ function CatalogueProduct() {
     let { api } = useParams()
     let f_Assured = useSelector((state) => state.filter.F_Assured)
 
-    // useEffect(() => {
-    //     getCatalogueProduct(api, setData)
-    // }, [])
-
     useEffect(() => {
-        getCatalogueProductFilter(api, setData, f_Assured)
-    },[f_Assured])
+        getCatalogueProduct(api, setData)
+    }, [])
+
+    // useEffect(() => {
+    //     getCatalogueProductFilter(api, setData, f_Assured)
+    // },[f_Assured])
 
     return (
         <>

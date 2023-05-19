@@ -3,6 +3,7 @@ import './profile.css'
 import ProfilePicMale from '../../Media/ProfilePicMale.svg'
 import { useDispatch, useSelector } from "react-redux"
 import { updateLoginIslogin } from "../../state/login/login"
+import { useEffect } from "react"
 
 let ProfileLeftCard = ({style, children}) => {
 
@@ -11,7 +12,8 @@ let ProfileLeftCard = ({style, children}) => {
     )
 } 
 
-let ShowProfile = ({ user }) => {
+let ShowProfile = () => {
+    let user = useSelector((state) => state.userInfo)
 
     return (
         <div className="showProfile">
@@ -79,7 +81,7 @@ let ProfileNavLeftFooter = ({children}) => {
     return <div className="profileNavLeftFooter">{children}</div>
 }
 
-let ProfileLeftContent = ({ user }) => {
+let ProfileLeftContent = () => {
     let dispatch = useDispatch()
     let navigate = useNavigate()
 
@@ -97,7 +99,7 @@ let ProfileLeftContent = ({ user }) => {
     return (
         <div>
             <ProfileLeftCard>
-                <ShowProfile user={user} />
+                <ShowProfile/>
             </ProfileLeftCard>
             <ProfileLeftCard style={{marginBottom: "16px"}}>
                 <div>

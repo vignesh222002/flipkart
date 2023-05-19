@@ -4,6 +4,7 @@ import { IP, Port } from "../../../IP Address/IPAddress"
 import { useDispatch } from "react-redux"
 import { updateEmail } from "../../../state/profilePopupOtp/ProfilePopupOtp"
 import axios from "axios"
+import { getUser } from "../../../utils/Profile"
 
 let ProfileEmailAddress = ({ userInfo, get }) => {
     let [edit, setEdit] = useState(false)
@@ -12,7 +13,7 @@ let ProfileEmailAddress = ({ userInfo, get }) => {
 
     const handleCancel = useCallback(() => {
         setEdit(false)
-        get()
+        getUser(dispatch)
     }, [edit])
 
     function handleSave() {
@@ -40,7 +41,6 @@ let ProfileEmailAddress = ({ userInfo, get }) => {
                 if (response.data.status) {
                     dispatch(updateEmail({ email: newEmail, mobile: userInfo.mobilenum }))
                     setEdit(false)
-                    get()
                 }
             })
             .catch((error) => {
