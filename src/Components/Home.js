@@ -16,7 +16,7 @@ let Home = () => {
     useEffect( () => {
         axios.get(`https://www.omdbapi.com/?s=${movieName}&apikey=bd905685`)
         .then((res) => {
-            console.log('response fetched');
+            console.log('response fetched')
             setSearchResponse(res.data.Search)
         })
         .catch(err => {
